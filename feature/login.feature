@@ -11,6 +11,6 @@ Feature:login
     Then login screen switches to main screen
 
   Scenario: Failed Login
-    When I enter wrong username or  wrong password
+    When I enter wrong username or wrong password
     And I click on the login button
     Then error message indicating failed login is prompted
