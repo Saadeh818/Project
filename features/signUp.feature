@@ -1,10 +1,15 @@
 Feature: sign-up
+  Scenario: successful sign-up
+    When user entered username 'ahmad'
+    And  password '12345678'
+    Then Go to login page
+
   Scenario: wrong user name
   When user entered username and username usability flag is 'true'
   Then username is used try another one
 
   Scenario: wrong password format
-    When user entered password and password acceptance flag is 'true'
+    When user entered password and password acceptance flag is 'false'
     Then password formatted wrong try another one
 
 #  Scenario: successful signUp
