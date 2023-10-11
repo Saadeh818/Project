@@ -1,5 +1,6 @@
 package org.example.AcceptanceTest;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Scanner;
 
@@ -10,13 +11,22 @@ public class Main {
         while (true) {
             System.out.println("Car accessories company \n**************************");
             System.out.println("1. Login \n2. SignUp \nYour Input: ");
-            Scanner scanner = new Scanner(System.in);
-            int num = scanner.nextInt();
-            if (num == 1) {
-                break;
-            } else if (num == 2) {
-                break;
-            } else continue;
+            try {
+                Scanner scanner = new Scanner(System.in);
+                int num = scanner.nextInt();
+                if (num == 1) {
+                    break;
+                } else if (num == 2) {
+                    break;
+                } else {
+                    System.out.println("Wrong input try again");
+                    continue;
+                }
+            } catch (Exception e ) {
+                System.out.println("Wrong input try again");
+                continue;
+            }
+
         }
     }
 }
