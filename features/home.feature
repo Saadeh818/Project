@@ -2,7 +2,7 @@ Feature: choose to Login or SignUp
   Scenario: choose Login
     When user entered one '1'
     Then go to login page
-
+#Im working now with login -->
   Scenario: choose SignUp
     When user entered tow '2'
     Then go to SignUp page
