@@ -3,7 +3,7 @@ Feature: Admin product management
   Scenario: Choose add product
     When admin in product management entered '1'
     Then add product
-
+#call add product function
   Scenario: Choose delete product
     When admin in product management entered '2'
     Then delete product
