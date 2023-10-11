@@ -3,8 +3,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class AdminDashboard {
-    @When("admin entered {string}")
-    public void admin_entered(String string) {
+    @When("admin in admin dashboard entered {string}")
+    public void adminInAdminDashboardEntered(String arg0) {
 
     }
 
