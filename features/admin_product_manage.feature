@@ -13,11 +13,13 @@ Feature: Admin product management
   Scenario: Choose update product
     When admin in product management entered '3'
     Then update product
-
+#call update product function go to update product -->
+#update product done
   Scenario: Choose return to dashboard
     When admin in product management entered '4'
     Then go to dashboard
 
   Scenario: Choose wrong character
     When admin in product management entered '<chars>'
-    Then reload product manager
+    Then show wrong input message
+    And reload product manager
