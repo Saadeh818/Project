@@ -26,9 +26,14 @@ public class AdminProductManagement {
     public void go_to_dashboard() {
 
     }
+    @Then("show wrong input message")
+    public void showWrongInputMessage() {
+    }
 
     @Then("reload product manager")
     public void reload_product_manager() {
 
     }
+
+
 }
