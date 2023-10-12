@@ -7,7 +7,8 @@ Feature: choose user to modify
     Scenario: successful choosing
       When admin entered user id '<ID>'
       Then modify options appeared
-
+#now go to modify_user_account_options.feature ------->
+#
   Scenario: fail choosing
     When admin entered user id '<wrongID>'
     Then wrong input message appears

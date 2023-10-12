@@ -2,7 +2,7 @@ Feature: user management
   Admin should choose the user type to manage his account
   Background: user type choosing
     Given type selection dashboard opened
-
+#Also i need to add scenario that the admin want to add new user
   Scenario: choose to manage installers
     When admin in user management entered '1'
     Then list installers
