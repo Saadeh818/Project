@@ -11,7 +11,7 @@ Feature: Admin dashboard
   Scenario: Admin choose manage users
     When admin in admin dashboard entered '2'
     Then go to user management
-#
+#Admin choose to make changes on user accounts go to user management -->
 #
   Scenario: Admin choose to sign out
     When admin in admin dashboard entered '3'
