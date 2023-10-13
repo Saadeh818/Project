@@ -10,5 +10,3 @@ Feature: choose to Login or SignUp
   Scenario: wrong input
     When user entered '<chars>'
     Then display wrong choose and go home page
-
-    #jklsjdfkl;sdjgkl;jhlfdshfgjfgh
