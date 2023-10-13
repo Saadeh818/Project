@@ -24,4 +24,8 @@ public class UserManagement {
     @Then("reload user management")
     public void reload_user_management() {
     }
+
+    @Then("add new user")
+    public void addNewUser() {
+    }
 }
