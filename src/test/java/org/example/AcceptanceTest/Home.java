@@ -6,6 +6,7 @@ import io.cucumber.java.en.When;
 public class Home {
     @When("user entered one {string}")
     public void userEnteredOne(String string) {
+
     }
     @Then("go to login page")
     public void goToLoginPage() {

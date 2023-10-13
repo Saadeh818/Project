@@ -10,6 +10,7 @@ Feature:login
     And I click on the login button
     Then login screen switches to main screen
 #logged in success and the user is admin go do admin dashboard -->
+
   Scenario: Failed Login
     When I enter wrong username or wrong password
     And I click on the login button
