@@ -11,4 +11,4 @@ Feature: choose to Login or SignUp
     When user entered '<chars>'
     Then display wrong choose and go home page
 
-    #jklsjdfkl;sdjgkl;jhlfds
+    #jklsjdfkl;sdjgkl;jhlfdshfgjfgh
