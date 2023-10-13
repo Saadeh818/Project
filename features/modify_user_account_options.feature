@@ -7,16 +7,16 @@ Feature: modify account options
 
   Scenario: choose to change password
     When modify account option input is '1'
-    Then go to change password
+    Then go to change password <'userID'>
 
   Scenario: choose to change username
     When modify account option input is '2'
-    Then go to change username
+    Then go to change username <'userID'>
 
   Scenario: choose to delete account
     When modify account option is '3'
-    Then go to delete account
+    Then go to delete account <'userID'>
 
   Scenario: wrong input
     When modify account option'<chars>'
-    Then reload modify account option
+    Then reload modify account option <'userID'>
