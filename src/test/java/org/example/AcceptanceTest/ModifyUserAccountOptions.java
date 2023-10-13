@@ -8,27 +8,27 @@ public class ModifyUserAccountOptions {
     public void modify_account_option_input_is(String string) {
     }
 
-    @Then("go to change password <{string}>")
-    public void go_to_change_password(String string) {
+    @Then("go to change password")
+    public void go_to_change_password() {
     }
 
-    @Then("go to change username <{string}>")
-    public void go_to_change_username(String string) {
+    @Then("go to change username")
+    public void go_to_change_username() {
     }
 
     @When("modify account option is {string}")
     public void modify_account_option_is(String string) {
     }
 
-    @Then("go to delete account <{string}>")
-    public void go_to_delete_account(String string) {
+    @Then("go to delete account")
+    public void go_to_delete_account() {
     }
 
     @When("modify account option'<chars>'")
     public void modify_account_option_chars() {
     }
 
-    @Then("reload modify account option <{string}>")
-    public void reload_modify_account_option(String string) {
+    @Then("reload modify account option")
+    public void reload_modify_account_option() {
     }
 }
