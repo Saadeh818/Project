@@ -1,5 +1,7 @@
 Feature:order
-
+there should be the option to create and delete orders.
+the system should also have an email service for finished orders 
+to notify customers when their orderr are finished
 
   Background: User reached order tab
   Given main screen is opened
