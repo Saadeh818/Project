@@ -12,11 +12,14 @@ public class ChoosingUserToModify {
     public void admin_entered_user_id(String string) {
     }
 
-    @Then("modify options appeared")
-    public void modify_options_appeared() {
-    }
+   
 
     @Then("return to choose user to modify")
     public void return_to_choose_user_to_modify() {
+    }
+
+
+    @Then("modify options appeared")
+    public void modifyOptionsAppearedUserID() {
     }
 }
