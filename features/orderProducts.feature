@@ -1,5 +1,5 @@
 Feature:orderProducts
-  An order of a customer may have diffirent products.
+  An order of a customer may have different products.
   so there should be the option to perform CRUD operation on the products of the each of the orders.
 
 
