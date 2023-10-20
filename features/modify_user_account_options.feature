@@ -14,12 +14,12 @@ Feature: modify account options
     When modify account option input is '2'
     Then go to change username
 #here we need to implement the change username feature
-#
+#Change username done
   Scenario: choose to delete account
     When modify account option is '3'
     Then go to delete account
 #here we need to implement the delete account feature
-
+#Done
   Scenario: wrong input
     When modify account option'<chars>'
     Then reload modify account option
