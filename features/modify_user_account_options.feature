@@ -9,10 +9,12 @@ Feature: modify account options
     When modify account option input is '1'
     Then go to change password
 #here we need to implement the change password feature
+#change password feature done
   Scenario: choose to change username
     When modify account option input is '2'
     Then go to change username
 #here we need to implement the change username feature
+#
   Scenario: choose to delete account
     When modify account option is '3'
     Then go to delete account
