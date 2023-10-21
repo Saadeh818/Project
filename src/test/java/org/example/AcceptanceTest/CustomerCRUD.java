@@ -1,8 +1,8 @@
-package org.example.firstproject.AcceptanceTest;
+package org.example.AcceptanceTest;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
-public class customerCRUD {
+public class CustomerCRUD {
 
     @Given("customer tab is opened")
     public void customerTabIsOpened() {

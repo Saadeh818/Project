@@ -1,13 +1,12 @@
-package org.example.firstproject.AcceptanceTest;
+package org.example.AcceptanceTest;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class adminlogin {
+public class AdminLogin {
 
     @Given("that the admin is not logged in the app")
     public void thatTheAdminIsNotLoggedInTheApp() {

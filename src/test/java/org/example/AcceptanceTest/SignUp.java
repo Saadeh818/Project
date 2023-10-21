@@ -1,4 +1,4 @@
-package org.example.firstproject.AcceptanceTest;
+package org.example.AcceptanceTest;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -6,7 +6,7 @@ import io.cucumber.java.en.When;
 
 import static org.junit.Assert.assertTrue;
 
-public class signup {
+public class SignUp {
 
         @Given("the user is on the sign-up page")
         public void theUserIsOnTheSignUpPage() {

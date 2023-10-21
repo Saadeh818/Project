@@ -7,7 +7,7 @@ Feature: list installation requests
     When user entered installation request id <id>
     Then go to schedule appointment
 #go to schedule appointment -->
-#
+#done
   Scenario: choose to return to dashboard
     When installer entered <0>
     Then reload installer dashboard

@@ -13,7 +13,7 @@ Feature:login
 #Admin features are done
 
 #looged in as installer go to installer dashboard -->
-#
+#done
   Scenario: Failed Login
     When I enter wrong username or wrong password
     And I click on the login button
