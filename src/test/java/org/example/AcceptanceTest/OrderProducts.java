@@ -2,7 +2,7 @@ package org.example.AcceptanceTest;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-public class orderProducts{
+public class OrderProducts {
 
     @Given("main screen is opened")
     public void mainScreenIsOpened() {

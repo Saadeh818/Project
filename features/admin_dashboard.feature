@@ -11,12 +11,13 @@ Feature: Admin dashboard
   Scenario: Admin choose manage users
     When admin in admin dashboard entered '2'
     Then go to user management
-#
-#
+#Admin choose to make changes on user accounts go to user management -->
+#Done
   Scenario: Admin choose to sign out
     When admin in admin dashboard entered '3'
     Then sign out
-
+#Done
   Scenario: wrong input
     When admin in admin dashboard entered '<chars>'
     Then reload dashboard
+#Done

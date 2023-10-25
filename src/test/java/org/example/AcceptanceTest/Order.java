@@ -6,15 +6,15 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
 
-public class order {
+public class Order {
     @And("orders tab is opened")
-    public void orderstabisopened() {
+    public void ordersTabIsOpened() {
     }
     @And("I select a customer from the customer box")
-    public void Iselectacustomerfromthecustomerbox() {
+    public void IsSelectACustomerFromTheCustomerBox() {
     }
     @And("I select an order from the order list")
-    public void Iselectanorderfromtheorderlist() {
+    public void ISelectAnOrderFromTheOrderList() {
 
     }
     @Given("I click add order button")
