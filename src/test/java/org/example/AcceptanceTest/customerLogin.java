@@ -1,9 +1,9 @@
-package org.example.firstproject.AcceptanceTest;
+package org.example.AcceptanceTest;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
-public class customerlogin {
+public class customerLogin {
     @Given("that the customer is not logged in the app")
     public void thatTheCustomerIsNotLoggedInTheApp() {
 

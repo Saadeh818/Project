@@ -1,36 +1,60 @@
 package org.example.AcceptanceTest;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.jetbrains.annotations.NotNull;
 
+import static org.example.AcceptanceTest.Admin.*;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class AdminLogin {
-
-    @Given("that the admin is not logged in the app")
-    public void thatTheAdminIsNotLoggedInTheApp() {
-
+    private Admin admin = new Admin();
+    @Given("the admin is not logged in the app")
+    public void the_admin_is_not_logged_in_the_app() {
+        admin.clearCredentials();
+        admin = new Admin();
     }
 
-    @Then("the admin is logged in the app successfully")
-    public void theAdminIsLoggedInTheAppSuccessfully() {
-
+    @When("the admin provides valid credentials")
+    public void the_admin_provides_valid_credentials(DataTable dataTable) {
+        admin.setUsername(dataTable.cell(1, 0));
+        admin.setPassword(dataTable.cell(1, 1));
     }
-    @Given("the username is {string}")
-    public void theUsernameIs(String string) {
 
+    @When("the admin attempts to log in")
+    public void the_admin_attempts_to_log_in() {
+        // Write code here that turns the phrase above into concrete actions
+        admin.login();
     }
-    @Given("the password is {string}")
-    public void thePasswordIs(String string) {
 
+    @Then("the admin is successfully logged into the app")
+    public void the_admin_is_successfully_logged_into_the_app() {
+        // Write code here that turns the phrase above into concrete actions
+        assertTrue(loginFlag);
     }
-    @Then("the admin will not login")
-    public void theAdminWillNotLogin() {
 
+    @When("the admin provides invalid credentials")
+    public void the_admin_provides_invalid_credentials(DataTable dataTable) {
+        admin.setUsername(dataTable.cell(1, 0));
+        admin.setPassword(dataTable.cell(1, 1));
     }
-    @Then("the message appear to tell the admin what's wrong")
-    public void theMessageAppearToTellTheAdminWhatSWrong() {
 
+    @Then("the admin is unable to log in")
+    public void the_admin_is_unable_to_log_in() {
+        assertFalse(loginFlag);
+    }
+
+    @Then("an error message is displayed to inform the admin of the issue")
+    public void an_error_message_is_displayed_to_inform_the_admin_of_the_issue() {
+        assertFalse(errorMessageFlag);
+    }
+
+    @When("the admin provides empty credentials")
+    public void the_admin_provides_empty_credentials(DataTable dataTable) {
+        admin.setUsername(dataTable.cell(1, 0));
+        admin.setPassword(dataTable.cell(1, 1));
     }
 }
