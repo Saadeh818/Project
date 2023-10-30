@@ -1,12 +1,41 @@
-Feature: choose to Login or SignUp
-  Scenario: choose Login
-    When user entered one '1'
-    Then go to login page
-#Im working now with login -->
-  Scenario: choose SignUp
-    When user entered tow '2'
-    Then go to SignUp page
+Feature: Choose to Login or SignUp
 
-  Scenario: wrong input
-    When user entered '<chars>'
-    Then display wrong choose and go home page
+  Background: home
+    Given user is on home page
+  Scenario: Choose Login as Admin
+    When the user enters '1'
+    Then go to the admin login page
+
+  Scenario: Choose Login as Customer
+    When the user enters '2'
+    Then go to the customer login page
+
+  Scenario: Choose Login as Installer
+    When the user enters '3'
+    Then go to the installer login page
+
+  Scenario: Choose SignUp
+    When the user enters '4'
+    Then go to the SignUp page
+
+ Scenario Outline: Wrong Input
+    When the user enters '<chars>'
+    Then display a wrong choice and go to the home page
+
+    Examples:
+      | chars |
+      | 0      |
+#      | '      |
+      | 5      |
+      | 6      |
+      | 41     |
+      | a      |
+      | $      |
+      | #      |
+      | @      |
+      | !      |
+      | "      |
+      | qsdf   |
+      | +      |
+      | *      |
+      | /      |
