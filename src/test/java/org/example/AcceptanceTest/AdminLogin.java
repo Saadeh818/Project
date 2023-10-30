@@ -5,7 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import static org.example.AcceptanceTest.Admin.*;
+import static org.example.AcceptanceTest.Admin.clearCredentials;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -13,7 +13,7 @@ public class AdminLogin {
     private Admin admin = new Admin();
     @Given("the admin is not logged in the app")
     public void the_admin_is_not_logged_in_the_app() {
-        admin.clearCredentials();
+        clearCredentials();
         admin = new Admin();
     }
 
@@ -32,7 +32,7 @@ public class AdminLogin {
     @Then("the admin is successfully logged into the app")
     public void the_admin_is_successfully_logged_into_the_app() {
         // Write code here that turns the phrase above into concrete actions
-        assertTrue(loginFlag);
+        assertTrue(Admin.loginFlag);
     }
 
     @When("the admin provides invalid credentials")
@@ -43,12 +43,12 @@ public class AdminLogin {
 
     @Then("the admin is unable to log in")
     public void the_admin_is_unable_to_log_in() {
-        assertFalse(loginFlag);
+        assertFalse(Admin.loginFlag);
     }
 
     @Then("an error message is displayed to inform the admin of the issue")
     public void an_error_message_is_displayed_to_inform_the_admin_of_the_issue() {
-        assertFalse(errorMessageFlag);
+        assertFalse(Admin.errorMessageFlag);
     }
 
     @When("the admin provides empty credentials")
