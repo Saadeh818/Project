@@ -1,29 +1,27 @@
-Feature: admin login
+Feature: Admin Login
 
-  Scenario: Successful log in
-    Given that the admin is not logged in the app
-    And the username is "deema"
-    And the password is "002"
-    Then  the admin is logged in the app successfully
+  Scenario: Successful Admin Login
+    Given the admin is not logged in the app
+    When the admin provides valid credentials
+      | Username | Password |
+      | deema   | 002    |
+    And the admin attempts to log in
+    Then the admin is successfully logged into the app
 
-  Scenario: Admin entered a wrong username
-    Given that the admin is not logged in the app
-    And the username is "wrong"
-    And the password is "002"
-    Then the admin will not login
-    And the message appear to tell the admin what's wrong
+  Scenario: Admin Enters Invalid Credentials
+    Given the admin is not logged in the app
+    When the admin provides invalid credentials
+      | Username | Password |
+      | Ahmad  | 002    |
+    And the admin attempts to log in
+    Then the admin is unable to log in
+    And an error message is displayed to inform the admin of the issue
 
-  Scenario: Administrator entered a wrong password
-    Given that the admin is not logged in the app
-    And the username is "deema"
-    And the password is "wrong"
-    Then the admin will not login
-    And the message appear to tell the admin what's wrong
-
-  Scenario: Admin entered empty password or email
-    Given that the admin is not logged in the app
-    And the username is " "
-    And the password is " "
-    Then the admin will not login
-    And the message appear to tell the admin what's wrong
-
+  Scenario: Admin Enters Empty Credentials
+    Given the admin is not logged in the app
+    When the admin provides empty credentials
+      | Username | Password |
+      |          |          |
+    And the admin attempts to log in
+    Then the admin is unable to log in
+    And an error message is displayed to inform the admin of the issue
