@@ -19,7 +19,13 @@ Feature: Admin product management
     When admin in product management entered '4'
     Then go to dashboard
 
-  Scenario: Choose wrong character
+  Scenario Outline: Choose wrong character
     When admin in product management entered '<chars>'
     Then show wrong input message
     And reload product manager
+    Examples:
+      | chars |
+      |5      |
+      |156    |
+      |a      |
+      |       |
