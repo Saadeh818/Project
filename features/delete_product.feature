@@ -8,7 +8,10 @@ Feature: Delete product
     Then delete products
     Examples:
       | category | ID |
-      |cat1      |2   |
+      |cat1      |1    |
+      |cat2      |2    |
+      |cat3      |3    |
+
   Scenario Outline: wrong category selection
     When user choose '<wrong_category>' to delete from
     Then print wrong selection message

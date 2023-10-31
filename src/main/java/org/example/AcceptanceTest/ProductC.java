@@ -1,10 +1,11 @@
 package org.example.AcceptanceTest;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductC {
-    private static int nextProductId = 1;
+    private static int nextProductId = 0;
     public int productId;
     public static boolean readyToDelete;
     public static boolean readyToUpdate;
@@ -15,26 +16,27 @@ public class ProductC {
     public int price;
     public boolean productAddSuccessfully;
     public static boolean readyToAdd=false;
-    public List<ProductC> productList;
+    public static final List<ProductC> productList=new ArrayList<>();
     public static boolean listProductFlag=false;
     public static boolean productDeletedSuccessfully=true;
 
-
-    public ProductC() {
-        productList = new ArrayList<>();
-        productList.add(new ProductC("cat1", "product1", 18, 100));
-        productList.add(new ProductC("cat1", "product2", 85, 150));
-        productList.add(new ProductC("cat2", "product3", 44, 480));
-        productList.add(new ProductC("cat3", "product4", 48, 940));
-        productList.add(new ProductC("cat1", "product5", 10, 613));
-        productList.add(new ProductC("cat3", "product6", 88, 984));
-        productList.add(new ProductC("cat2", "product7", 91, 513));
-        productList.add(new ProductC("cat1", "product8", 77, 560));
-        productList.add(new ProductC("cat2", "product9", 24, 613));
+    static {
+        productList.add(new ProductC(0, "cat1", "product1", 18, 100));
+        productList.add(new ProductC(1, "cat1", "product2", 85, 150));
+        productList.add(new ProductC(2, "cat2", "product3", 44, 480));
+        productList.add(new ProductC(3, "cat3", "product4", 48, 940));
+        productList.add(new ProductC(4, "cat1", "product5", 10, 613));
+        productList.add(new ProductC(5, "cat3", "product6", 88, 984));
+        productList.add(new ProductC(6, "cat2", "product7", 91, 513));
+        productList.add(new ProductC(7, "cat1", "product8", 77, 560));
+        productList.add(new ProductC(8, "cat2", "product9", 24, 613));
     }
 
-    public ProductC(String category, String name, int quantity, int price) {
-        this.productId = nextProductId++;
+    public ProductC() {
+    }
+
+    public ProductC(int ID,String category, String name, int quantity, int price) {
+        this.productId = ID;
         this.category = category;
         this.name = name;
         this.quantity = quantity;
@@ -97,7 +99,7 @@ public class ProductC {
         }
         System.out.println("********** Cat3 *********");
         for (ProductC product : productList) {
-            if(product.category.equals("cat2")) {
+            if(product.category.equals("cat3")) {
                 productPrint(product);
             }
         }
@@ -114,6 +116,7 @@ public class ProductC {
 
     public void addProduct(String categoryI, String nameI, String quantityI, String priceI) {
         try {
+
             if (!(categoryI.equals("cat1") || categoryI.equals("cat2") || categoryI.equals("cat3")) || (nameI.length() < 4))
                 productAddSuccessfully = false;
             else{
@@ -121,7 +124,7 @@ public class ProductC {
                 name=nameI;
                 quantity = Integer.parseInt(quantityI);
                 price=Integer.parseInt(priceI);
-                ProductC product = new ProductC(category, name, quantity, price);
+                ProductC product = new ProductC(productList.size()+1,category, name, quantity, price);
                 productList.add(product);
                 productAddSuccessfully=true;
 
@@ -133,8 +136,10 @@ public class ProductC {
     }
 
     public void setCategory(String categoryI) {
-        if (!(categoryI.equals("cat1") || categoryI.equals("cat2") || categoryI.equals("cat3")))
-            wrongInputFlag=true;
+        if (!(categoryI.equals("cat1") || categoryI.equals("cat2") || categoryI.equals("cat3"))) {
+            wrongInputFlag = true;
+            productDeletedSuccessfully = false;
+        }
         else
             this.category=categoryI;
     }
@@ -164,8 +169,13 @@ public class ProductC {
 
     private boolean checkIfProductExists(int ID) {
         for (ProductC product : productList){
-            if (product.productId==ID)return true;
+            if (product.productId==ID){
+                JOptionPane.showMessageDialog(null,"checkIfProductExists","hello",JOptionPane.ERROR_MESSAGE);
+                return true;
+            }
         }
+        JOptionPane.showMessageDialog(null,"checkIfProductExists2","hello",JOptionPane.ERROR_MESSAGE);
+
         return false;
     }
 }
