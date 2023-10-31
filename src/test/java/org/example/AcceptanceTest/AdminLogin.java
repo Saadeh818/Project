@@ -13,7 +13,7 @@ public class AdminLogin {
     private Admin admin = new Admin();
     @Given("the admin is not logged in the app")
     public void the_admin_is_not_logged_in_the_app() {
-        clearCredentials();
+        Admin.clearCredentials();
         admin = new Admin();
     }
 
