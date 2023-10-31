@@ -17,7 +17,7 @@ public class ProductC {
     public static boolean readyToAdd=false;
     public List<ProductC> productList;
     public static boolean listProductFlag=false;
-    public static boolean productDeletedSuccessfully;
+    public static boolean productDeletedSuccessfully=true;
 
 
     public ProductC() {
@@ -152,13 +152,15 @@ public class ProductC {
     }
 
     public void selectIdToDelete(String ID, String category) {
-        for (ProductC product : productList) {
-            if(product.category.equals(category)&&product.productId==Integer.parseInt(ID)) {
-               productList.remove(product);
-                productDeletedSuccessfully = !checkIfProductExists(Integer.parseInt(ID));
-            }
+        if(checkIfProductExists(Integer.parseInt(ID))) {
+            productList.removeIf(product -> product.category.equals(category) && product.productId == Integer.parseInt(ID));
+            productDeletedSuccessfully = !checkIfProductExists(Integer.parseInt(ID));
+        }
+        else {
+            productDeletedSuccessfully=false;
         }
     }
+
 
     private boolean checkIfProductExists(int ID) {
         for (ProductC product : productList){
