@@ -2,25 +2,27 @@ package org.example.AcceptanceTest;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 
 public class UpdateProduct {
-    @When("user enter category number'<categoryNum>'")
-    public void user_enter_category_number_category_num() {
+    ProductC product=new ProductC();
+    @When("user choose category update{string}")
+    public void user_choose_category_update_category(String string) {
+        product.setCategory(string);
     }
 
-    @Then("list items")
-    public void list_items() {
+    @When("choose product id update {string}")
+    public void choose_product_id_update(String string) {
+        product.productId= Integer.parseInt(string);
     }
 
-    @When("user enter category number'<WrongCategoryNum>'")
-    public void user_enter_category_number_wrong_category_num() {
+    @When("get new fields {string}{string}{string}{string}")
+    public void get_new_fields(String category, String name, String quantity, String price) {
+        product.updateValues(product.productId, category,name,quantity,price);
     }
 
-    @Then("wrong input message appears")
-    public void wrong_input_message_appears() {
-    }
-
-    @Then("reload categories")
-    public void reload_categories() {
+    @Then("go update product")
+    public void update_product() {
+        Assert.assertTrue(product.updateProductSuccess);
     }
 }

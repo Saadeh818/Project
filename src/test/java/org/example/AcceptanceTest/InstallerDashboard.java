@@ -24,4 +24,8 @@ public class InstallerDashboard {
     @Then("reload installer dashboard")
     public void reload_installer_dashboard() {
     }
+
+    @Then("wrong input message appears")
+    public void wrongInputMessageAppears() {
+    }
 }

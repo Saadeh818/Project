@@ -1,5 +1,7 @@
 package org.example.AcceptanceTest;
 
+import io.cucumber.java.bs.I;
+
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +33,8 @@ public class ProductC {
         productList.add(new ProductC(7, "cat1", "product8", 77, 560));
         productList.add(new ProductC(8, "cat2", "product9", 24, 613));
     }
+
+    public boolean updateProductSuccess;
 
     public ProductC() {
     }
@@ -160,6 +164,7 @@ public class ProductC {
         if(checkIfProductExists(Integer.parseInt(ID))) {
             productList.removeIf(product -> product.category.equals(category) && product.productId == Integer.parseInt(ID));
             productDeletedSuccessfully = !checkIfProductExists(Integer.parseInt(ID));
+            System.out.println("The Product has been deleted successfully");
         }
         else {
             productDeletedSuccessfully=false;
@@ -177,5 +182,31 @@ public class ProductC {
         JOptionPane.showMessageDialog(null,"checkIfProductExists2","hello",JOptionPane.ERROR_MESSAGE);
 
         return false;
+    }
+
+    public void update() {
+
+    }
+
+    public void updateValues(int ID,String category, String name, String quantity, String price) {
+        for (ProductC product : productList){
+            if (product.productId == ID) {
+                productPrint(product);
+                product.setCategory(category);
+                product.setName(name);
+                product.setQuantity(Integer.parseInt(quantity));
+                product.setPrice(Integer.parseInt(price));
+                updateProductSuccess=true;
+                System.out.println("**********Product Updated Success**********");
+                productPrint(product);
+
+                return;
+            }
+            else {
+                updateProductSuccess=false;
+            }
+        }
+
+
     }
 }

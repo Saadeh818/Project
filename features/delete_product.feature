@@ -3,7 +3,7 @@ Feature: Delete product
     Given category list appear
 
   Scenario Outline: successful delete
-    When user choose '<category>' to delete from
+    When user choose category '<category>'
     And choose product id '<ID>'
     Then delete products
     Examples:
@@ -13,14 +13,14 @@ Feature: Delete product
       |cat3      |3    |
 
   Scenario Outline: wrong category selection
-    When user choose '<wrong_category>' to delete from
+    When user choose category '<wrong_category>'
     Then print wrong selection message
     And redirect to delete product screen
     Examples:
       | wrong_category |
       |cat8            |
   Scenario Outline: wrong product id selection
-    When user choose '<category>' to delete from
+    When user choose category '<category>'
     And choose product id '<wrong_ID>'
     Then print wrong selection message
     And redirect to delete product screen

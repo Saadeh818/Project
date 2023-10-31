@@ -1,4 +1,5 @@
 package org.example.AcceptanceTest;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -8,12 +9,13 @@ import static org.example.AcceptanceTest.ProductC.productDeletedSuccessfully;
 
 public class DeleteProduct {
     ProductC product = new ProductC();
+
     @Given("category list appear")
     public void category_list_appear() {
         ProductC.listProductFlag=true;
     }
 
-    @When("user choose {string} to delete from")
+    @When("user choose category {string}")
     public void user_choose_to_delete_from(String string) {
         product.setCategory(string);
     }
