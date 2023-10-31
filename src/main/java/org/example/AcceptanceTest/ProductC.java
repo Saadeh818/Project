@@ -78,14 +78,33 @@ public class ProductC {
     }
 
     public void productList() {
+        System.out.println("********** Cat1 *********");
         for (ProductC product : productList) {
-            System.out.println("Product ID: " + product.productId);
-            System.out.println("Product Category: " + product.category);
-            System.out.println("Product Name: " + product.name);
-            System.out.println("Product Quantity: " + product.quantity);
-            System.out.println("Product Price: " + product.price);
-            System.out.println(); // Separate each product with a newline
+            if(product.category.equals("cat1")) {
+                productPrint(product);
+            }
         }
+        System.out.println("********** Cat2 *********");
+        for (ProductC product : productList) {
+            if(product.category.equals("cat2")) {
+                productPrint(product);
+            }
+        }
+        System.out.println("********** Cat3 *********");
+        for (ProductC product : productList) {
+            if(product.category.equals("cat2")) {
+                productPrint(product);
+            }
+        }
+    }
+
+    private void productPrint(ProductC product) {
+        System.out.println("Product ID: " + product.productId);
+        System.out.println("Product Category: " + product.category);
+        System.out.println("Product Name: " + product.name);
+        System.out.println("Product Quantity: " + product.quantity);
+        System.out.println("Product Price: " + product.price);
+        System.out.println();
     }
 
     public void addProduct(String categoryI, String nameI, String quantityI, String priceI) {
