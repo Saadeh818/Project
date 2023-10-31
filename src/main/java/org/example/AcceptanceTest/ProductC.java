@@ -58,6 +58,8 @@ public class ProductC {
             if (!(categoryI.equals("cat1") || categoryI.equals("cat2") || categoryI.equals("cat3")) || (nameI.length() < 4))
                 productAddSuccessfully = false;
             else{
+                category=categoryI;
+                name=nameI;
                 quantity = Integer.parseInt(quantityI);
                 price=Integer.parseInt(priceI);
                 productAddSuccessfully=true;
