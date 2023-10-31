@@ -5,12 +5,12 @@ Feature: Delete product
   Scenario Outline: successful delete
     When user choose '<category>' to delete from
     And choose product id '<ID>'
-    Then delete product
+    Then delete products
     Examples:
       | category | ID |
-      |cat1      |1   |
+      |cat1      |2   |
   Scenario Outline: wrong category selection
-    When user choose '<wrong_category>'
+    When user choose '<wrong_category>' to delete from
     Then print wrong selection message
     And redirect to delete product screen
     Examples:

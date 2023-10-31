@@ -16,6 +16,9 @@ public class ProductC {
     public boolean productAddSuccessfully;
     public static boolean readyToAdd=false;
     public List<ProductC> productList;
+    public static boolean listProductFlag=false;
+    public static boolean productDeletedSuccessfully;
+
 
     public ProductC() {
         productList = new ArrayList<>();
@@ -77,6 +80,8 @@ public class ProductC {
         }
     }
 
+
+
     public void productList() {
         System.out.println("********** Cat1 *********");
         for (ProductC product : productList) {
@@ -125,5 +130,40 @@ public class ProductC {
         catch (Exception ignored){
             productAddSuccessfully=false;
         }
+    }
+
+    public void setCategory(String categoryI) {
+        if (!(categoryI.equals("cat1") || categoryI.equals("cat2") || categoryI.equals("cat3")))
+            wrongInputFlag=true;
+        else
+            this.category=categoryI;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void selectIdToDelete(String ID, String category) {
+        for (ProductC product : productList) {
+            if(product.category.equals(category)&&product.productId==Integer.parseInt(ID)) {
+               productList.remove(product);
+                productDeletedSuccessfully = !checkIfProductExists(Integer.parseInt(ID));
+            }
+        }
+    }
+
+    private boolean checkIfProductExists(int ID) {
+        for (ProductC product : productList){
+            if (product.productId==ID)return true;
+        }
+        return false;
     }
 }

@@ -32,6 +32,7 @@ public class AdminLogin {
     @Then("the admin is successfully logged into the app")
     public void the_admin_is_successfully_logged_into_the_app() {
         // Write code here that turns the phrase above into concrete actions
+
         assertTrue(Admin.loginFlag);
     }
 
