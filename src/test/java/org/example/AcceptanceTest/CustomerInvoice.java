@@ -25,8 +25,6 @@ public class CustomerInvoice {
 
     }
 
-
-
     @Then("the details of the selected invoice are displayed on the screen")
     public void theDetailsOfTheSelectedInvoiceAreDisplayedOnTheScreen() {
 
