@@ -7,12 +7,12 @@ Feature: Customer Invoicing
     And customer invoice tab is selected
     And I select a customer from the customer box
 
-  Scenario: Creating a New Invoice Successfully
+  Scenario: Creating a New invoice Successfully
     Given I click on the "Create New Invoice" button
     And I enter the necessary details for the new invoice
     Then a new invoice is created and added to the invoice list
 
-  Scenario: Deleting an Invoice Successfully
+  Scenario: Deleting an invoice Successfully
     Given I select an invoice from the invoice list
     And I click on the "Delete Invoice" button
     Then the selected invoice is deleted from the invoice list
