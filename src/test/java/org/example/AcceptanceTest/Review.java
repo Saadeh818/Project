@@ -48,11 +48,21 @@ public class Review {
     public void theReviewIsAddedToTheProductPage() {
         // Assuming the review is added to the product page
     }
+    //        ***************************************************************************
+    //        ***************************************************************************
+    //        ***************************************************************************
+    //        ***************************************************************************
+    //duplicated name in other file  (in Order)
+//    @Then("a success message is displayed")
+//    public void aSuccessMessageIsDisplayed() {
+//        // Assuming a success message is displayed
+//    }
+    //        ***************************************************************************
+    //        ***************************************************************************
+    //        ***************************************************************************
+    //        ***************************************************************************
+    //        ***************************************************************************
 
-    @Then("a success message is displayed")
-    public void aSuccessMessageIsDisplayed() {
-        // Assuming a success message is displayed
-    }
 
     @When("the user clicks on the write a review button without logging in")
     public void theUserClicksOnTheWriteAReviewButtonWithoutLoggingIn() {
