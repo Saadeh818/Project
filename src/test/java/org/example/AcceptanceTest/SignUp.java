@@ -1,10 +1,10 @@
-package org.example.firstproject.AcceptanceTest;
+package org.example.AcceptanceTest;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class signUp {
+public class SignUp {
     @Given("the user is on the sign-up page")
     public void theUserIsOnTheSignUpPage() {
 

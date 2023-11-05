@@ -1,11 +1,11 @@
-package org.example.firstproject.AcceptanceTest;
+package org.example.AcceptanceTest;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import static org.junit.Assert.assertTrue;
 
-public class review {
+public class Review {
     @Given("that the user has purchased a product")
     public void thatTheUserHasPurchasedAProduct() {
 
