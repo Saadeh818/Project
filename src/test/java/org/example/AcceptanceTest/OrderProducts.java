@@ -1,8 +1,10 @@
-package org.example.AcceptanceTest;
+package org.example.firstproject.AcceptanceTest;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-public class OrderProducts {
+import io.cucumber.java.en.When;
+
+public class orderProducts{
 
     @Given("main screen is opened")
     public void mainScreenIsOpened() {
@@ -51,4 +53,10 @@ public class OrderProducts {
     public void theSelectedProductIsDeleted() {
 
     }
+    @When("submits the form")
+    public void submitsTheForm() {
+
+    }
+
+
 }
