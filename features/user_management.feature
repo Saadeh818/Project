@@ -15,6 +15,12 @@ Feature: user management
     When admin in user management entered '3'
     Then add new user
 
-  Scenario: wrong input
+  Scenario Outline: wrong input
     When admin in user management entered '<chars>'
     Then reload user management
+    Examples:
+      | chars |
+    | 4     |
+    |r      |
+    |;      |
+    |323    |
