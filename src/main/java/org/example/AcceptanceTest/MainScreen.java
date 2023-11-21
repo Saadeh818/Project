@@ -23,4 +23,25 @@ public class MainScreen {
         userInput=string;
     }
 
+    public static void nextScreen(String userInput) {
+        if (userInput.equals(" '")){ MainScreen.currentPage = "home-page";
+            return;}
+        switch (MainScreen.userInput){
+            case "1":
+                MainScreen.currentPage = "admin-login";
+                break;
+            case "2":
+                MainScreen.currentPage = "customer-login";
+                break;
+            case "3":
+                MainScreen.currentPage = "installer-login";
+                break;
+            case "4":
+            case " '":
+                MainScreen.currentPage = "signUp-page";
+                break;
+            default:
+                MainScreen.currentPage = "home-page";
+        }
+    }
 }
