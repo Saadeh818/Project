@@ -12,6 +12,7 @@ public class Installer {
     }};
     static public boolean loginFlag=false;
     static public boolean errorMessageFlag=false;
+    public static boolean addUserSuccess;
 
     public static void clearCredentials() {
         username = null;
@@ -38,7 +39,32 @@ public class Installer {
     private static void dashboardManager(String loadDashboard) {
     }
 
-    public Map<String, String> getUsers() {
+    public static Map<String, String> getUsers() {
         return users;
+    }
+
+    public static void printUsers() {
+        int x=0;
+        for (Map.Entry<String, String> entry : users.entrySet()) {
+            x++;
+            System.out.println(x+ ". UserName: " + entry.getKey());
+        }
+
+    }
+
+    public static void addInstaller(String userName, String password) {
+        if(checkUserName(userName) && checkPassword(password)) {
+            users.put(userName, password);
+            addUserSuccess = true;
+        }
+        else addUserSuccess = false;
+    }
+
+    private static boolean checkPassword(String password) {
+        return password.length()>=8;
+    }
+
+    private static boolean checkUserName(String userName) {
+        return userName.contains("@");
     }
 }
