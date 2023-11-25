@@ -23,6 +23,11 @@ public class OrderProducts {
         System.out.println("Orders tab is opened");
     }
 
+    @Given("I select a customer from the customer box")
+    public void iSelectACustomerFromTheCustomerBox() {
+        // Write code here that turns the phrase above into concrete actions
+       // throw new io.cucumber.java.PendingException();
+    }
 
 
     @And("^I select a customer from the customer list$")
