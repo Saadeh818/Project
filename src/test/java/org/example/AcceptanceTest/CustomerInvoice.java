@@ -8,11 +8,11 @@ public class CustomerInvoice {
     public void customerInvoiceTabIsSelected() {
 
     }
-    @Given("I select a customer from the customer box")
-    public void iSelectACustomerFromTheCustomerBox() {
-        // Write code here that turns the phrase above into concrete actions
-        //throw new io.cucumber.java.PendingException();
-    }
+//    @Given("I select a customer from the customer box")
+//    public void iSelectACustomerFromTheCustomerBox() {
+//        // Write code here that turns the phrase above into concrete actions
+//        //throw new io.cucumber.java.PendingException();
+//    }
 
     @Given("I select an invoice from the invoice list")
     public void iSelectAnInvoiceFromTheInvoiceList() {
