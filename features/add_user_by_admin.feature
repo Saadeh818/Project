@@ -6,14 +6,14 @@ Feature: add user by admin
     Then add installer
     Examples:
       | username | password |
-    | from_test@installer.com|12345678|
+    | from_test_add_by_admin@installer.com|12345678|
 
   Scenario Outline: add customer success
     When admin choose type '2' choose username '<username>' choose password '<password>'
     Then add customer
     Examples:
       | username | password |
-      | from_test@customer.com|12345678|
+      | from_test_add_by_admin@customer.com|12345678|
 
   Scenario Outline: add user fail
     When admin choose type '<chars>' choose username '<username>' choose password '<password>'
