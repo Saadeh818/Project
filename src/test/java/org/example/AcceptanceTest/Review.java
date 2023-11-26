@@ -3,19 +3,18 @@ package org.example.AcceptanceTest;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
+import static org.junit.Assert.assertTrue;
 
 public class Review {
-    @When("submits the form")
-    public void submitsTheForm() {
-        // Write code here that turns the phrase above into concrete actions
-    }
-
     @Given("that the user has purchased a product")
     public void thatTheUserHasPurchasedAProduct() {
 
     }
-
+    @When("submits the form")
+    public void submitsTheForm() {
+        // Write code here that turns the phrase above into concrete actions
+        //throw new io.cucumber.java.PendingException();
+    }
     @Given("the user is logged in")
     public void theUserIsLoggedIn() {
 
