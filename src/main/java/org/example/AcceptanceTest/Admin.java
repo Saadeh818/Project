@@ -1,22 +1,41 @@
 package org.example.AcceptanceTest;
 
 import javax.swing.*;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Admin {
+public class Admin extends Users{
+
     static public String username;
     static public String password;
     static public boolean loginFlag=false;
     static public boolean adminDashboardFlag=false;
     static public boolean manageProductFlag;
     static public boolean manageUsersFlag;
-    private final Map<String, String> users = new HashMap<String, String>() {{
-        put("Ahmad", "724");
-        put("deema", "002");
-    }};
-    static public boolean errorMessageFlag=false;
 
+
+    private static final Map<String, String> users            = new HashMap<String, String>();
+    static public        boolean             errorMessageFlag =false;
+
+    static void getUsersFromFile(){
+        try {
+            users.clear ();
+            File           file           = new File ( "D:\\java workspace\\ProjectSaadeh\\userFileData\\Admins.txt" );
+            BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) );
+            String nameAndPass;
+            while ( (nameAndPass=bufferedReader.readLine () )!= null ){
+                String[] data= nameAndPass.split ( "," );
+                users.put ( data[0], data[1]);
+            }
+        }
+        catch ( FileNotFoundException e ) {
+            throw new RuntimeException ( e );
+        }
+        catch ( IOException e ) {
+            throw new RuntimeException ( e );
+        }
+    }
     public static void clearCredentials() {
             // Reset the username and password to clear the credentials.
             username = null;
@@ -34,6 +53,7 @@ public class Admin {
 
 
         public void login() {
+            getUsersFromFile();
             if (!users.containsKey(username)) {
                 loginFlag = false;
                 return;

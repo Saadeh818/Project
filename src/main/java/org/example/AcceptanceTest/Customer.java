@@ -1,10 +1,11 @@
 package org.example.AcceptanceTest;
 
 import javax.swing.*;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Customer {
+public class Customer extends Users{
 
     static public String username;
     static public String password;
@@ -16,6 +17,23 @@ public class Customer {
     static public boolean errorMessageFlag=false;
     public static boolean addUserSuccess;
 
+    static
+    void getUsersFromFile ( ){
+        try {
+            users.clear ();
+            File           file           = new File ( "D:\\java workspace\\ProjectSaadeh\\userFileData\\Customers.txt" );
+            BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) );
+            String nameAndPass;
+            while ( (nameAndPass=bufferedReader.readLine () )!= null ){
+                String[] data= nameAndPass.split ( "," );
+                users.put ( data[0], data[1]);
+            }
+        }
+        catch ( IOException e ) {
+            throw new RuntimeException ( e );
+        }
+    }
+
     public static void clearCredentials() {
         username = null;
         password = null;
@@ -23,6 +41,7 @@ public class Customer {
     }
 
     public static void login(String username, String password) {
+        getUsersFromFile();
         if (!Customer.users.containsKey(username)) {
             loginFlag = false;
             return;
@@ -42,10 +61,12 @@ public class Customer {
     }
 
     public static Map<String, String> getUsers() {
+        getUsersFromFile();
         return users;
     }
 
     public static void printUsers() {
+        getUsersFromFile();
         int x=0;
         for (Map.Entry<String, String> entry : users.entrySet()) {
             x++;
@@ -54,18 +75,38 @@ public class Customer {
     }
 
     public static void addCustomer(String userName, String password) {
-        if(checkUserName(userName) && checkPassword(password)) {
-            users.put(userName, password);
+        getUsersFromFile();
+        if(checkUserName(userName) && checkPassword(password) && !users.containsKey ( userName )) {
+            addToFile(userName, password);
             addUserSuccess=true;
         }
         else addUserSuccess = false;
     }
 
+    private static
+    void addToFile ( String userName , String password ) {
+        try {
+            users.clear ();
+            File           file           = new File ( "D:\\java workspace\\ProjectSaadeh\\userFileData\\Customers.txt" );
+            BufferedWriter bufferedWriter = new BufferedWriter ( new FileWriter ( file,true ) );
+            String nameAndPass = userName +","+password;
+            bufferedWriter.newLine ();
+            bufferedWriter.write ( nameAndPass );
+            bufferedWriter.close ();
+            getUsersFromFile ();
+        }
+        catch ( IOException e ) {
+            throw new RuntimeException ( e );
+        }
+    }
+
     private static boolean checkPassword(String password) {
+        getUsersFromFile ();
         return password.length()>=8;
     }
 
     private static boolean checkUserName(String userName) {
+        getUsersFromFile ();
         return userName.contains("@")&&userName.contains(".");
     }
 }
