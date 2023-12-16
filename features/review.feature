@@ -37,8 +37,14 @@ Feature: Product Review
     Then the review is updated on the product page
     And a success message is displayed
 
-  Scenario: Deleting a Review
+  Scenario Outline: Deleting a Review
     Given that the user has already written a review for a product
     When the user clicks on the delete review button
     Then the review is removed from the product page
     And a success message is displayed.
+    Examples:
+      | Accessory Name       | User Review                       | Rating | Date         |
+      | Leather Steering Cover| Great addition to my car interior!| 5      | Jan 15, 2023  |
+      | LED Headlight Bulbs   | Improved visibility at night      | 4      | Feb 03, 2023  |
+      | Car Phone Mount       | Sturdy and convenient              | 3      | Mar 22, 2023  |
+      | Seat Cushion          | Comfortable for long drives        | 5      | Apr 10, 2023  |
