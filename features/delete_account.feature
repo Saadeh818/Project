@@ -7,15 +7,15 @@ Feature: delete account
     When user enters the right password '<password>'
     Then the account is deleted successfully
     Examples: Successful Deletion
-      | 12345  |
-      | 12345 |
+      | password    |
+      | correctPass |
 
   Scenario Outline: user can't delete his account
     When user enters the wrong password '<password>'
     Then a wrong password message appears
     Examples: Unsuccessful Deletion
-      | 123454321      |
-      | 112233 |
+      | password      |
+      | incorrectPass |
   Scenario Outline: admin successfully deletes any account
     Given the user is an admin
     When admin enters the admin password '<passwordAdmin>'
@@ -23,5 +23,5 @@ Feature: delete account
     Then the account is deleted successfully
 
     Examples: Admin Deletion
-      | 2468 |
-      | 2468 |
+      | passwordAdmin |
+      | adminPass     |
