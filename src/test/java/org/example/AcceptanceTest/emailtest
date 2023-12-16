@@ -1,0 +1,79 @@
+package org.example.AcceptanceTest;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.junit.Assert;
+public class emailtest {
+
+    @When("I mark the selected order as complete")
+    public void iMarkTheSelectedOrderAsComplete() {
+
+    }
+    @Then("the system sends an email to the selected customer")
+    public void theSystemSendsAnEmailToTheSelectedCustomer() {
+
+    }
+    @Then("the email contains information about the finished order")
+    public void theEmailContainsInformationAboutTheFinishedOrder() {
+
+    }
+    @Then("the email subject is {string}")
+    public void theEmailSubjectIs(String string) {
+
+    }
+
+
+    @When("I select an order that is not marked as complete")
+    public void iSelectAnOrderThatIsNotMarkedAsComplete() {
+
+    }
+    @Then("the system does not send an email to the selected customer")
+    public void theSystemDoesNotSendAnEmailToTheSelectedCustomer() {
+
+    }
+    @Then("no email is received by the customer")
+    public void noEmailIsReceivedByTheCustomer() {
+
+    }
+
+    @Given("the selected order is marked as complete")
+    public void theSelectedOrderIsMarkedAsComplete() {
+
+    }
+    @When("I send an email to the selected customer for the finished order")
+    public void iSendAnEmailToTheSelectedCustomerForTheFinishedOrder() {
+
+    }
+    @Then("the system sends only one email to the customer")
+    public void theSystemSendsOnlyOneEmailToTheCustomer() {
+
+    }
+    @Then("the customer does not receive duplicate emails")
+    public void theCustomerDoesNotReceiveDuplicateEmails() {
+
+    }
+
+
+    @Given("the main screen is opened")
+    public void theMainScreenIsOpened() {
+
+    }
+    @Given("the orders tab is opened")
+    public void theOrdersTabIsOpened() {
+
+    }
+    @Given("multiple orders are marked as complete for the selected customer")
+    public void multipleOrdersAreMarkedAsCompleteForTheSelectedCustomer() {
+
+    }
+    @When("the system sends emails to the selected customer for each finished order")
+    public void theSystemSendsEmailsToTheSelectedCustomerForEachFinishedOrder() {
+
+    }
+    @Then("the customer receives emails for each finished order")
+    public void theCustomerReceivesEmailsForEachFinishedOrder() {
+
+    }
+
+}
