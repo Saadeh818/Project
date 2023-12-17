@@ -28,9 +28,7 @@ public class Admin extends Users{
                 String[] data= nameAndPass.split ( "," );
                 users.put ( data[0], data[1]);
             }
-        }
-        catch ( FileNotFoundException e ) {
-            throw new RuntimeException ( e );
+            bufferedReader.close ();
         }
         catch ( IOException e ) {
             throw new RuntimeException ( e );
