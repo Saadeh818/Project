@@ -22,13 +22,13 @@ public class Admin extends Users{
         try {
             users.clear ();
             File           file           = new File ( "src/main/java/org/example/AcceptanceTest/Admins.txt" );
-            BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) );
-            String nameAndPass;
-            while ( (nameAndPass=bufferedReader.readLine () )!= null ){
-                String[] data= nameAndPass.split ( "," );
-                users.put ( data[0], data[1]);
+            try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
+                String nameAndPass;
+                while ( (nameAndPass = bufferedReader.readLine ( )) != null ) {
+                    String[] data = nameAndPass.split ( "," );
+                    users.put ( data[ 0 ] , data[ 1 ] );
+                }
             }
-            bufferedReader.close ();
         }
         catch ( IOException e ) {
             throw new RuntimeException ( e );
