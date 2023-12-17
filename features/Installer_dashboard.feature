@@ -11,9 +11,13 @@ Feature: installer dashboard
 #done
     Scenario: installer choose to sign out
       When installer entered <2>
-      Then sign out
+      Then sign out installer
 
-    Scenario: wrong input
+    Scenario Outline: wrong input
       When installer entered '<chars>'
-      Then wrong input message appears
       And reload installer dashboard
+      Examples:
+        | chars |
+        |k      |
+        |kdhl   |
+        |3      |

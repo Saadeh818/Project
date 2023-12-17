@@ -1,7 +1,9 @@
 package org.example.AcceptanceTest;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Installer extends Users{
@@ -11,13 +13,19 @@ public class Installer extends Users{
     static public boolean loginFlag=false;
     static public boolean errorMessageFlag=false;
     public static boolean addUserSuccess;
-
+    public static boolean adminDashboardFlag;
+    static public boolean installerDashboardFlag = false;
+    static public        boolean         listRequestsFlag = false;
+    private static final List < ProductC > requests         = new ArrayList <> (  );
+    static public  boolean requestFound;
+    public static  String  requestID;
+    public static String  userRequested;
 
     static
     void getUsersFromFile ( ){
         try {
             users.clear ();
-            File           file           = new File ( "src/main/java/org/example/AcceptanceTest/Installers.txt" );
+            File           file           = new File ( "src/Installers.txt" );
             try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
                 String nameAndPass;
                 while ( (nameAndPass = bufferedReader.readLine ( )) != null ) {
@@ -54,7 +62,54 @@ public class Installer extends Users{
         }
     }
 
-    private static void dashboardManager(String loadDashboard) {
+    public static void dashboardManager ( String userInput ) {
+        switch (userInput) {
+            case "1":
+                listInstallationRequests();
+                break;
+            case "2":
+                MainScreen.currentPage="home-page";
+                MainScreen.displayPage(MainScreen.currentPage);
+                clearCredentials();
+                break;
+            default:
+                showInstallerDashboard ( );
+                loginFlag=true;
+                break;
+        }
+    }
+
+    private static
+    void listInstallationRequests ( ) {
+        listRequestsFlag=false;
+        File           file           = new File ( "src/InstallationRequests" );
+        try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
+            String installationRequest;
+            boolean empty = true;
+            while ( (installationRequest = bufferedReader.readLine ( )) != null ) {
+                System.out.println ( installationRequest );
+                empty=false;
+            }
+            if (empty){
+                System.out.println ( "There is no requests at the moment ;)" );
+            }
+            listRequestsFlag=true;
+        }
+        catch ( IOException e ){
+            System.out.println ( "Something wrong with your file" );
+            listRequestsFlag=false;
+        }
+
+    }
+
+    private static
+    void showInstallerDashboard ( ) {
+        System.out.print("Welcome Admin " +username+"\n"+
+                                 "What do you want to do?\n" +
+                                 "1. List Installation Requests\n" +
+                                 "2. Sign out\n"
+                        );
+        installerDashboardFlag=true;
     }
 
     public static Map<String, String> getUsers() {
@@ -85,7 +140,7 @@ public class Installer extends Users{
     void addToFile ( String userName , String password ) {
         try {
             users.clear ();
-            File           file           = new File ( "src/main/java/org/example/AcceptanceTest/Installers.txt" );
+            File           file           = new File ( "src/Installers.txt" );
             BufferedWriter bufferedWriter = new BufferedWriter ( new FileWriter ( file, true ) );
             String         nameAndPass    = userName +","+password;
             bufferedWriter.newLine ();
@@ -106,5 +161,31 @@ public class Installer extends Users{
     private static boolean checkUserName(String userName) {
         getUsersFromFile ();
         return userName.contains("@");
+    }
+
+    public static
+    void SetInstallationRequestId ( String string ) {
+        File           file           = new File ( "src/InstallationRequests" );
+        try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
+            String installationRequest;
+            requestFound = false;
+            while ( (installationRequest = bufferedReader.readLine ( )) != null ) {
+                String[] data = installationRequest.split ( "," );
+                if (string.equals (data[1])) {
+                    requestID = data[0];
+                    userRequested= data[6];
+                    requestFound=true;
+                    break;
+                }
+            }
+            if (!requestFound){
+                System.out.println ( "There is no requests with this ID ;)" );
+            }
+            listRequestsFlag=true;
+        }
+        catch ( IOException e ){
+            System.out.println ( "Something wrong with your file" );
+            listRequestsFlag=false;
+        }
     }
 }

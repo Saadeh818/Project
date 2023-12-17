@@ -118,6 +118,16 @@ public class ProductC {
         System.out.println();
     }
 
+    public static
+    void displatProduct ( ProductC product ){
+        System.out.print(product.productId);
+        System.out.print(", " + product.category);
+        System.out.print(", " + product.name);
+        System.out.print(", " + product.quantity);
+        System.out.println(", " + product.price);
+        System.out.println();
+    }
+
     public void addProduct(String categoryI, String nameI, String quantityI, String priceI) {
         try {
 
