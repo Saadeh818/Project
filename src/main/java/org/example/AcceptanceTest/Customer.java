@@ -21,7 +21,7 @@ public class Customer extends Users{
     void getUsersFromFile ( ){
         try {
             users.clear ();
-            File           file           = new File ( "D:\\java workspace\\ProjectSaadeh\\userFileData\\Customers.txt" );
+            File           file           = new File ( "src/main/java/org/example/AcceptanceTest/Customers.txt" );
             BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) );
             String nameAndPass;
             while ( (nameAndPass=bufferedReader.readLine () )!= null ){
@@ -87,7 +87,7 @@ public class Customer extends Users{
     void addToFile ( String userName , String password ) {
         try {
             users.clear ();
-            File           file           = new File ( "D:\\java workspace\\ProjectSaadeh\\userFileData\\Customers.txt" );
+            File           file           = new File ( "src/main/java/org/example/AcceptanceTest/Customers.txt" );
             BufferedWriter bufferedWriter = new BufferedWriter ( new FileWriter ( file,true ) );
             String nameAndPass = userName +","+password;
             bufferedWriter.newLine ();
