@@ -21,7 +21,7 @@ public class Admin extends Users{
     static void getUsersFromFile(){
         try {
             users.clear ();
-            File           file           = new File ( "src/main/java/org/example/AcceptanceTest/Admins.txt" );
+            File           file           = new File ( "src/Admins.txt" );
             try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
                 String nameAndPass;
                 while ( (nameAndPass = bufferedReader.readLine ( )) != null ) {

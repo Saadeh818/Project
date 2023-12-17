@@ -18,7 +18,7 @@ public class Customer extends Users{
     void getUsersFromFile ( ){
         try {
             users.clear ();
-            File           file           = new File ( "src/main/java/org/example/AcceptanceTest/Customers.txt" );
+            File           file           = new File ( "src/Customers.txt" );
             try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
                 String nameAndPass;
                 while ( (nameAndPass = bufferedReader.readLine ( )) != null ) {
@@ -85,7 +85,7 @@ public class Customer extends Users{
     void addToFile ( String userName , String password ) {
         try {
             users.clear ();
-            File           file           = new File ( "src/main/java/org/example/AcceptanceTest/Customers.txt" );
+            File           file           = new File ( "src/Customers.txt" );
             BufferedWriter bufferedWriter = new BufferedWriter ( new FileWriter ( file,true ) );
             String nameAndPass = userName +","+password;
             bufferedWriter.newLine ();
@@ -106,5 +106,15 @@ public class Customer extends Users{
     private static boolean checkUserName(String userName) {
         getUsersFromFile ();
         return userName.contains("@")&&userName.contains(".");
+    }
+
+    public static
+    void addAppointment ( String date , String requestID , String userRequested ) {
+        Appointment appointment = new Appointment();
+       if  (!appointment.checkDate(date)){
+           //TODO: reload the screen that sets the appointment
+           return;
+       }
+       appointment.addNewAppointment(date, requestID, userRequested);
     }
 }

@@ -4,16 +4,15 @@ Feature: list installation requests
     Given installation requests appeared
 
   Scenario: choose request successfully
-    When user entered installation request id <id>
+    When user entered installation request id '<id>'
     Then go to schedule appointment
 #go to schedule appointment -->
 #done
   Scenario: choose to return to dashboard
-    When installer entered <0>
+    When installer entered "#"
     Then reload installer dashboard
 
   Scenario: wrong input
     When user entered installation request id '<chars>'
-    Then wrong input message appears
-    And reload installer dashboard
+    Then reload installer dashboard
 

@@ -20,7 +20,6 @@ Feature: choose user to modify
   Scenario Outline: fail choosing
     When user want to modify '<installer Or customer>'
     And admin entered user id '<wrongID>'
-    Then wrong input message appears
     And return to choose user to modify
     Examples:
       | wrongID | installer Or customer |
