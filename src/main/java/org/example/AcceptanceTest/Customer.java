@@ -9,10 +9,7 @@ public class Customer extends Users{
 
     static public String username;
     static public String password;
-    private static final Map<String, String> users = new HashMap<String, String>() {{
-        put("saadeh@gmail.com", "12345678");
-        put("deema@gmail.com", "00000000");
-    }};
+    private static final Map<String, String> users = new HashMap<String, String>();
     static public boolean loginFlag=false;
     static public boolean errorMessageFlag=false;
     public static boolean addUserSuccess;
