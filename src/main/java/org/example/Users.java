@@ -1,6 +1,7 @@
 package org.example;
 
 public class Users {
+
     public static boolean selectUserToMenageFlag;
     static boolean installerSelected =false;
     static boolean customerSelected= false;
