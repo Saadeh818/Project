@@ -86,7 +86,8 @@ public class ProductC {
 
 
 
-    public void productList() {
+    public static
+    void productList ( ) {
         System.out.println("********** Cat1 *********");
         for (ProductC product : productList) {
             if(product.category.equals("cat1")) {
@@ -107,7 +108,8 @@ public class ProductC {
         }
     }
 
-    private void productPrint(ProductC product) {
+    private static
+    void productPrint ( ProductC product ) {
         System.out.println("Product ID: " + product.productId);
         System.out.println("Product Category: " + product.category);
         System.out.println("Product Name: " + product.name);
@@ -117,7 +119,7 @@ public class ProductC {
     }
 
     public static
-    void displatProduct ( ProductC product ){
+    void displayProduct ( ProductC product ){
         System.out.print(product.productId);
         System.out.print(", " + product.category);
         System.out.print(", " + product.name);
@@ -139,11 +141,12 @@ public class ProductC {
                 ProductC product = new ProductC(productList.size()+1,category, name, quantity, price);
                 productList.add(product);
                 productAddSuccessfully=true;
-
+                System.out.println ( "Product Added Successfully..." );
             }
         }
         catch (Exception ignored){
             productAddSuccessfully=false;
+            System.out.println ( "\nProduct cannot be added" );
         }
     }
 

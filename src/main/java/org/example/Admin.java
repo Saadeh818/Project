@@ -41,25 +41,29 @@ public class Admin extends Users{
             loginFlag=false;
         }
 
-    public void setUsername(String username) {
+    public static
+    void setUsername ( String username ) {
             Admin.username =username;
     }
 
-    public void setPassword(String password) {
+    public static
+    void setPassword ( String password ) {
             Admin.password=password;
     }
 
 
-        public void login() {
+        public static
+        void login ( ) {
             getUsersFromFile();
             if (!users.containsKey(username)) {
                 loginFlag = false;
+                System.out.println ( "Wrong username" );
                 return;
             }
             String adminPass = users.get(username);
             loginFlag = adminPass.equals(password);
             if(!loginFlag){
-                JOptionPane.showMessageDialog(null,"wrong Input","Error",JOptionPane.ERROR_MESSAGE);
+                System.out.println ( "Wrong password" );
                 errorMessageFlag = false;
             }
             else{
@@ -83,6 +87,7 @@ public class Admin extends Users{
     public static void dashboardManager(String userInput){
         switch (userInput) {
             case "1":
+
                 manageProductFlag=true;
                 break;
             case "2":
