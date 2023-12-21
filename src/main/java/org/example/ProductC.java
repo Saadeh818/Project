@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductC {
+
     private static int nextProductId = 0;
     public int productId;
     public static boolean readyToDelete;
