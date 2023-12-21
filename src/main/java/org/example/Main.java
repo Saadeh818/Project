@@ -44,20 +44,19 @@ public class Main {
         Admin.setPassword ( password );
 
         Admin.login ();
-        while ( true ){
             switch (scanner.nextLine ()){
                 case "1":
                     adminProductManager ( username, password );
-                    break;
+                    return;
                 case "2":
                     userManager(username,password);
-                    break;
+                    return;
                 case "3":
                     return;
                 default:
                     System.out.println ( "Wrong Input Please Try To Choose Write" );
+                    adminActions ( );
             }
-        }
     }
 
     private static
@@ -66,9 +65,7 @@ public class Main {
 
     private static
     void adminProductManager ( String username, String password ) {
-
-
-        ProductC.productList();
+        ProductC productC = new ProductC (  );
         System.out.print ( "*********************************************\n" +
                                    "Here You Can Manage All Products\n" +
                                    "1. Add a Product.\n" +
@@ -78,6 +75,7 @@ public class Main {
                                    "5.Sign Out.\n" );
         switch (scanner.nextLine ()){
             case "1":
+                ProductC.productList();
                 System.out.print ("Enter The Category: ");
                 String categoryI = scanner.nextLine ();
                 System.out.print ("Enter The Product Name: ");
@@ -86,22 +84,69 @@ public class Main {
                 String quantityI=scanner.nextLine ();
                 System.out.print ("Enter The Product Price: ");
                 String priceI=scanner.nextLine ();
-                ProductC productC = new ProductC (  );
                 productC.addProduct ( categoryI,nameI,quantityI,priceI );
                 adminProductManager ( username, password );
                 break;
             case "2":
-                //TODO: Delete Product
-
+                ProductC.productList();
+                System.out.println ( "1. Cat1.\n" +
+                                             "2. Cat2.\n" +
+                                             "3. Cat3.\n" +
+                                             "Press Any Key To Return." );
+                switch (scanner.nextLine ()){
+                    case "1":
+                        productC.setCategory ("cat1");
+                        break;
+                    case "2":
+                        productC.setCategory ("cat2");
+                        break;
+                    case "3":
+                        productC.setCategory ("cat3");
+                        break;
+                    default:
+                        adminProductManager ( username, password );
+                        break;
+                }
+                System.out.print ( "Enter The ID Of The Product" );
+                productC.selectIdToDelete(scanner.nextLine (),productC.category);
                 break;
             case "3":
-                //TODO: Update Product
+                ProductC.productList();
+                System.out.println ( "1. Cat1.\n" +
+                                             "2. Cat2.\n" +
+                                             "3. Cat3.\n" +
+                                             "Press Any Key To Return." );
+                switch (scanner.nextLine ()){
+                    case "1":
+                        productC.setCategory ("cat1");
+                        break;
+                    case "2":
+                        productC.setCategory ("cat2");
+                        break;
+                    case "3":
+                        productC.setCategory ("cat3");
+                        break;
+                    default:
+                        adminProductManager ( username, password );
+                        break;
+                }
+                System.out.println ( "Any Field that you dont want to change just insert #..." );
+                System.out.print ( "Enter The ID Of The Product" );
+                productC.productId= Integer.parseInt(scanner.nextLine ());
+                System.out.print ( "Enter new Category (cat1,cat2,cat3): " );
+                String category = scanner.nextLine ();
+                System.out.print ( "Enter new Name : " );
+                String name = scanner.nextLine ();
+                System.out.print ( "Enter new Quantity : " );
+                String quantity = scanner.nextLine ();
+                System.out.print ( "Enter new Price : " );
+                String price = scanner.nextLine ();
+                productC.updateValues(productC.productId, category,name,quantity,price);
                 break;
             case "4":
-                //TODO: Return to dashboard
+                adminProductManager ( username, password );
                 break;
             case "5":
-                //TODO: Sign Out
                 break;
         }
     }
