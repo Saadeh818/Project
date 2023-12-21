@@ -17,9 +17,12 @@ public class MainScreen {
                     "4. SignUp\n" +
                     "5. press any key to continue\n"
             );
-        else if (currentPage.equals("admin-login") || currentPage.equals("customer-login") || currentPage.equals("installer-login")){
-            System.out.println ( "Enter Admin User Name And Password: " );
-        }
+//        else if (currentPage.equals("admin-login") || currentPage.equals("customer-login") || currentPage.equals("installer-login")){
+//            System.out.println ( "Enter Admin User Name And Password: " );
+//        }
+//        else if (currentPage.equals ( "signUp-page" )){
+//
+//        }
     }
 
     public static void setUserInput(String string) {
