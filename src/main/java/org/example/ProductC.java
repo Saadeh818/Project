@@ -179,6 +179,7 @@ public class ProductC {
             System.out.println("The Product has been deleted successfully");
         }
         else {
+            System.out.println("The Product You Are Trying To Delete Is No Longer Available");
             productDeletedSuccessfully=false;
         }
     }
@@ -204,14 +205,13 @@ public class ProductC {
         for (ProductC product : productList){
             if (product.productId == ID) {
                 productPrint(product);
-                product.setCategory(category);
-                product.setName(name);
-                product.setQuantity(Integer.parseInt(quantity));
-                product.setPrice(Integer.parseInt(price));
+                if (!category.equals ( "#" )) product.setCategory(category);
+                if (!name.equals ( "#" )) product.setName(name);
+                if (!quantity.equals ( "#" )) product.setQuantity(Integer.parseInt(quantity));
+                if (!price.equals ( "#" )) product.setPrice(Integer.parseInt(price));
                 updateProductSuccess=true;
                 System.out.println("**********Product Updated Success**********");
                 productPrint(product);
-
                 return;
             }
             else {
