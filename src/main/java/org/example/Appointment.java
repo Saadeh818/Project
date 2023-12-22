@@ -40,7 +40,7 @@ class Appointment {
                 }
             }
             catch ( ParseException | IllegalArgumentException e ) {
-                System.out.println ( "Try another date ;)" );
+                System.out.println ( "Date Format Wrong or Try another date ;)" );
                 addSuccess=false;
                 return false;
             }

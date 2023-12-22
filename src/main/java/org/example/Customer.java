@@ -111,7 +111,6 @@ public class Customer extends Users{
     void addAppointment ( String date , String requestID , String userRequested ) {
         Appointment appointment = new Appointment();
        if  (!appointment.checkDate(date)){
-           //TODO: reload the screen that sets the appointment
            return;
        }
        appointment.addNewAppointment(date, requestID, userRequested);
