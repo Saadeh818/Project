@@ -3,6 +3,7 @@ package org.example;
 public class Users {
 
     public static boolean selectUserToMenageFlag;
+    public static String modifyAccountType;
     static boolean installerSelected =false;
     static boolean customerSelected= false;
     static boolean addUserSelected= false;
@@ -13,9 +14,11 @@ public class Users {
 
     static void userManagementScreen(){
         System.out.print("What do you want to do? \n" +
-                "1. Display All Installers\n" +
-                "2. Display All Installers Customers\n" +
-                "3. Add New User\n"
+                "1. Display All Installers To Modify One Of Them\n" +
+                "2. Display All Customers To Modify One Of Them\n" +
+                "3. Add New User\n" +
+                 "4. Return To Dashboard\n" +
+                 "5. LogOut\n"
         );
     }
 
@@ -100,5 +103,27 @@ public class Users {
                                    "1. Change Password \n" +
                                    "2. Change UserName \n" +
                                    "3. Delete Account \n " );
+    }
+
+    public static
+    void loadModifyAccountOptions ( ) {
+        System.out.println ( "1. Change Password.\n" +
+                                     "2. Change Username.\n" +
+                                     "3.Delete Account.\n" +
+                                     "4. Return Back\n" +
+                                     "5. Go To Dashboard." );
+    }
+
+    public static
+    void modifyAccount ( String modifyAccountType , int userToModifyID , String modifyOption ) {
+        if (modifyAccountType.equalsIgnoreCase ( "installer" )){
+            switch (modifyOption){
+                case "1":
+
+            }
+        }
+        if (modifyAccountType.equalsIgnoreCase ( "customer" )){
+
+        }
     }
 }

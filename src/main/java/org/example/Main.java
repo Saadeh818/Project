@@ -44,23 +44,73 @@ public class Main {
         Admin.setPassword ( password );
 
         Admin.login ();
-            switch (scanner.nextLine ()){
-                case "1":
-                    adminProductManager ( username, password );
-                    return;
-                case "2":
-                    userManager(username,password);
-                    return;
-                case "3":
-                    return;
-                default:
-                    System.out.println ( "Wrong Input Please Try To Choose Write" );
-                    adminActions ( );
-            }
+        adminDashboard ( username , password );
+    }
+
+    private static
+    void adminDashboard ( String username , String password ) {
+        switch (scanner.nextLine ()){
+            case "1":
+                adminProductManager ( username , password );
+                return;
+            case "2":
+                userManager ( username , password );
+                return;
+            case "3":
+                return;
+            default:
+                System.out.println ( "Wrong Input Please Try To Choose Write" );
+                adminActions ( );
+        }
     }
 
     private static
     void userManager ( String username , String password ) {
+        Users.userManagementScreen ();
+        String userInput = scanner.nextLine ();
+        Users.selectUserToMenage(userInput);
+        switch (userInput){
+            case "1":
+            case "2":
+                System.out.print ( "Enter Installer ID To Modify: " );
+                Users.userToModifyID ( scanner.nextLine () );
+                Users.loadModifyAccountOptions();
+                switch (scanner.nextLine ()){
+                    case "1":
+                        //TODO: Change Password
+                        break;
+                    case "2":
+                        //TODO: Change Username
+                        break;
+                    case "3":
+                        //TODO: Delete Account
+                        break;
+                    case "5":
+                        return;
+                    default:
+                        userManager ( username , password );
+                        break;
+                }
+                break;
+            case "3":
+                System.out.println ( "Choose User Type To Add:\n" +
+                                             "1. Installer\n" +
+                                             "2. Customer " );
+                String NewUserType = scanner.nextLine ();
+                System.out.print ( "Enter User Name: " );
+                String NewUserName = scanner.nextLine ();
+                System.out.print ( "Enter Password: " );
+                String newUserPassword= scanner.nextLine ();
+                Users.adduser(NewUserType,NewUserName,newUserPassword);
+                userManager(username,password);
+                break;
+            case "4":
+                adminDashboard ( username , password );
+            case "5":
+                return;
+            default:
+                userManager ( username , password );
+        }
     }
 
     private static

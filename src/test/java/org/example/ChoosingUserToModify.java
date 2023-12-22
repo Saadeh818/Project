@@ -12,8 +12,6 @@ public class ChoosingUserToModify {
         Users.userToModifyID(string);
     }
 
-   
-
     @Then("return to choose user to modify")
     public void return_to_choose_user_to_modify() {
         Assert.assertFalse ( Users.userIsFound );
