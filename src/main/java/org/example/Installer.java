@@ -173,8 +173,8 @@ public class Installer extends Users{
             requestFound = false;
             while ( (installationRequest = bufferedReader.readLine ( )) != null ) {
                 String[] data = installationRequest.split ( "," );
-                if (string.equals (data[0])) {
-                    requestID = data[0];
+                if (data[0].contains ( string )) {
+                    requestID =  data[0].replaceAll ( "\\.", "");
                     userRequested= data[6];
                     requestFound=true;
                     break;
