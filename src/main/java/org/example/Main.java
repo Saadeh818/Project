@@ -201,4 +201,48 @@ public class Main {
         }
     }
 
+    public class Customer {
+
+        public void Customer() {
+            System.out.println("Welcome Customer! Please choose an option:");
+            System.out.println("1. View Products");
+            System.out.println("2. Write a Product Review");
+            System.out.println("3. Return to Dashboard");
+
+            String userInput = scanner.nextLine();
+
+            switch (userInput) {
+                case "1":
+                    viewProducts();
+                    break;
+                case "2":
+                    writeProductReview();
+                    break;
+                case "3":
+                    return;
+                default:
+                    System.out.println("Invalid input. Please try again.");
+                    Customer();
+            }
+        }
+
+        private void viewProducts() {
+            // TODO: Implement logic to display products to the customer
+            System.out.println("Displaying products...");
+        }
+
+        private void writeProductReview() {
+            System.out.println("Enter the product name you want to review:");
+            String productName = scanner.nextLine();
+
+            System.out.println("Write your review:");
+            String review = scanner.nextLine();
+
+            // TODO: Implement logic to submit the review
+            System.out.println("Thank you for your review!");
+        }
+
+    }
+
+
 }
