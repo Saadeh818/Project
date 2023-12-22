@@ -15,7 +15,8 @@ public class MainScreen {
                     "2. Customer Login\n" +
                     "3. Installer Login\n" +
                     "4. SignUp\n" +
-                    "5. press any key to continue\n"
+                    "5. Exit Program\n" +
+                     "6. Press Any key to reload this Page\n"
             );
 //        else if (currentPage.equals("admin-login") || currentPage.equals("customer-login") || currentPage.equals("installer-login")){
 //            System.out.println ( "Enter Admin User Name And Password: " );
