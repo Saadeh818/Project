@@ -241,6 +241,9 @@ public class Main {
             // TODO: Implement logic to submit the review
             System.out.println("Thank you for your review!");
         }
+        public void main(String[] args) {
+            Customer();
+        }
 
     }
 
