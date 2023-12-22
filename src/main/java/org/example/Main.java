@@ -201,9 +201,9 @@ public class Main {
         }
     }
 
-    public class Customer {
 
-        public void Customer() {
+    private static
+    void Customer() {
             System.out.println("Welcome Customer! Please choose an option:");
             System.out.println("1. View Products");
             System.out.println("2. Write a Product Review");
@@ -226,12 +226,12 @@ public class Main {
             }
         }
 
-        private void viewProducts() {
+        private static void viewProducts() {
             // TODO: Implement logic to display products to the customer
             System.out.println("Displaying products...");
         }
 
-        private void writeProductReview() {
+        private static void writeProductReview() {
             System.out.println("Enter the product name you want to review:");
             String productName = scanner.nextLine();
 
@@ -241,11 +241,4 @@ public class Main {
             // TODO: Implement logic to submit the review
             System.out.println("Thank you for your review!");
         }
-        public void main(String[] args) {
-            Customer();
         }
-
-    }
-
-
-}
