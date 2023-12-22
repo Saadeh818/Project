@@ -132,8 +132,10 @@ public class Installer extends Users{
         if(checkUserName(userName) && checkPassword(password) && !users.containsKey ( userName )) {
             addToFile(userName, password);
             addUserSuccess = true;
+            System.out.println ( "Installer Added Successfully" );
         }
         else addUserSuccess = false;
+        System.out.println ( "Fail To Add " );
     }
 
     private static

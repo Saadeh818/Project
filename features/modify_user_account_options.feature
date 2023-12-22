@@ -12,6 +12,8 @@ Feature: modify account options
     Then go to change password
     Examples:
       | installer Or customer | id |
+      | installer             | 1  |
+      | customer              | 1  |
 #here we need to implement the change password feature
 #change password feature done
   Scenario Outline: choose to change username
@@ -21,6 +23,8 @@ Feature: modify account options
     Then go to change username
     Examples:
       | installer Or customer | id |
+      | installer             | 1  |
+      | customer              | 1  |
 #here we need to implement the change username feature
 #Change username done
   Scenario Outline: choose to delete account
@@ -30,6 +34,8 @@ Feature: modify account options
     Then go to delete account
     Examples:
       | installer Or customer | id |
+      | installer             | 2  |
+      | customer              | 2  |
 #here we need to implement the delete account feature
 #Done
   Scenario: wrong input

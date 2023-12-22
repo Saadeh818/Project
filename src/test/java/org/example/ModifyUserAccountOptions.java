@@ -7,7 +7,7 @@ import io.cucumber.java.en.When;
 public class ModifyUserAccountOptions {
     @When("modify account option input is {string}")
     public void modify_account_option_input_is(String string) {
-
+        Users.modifyAccountType=string;
     }
 
     @Then("go to change password")
@@ -37,5 +37,6 @@ public class ModifyUserAccountOptions {
     @And ( "user id {string}")
     public
     void userIdId (String string ) {
+        Users.userToModifyID = Integer.parseInt ( string );
     }
 }
