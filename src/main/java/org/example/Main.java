@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.Date;
 import java.util.Scanner;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
@@ -59,17 +60,15 @@ public class Main {
 
                     Installer.SetInstallationRequestId ( userInput );
                 if ( Installer.requestFound ){
-                    System.out.println ( Installer.requestID +" "+Installer.userRequested );
-                    scheduleAppointment ( );
+//                    System.out.println ( Installer.requestID +" "+Installer.userRequested );
+                    System.out.println ( "Enter The Date to Schedule An Appointment : \" Date Format is day/month/year\" " );
+                    Customer.addAppointment(scanner.nextLine (), Installer.requestID, Installer.userRequested);
+                    installerDashboard ( username , password );
                 }
 
         }
     }
 
-    private static
-    void scheduleAppointment ( ) {
-
-    }
 
     private static
     void adminActions ( ) {
