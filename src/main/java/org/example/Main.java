@@ -23,7 +23,22 @@ public class Main {
                 case "installer-login":
                     break;
                 case "signUp-page":
+                    System.out.println("Choose type 1 for installer 2 for customer")
+                    String type= scanner.nextLine();
+                    System.out.print("Enter Your Email: ");
+                    String email= scanner.nextLine();
+                    System.out.print("Enter Your Password: ");
+                    if (type.equals("1")){
+                        //TODO: add installer
+                    }
+                    else if (type.equals("2")){
+                        //TODO: add customer
+                    }
+                    else {
+                        //TODO: reload signup page
+                    }
                     break;
+
                 default:
                     break;
             }
