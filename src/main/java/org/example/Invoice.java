@@ -73,4 +73,7 @@ class InvoiceManager {
     public static void main(String[] args) {
         // You can now use the InvoiceManager and Invoice classes in your testing scenarios
     }
-}
+
+     public static void performInvoiceActions(String createNewInvoice) {
+     }
+ }

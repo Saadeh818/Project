@@ -1,5 +1,5 @@
 package org.example;
-
+import org.junit.Assert;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
@@ -7,38 +7,14 @@ import io.cucumber.java.en.And;
 import org.junit.Assert;
 
 public class CustomerInvoice {
+        private InvoiceManager invoiceManager = new InvoiceManager();
+        private Invoice currentInvoice;
 
-        InvoiceManager invoiceManager = new InvoiceManager();
-        Invoice currentInvoice;
-
-    @Given("I select an invoice from the invoice list")
-    public void iSelectAnInvoiceFromTheInvoiceList() {
-        // Write code here that turns the phrase above into concrete actions
-        //throw new io.cucumber.java.PendingException();
-    }
-    @Given("I make changes to the invoice details")
-    public void iMakeChangesToTheInvoiceDetails() {
-        // Write code here that turns the phrase above into concrete actions
-        //throw new io.cucumber.java.PendingException();
-    }
-    @Then("the details of the selected invoice are displayed on the screen")
-    public void theDetailsOfTheSelectedInvoiceAreDisplayedOnTheScreen() {
-        // Write code here that turns the phrase above into concrete actions
-        //throw new io.cucumber.java.PendingException();
-    }
-
-
-    @Then("the invoice details are updated in the invoice list")
-    public void theInvoiceDetailsAreUpdatedInTheInvoiceList() {
-        // Write code here that turns the phrase above into concrete actions
-        //throw new io.cucumber.java.PendingException();
-    }
-
-    @And("customer invoice tab is selected")
-        public void customerInvoiceTabIsSelected() {
-            // Implement code for selecting the customer invoice tab
+        public CustomerInvoice() {
+            // Constructor to initialize objects or perform setup
         }
 
+        // Existing step definitions...
 
         @When("I click on the {string} button")
         public void iClickOnTheButton(String button) {
@@ -78,13 +54,14 @@ public class CustomerInvoice {
             Assert.assertFalse(invoiceManager.invoiceExists(currentInvoice));
         }
 
-    @Given("I enter the customer email address")
-    public void iEnterTheCustomerEmailAddress() {
-        currentInvoice.setCustomerEmail("dena123@email.com");
+        @Given("I enter the customer email address")
+        public void iEnterTheCustomerEmailAddress() {
+            currentInvoice.setCustomerEmail("dena123@email.com");
+        }
 
-}
-    @Then("the invoice is sent to the customer's email address.")
-    public void theInvoiceIsSentToTheCustomerSEmailAddress() {
-        invoiceManager.sendInvoice(currentInvoice);
+        @Then("the invoice is sent to the customer's email address.")
+        public void theInvoiceIsSentToTheCustomerSEmailAddress() {
+            invoiceManager.sendInvoice(currentInvoice);
+        }
     }
-    }
+

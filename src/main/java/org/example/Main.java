@@ -1,6 +1,5 @@
 package org.example;
 
-import java.util.Date;
 import java.util.Scanner;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
@@ -13,7 +12,6 @@ public class Main {
         while ( true ) {
             MainScreen.displayPage ( "home-page" );
             MainScreen.userInput = scanner.nextLine ( );
-            if(MainScreen.userInput.equals ( "5" ))break;
             MainScreen.nextScreen ( MainScreen.userInput );
             switch (MainScreen.currentPage){
                 case "admin-login":
@@ -23,7 +21,6 @@ public class Main {
                     break;
 
                 case "installer-login":
-                    installerActions();
                     break;
                 case "signUp-page":
                     break;
@@ -32,44 +29,6 @@ public class Main {
             }
         }
     }
-
-    private static
-    void installerActions ( ) {
-        System.out.print ( "Welcome Installer Please fill your data to login\n"
-                                   + "Enter your name please: " );
-        Installer.clearCredentials ();
-        String username = scanner.nextLine ();
-        System.out.println ( );
-        System.out.println ( "Enter Password please: "  );
-        String password = scanner.nextLine ();
-
-        Installer.login (username,password);
-        installerDashboard ( username , password );
-
-    }
-
-    private static
-    void installerDashboard ( String username , String password ) {
-        String userInput = scanner.nextLine ();
-        Installer.dashboardManager ( userInput );
-        if (userInput.equals ( "1" )){
-            System.out.println ( "Choose ID To Schedule An Appointment Or Enter # To return To dashboard " );
-            userInput = scanner.nextLine ();
-                if (userInput.equals ( "#" ))
-                    installerDashboard ( username , password );
-                else
-
-                    Installer.SetInstallationRequestId ( userInput );
-                if ( Installer.requestFound ){
-//                    System.out.println ( Installer.requestID +" "+Installer.userRequested );
-                    System.out.println ( "Enter The Date to Schedule An Appointment : \" Date Format is day/month/year\" " );
-                    Customer.addAppointment(scanner.nextLine (), Installer.requestID, Installer.userRequested);
-                    installerDashboard ( username , password );
-                }
-
-        }
-    }
-
 
     private static
     void adminActions ( ) {
@@ -92,7 +51,7 @@ public class Main {
     void adminDashboard ( String username , String password ) {
         switch (scanner.nextLine ()){
             case "1":
-                productManager ( username , password );
+                adminProductManager ( username , password );
                 return;
             case "2":
                 userManager ( username , password );
@@ -155,7 +114,7 @@ public class Main {
     }
 
     private static
-    void productManager ( String username, String password ) {
+    void adminProductManager ( String username, String password ) {
         ProductC productC = new ProductC (  );
         System.out.print ( "*********************************************\n" +
                                    "Here You Can Manage All Products\n" +
@@ -176,7 +135,7 @@ public class Main {
                 System.out.print ("Enter The Product Price: ");
                 String priceI=scanner.nextLine ();
                 productC.addProduct ( categoryI,nameI,quantityI,priceI );
-                productManager ( username, password );
+                adminProductManager ( username, password );
                 break;
             case "2":
                 ProductC.productList();
@@ -195,7 +154,7 @@ public class Main {
                         productC.setCategory ("cat3");
                         break;
                     default:
-                        productManager ( username, password );
+                        adminProductManager ( username, password );
                         break;
                 }
                 System.out.print ( "Enter The ID Of The Product" );
@@ -218,7 +177,7 @@ public class Main {
                         productC.setCategory ("cat3");
                         break;
                     default:
-                        productManager ( username, password );
+                        adminProductManager ( username, password );
                         break;
                 }
                 System.out.println ( "Any Field that you dont want to change just insert #..." );
@@ -235,7 +194,7 @@ public class Main {
                 productC.updateValues(productC.productId, category,name,quantity,price);
                 break;
             case "4":
-                productManager ( username, password );
+                adminProductManager ( username, password );
                 break;
             case "5":
                 break;

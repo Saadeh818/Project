@@ -17,7 +17,7 @@ public class Customer extends Users{
     void getUsersFromFile ( ){
         try {
             users.clear ();
-            File           file           = new File ( "src/Customers.txt" );
+            File file = new File ( "src/Customers.txt" );
             try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
                 String nameAndPass;
                 while ( (nameAndPass = bufferedReader.readLine ( )) != null ) {
@@ -115,4 +115,7 @@ public class Customer extends Users{
        }
        appointment.addNewAppointment(date, requestID, userRequested);
     }
+
+
+
 }
