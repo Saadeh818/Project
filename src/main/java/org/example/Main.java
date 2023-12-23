@@ -202,43 +202,68 @@ public class Main {
     }
 
 
-    private static
-    void Customer() {
-            System.out.println("Welcome Customer! Please choose an option:");
-            System.out.println("1. View Products");
-            System.out.println("2. Write a Product Review");
-            System.out.println("3. Return to Dashboard");
+    public static void customerActions() {
+        System.out.println("Welcome Customer! Please choose an option:");
+        System.out.println("1. View Products");
+        System.out.println("2. View Product Details");
+        System.out.println("3. Write a Product Review");
+        System.out.println("4. Return to Dashboard");
 
-            String userInput = scanner.nextLine();
+        String userInput = scanner.nextLine();
 
-            switch (userInput) {
-                case "1":
-                    viewProducts();
-                    break;
-                case "2":
-                    writeProductReview();
-                    break;
-                case "3":
-                    return;
-                default:
-                    System.out.println("Invalid input. Please try again.");
-                    Customer();
-            }
+        switch (userInput) {
+            case "1":
+                viewProducts();
+                break;
+            case "2":
+                viewProductDetails();
+                break;
+            case "3":
+                writeProductReview();
+                break;
+            case "4":
+                return;
+            default:
+                System.out.println("Invalid input. Please try again.");
+                customerActions();
         }
+    }
 
-        private static void viewProducts() {
-            // TODO: Implement logic to display products to the customer
-            System.out.println("Displaying products...");
-        }
+    private static void viewProducts() {
+        // TODO: Implement logic to display products to the customer
+        System.out.println("Displaying products...");
+        // Example: Print a list of products
+        System.out.println("1. Product A");
+        System.out.println("2. Product B");
+        System.out.println("3. Product C");
+        // Add more details or functionality as needed
+    }
 
-        private static void writeProductReview() {
-            System.out.println("Enter the product name you want to review:");
-            String productName = scanner.nextLine();
+    private static void viewProductDetails() {
+        // TODO: Implement logic to display details of a selected product
+        System.out.println("Enter the product name you want to view details for:");
+        String productName = scanner.nextLine();
+        // Example: Print product details
+        System.out.println("Details for " + productName + ":");
+        System.out.println("Price: $10.00");
+        System.out.println("Description: This is a sample product.");
+        // Add more details or functionality as needed
+    }
 
-            System.out.println("Write your review:");
-            String review = scanner.nextLine();
+    private static void writeProductReview() {
+        System.out.println("Enter the product name you want to review:");
+        String productName = scanner.nextLine();
 
-            // TODO: Implement logic to submit the review
-            System.out.println("Thank you for your review!");
-        }
-        }
+        System.out.println("Write your review:");
+        String review = scanner.nextLine();
+
+        // TODO: Implement logic to submit the review
+        System.out.println("Thank you for your review!");
+        // Example: Save the review to a data structure or database
+        // For simplicity, we print the review details here
+        System.out.println("Review for " + productName + ": " + review);
+    }
+
+
+}
+
