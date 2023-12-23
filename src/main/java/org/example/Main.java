@@ -13,6 +13,7 @@ public class Main {
         while ( true ) {
             MainScreen.displayPage ( "home-page" );
             MainScreen.userInput = scanner.nextLine ( );
+            if(MainScreen.userInput.equals ( "5" ))break;
             MainScreen.nextScreen ( MainScreen.userInput );
             switch (MainScreen.currentPage){
                 case "admin-login":
@@ -30,7 +31,7 @@ public class Main {
                     System.out.print("Enter Your Email: ");
                     String email= scanner.nextLine();
                     System.out.print("Enter Your Password: ");
-                    Users.adduser ( type,email,scanner.nextLine ());
+                    Users.adduser ( "2",email,scanner.nextLine ());
                     break;
                 default:
                     break;

@@ -44,7 +44,6 @@ public class MainScreen {
                 MainScreen.currentPage = "installer-login";
                 break;
             case "4":
-            case " '":
                 MainScreen.currentPage = "signUp-page";
                 break;
             default:
