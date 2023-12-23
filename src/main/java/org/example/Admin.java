@@ -15,13 +15,13 @@ public class Admin extends Users{
     static public boolean manageUsersFlag;
 
 
-    private static final Map<String, String> users            = new HashMap<String, String>();
-    static public        boolean             errorMessageFlag =false;
+    private static final Map<String, String> users = new HashMap<String, String>();
+    static public boolean  errorMessageFlag =false;
 
     static void getUsersFromFile(){
         try {
             users.clear ();
-            File           file           = new File ( "src/Admins.txt" );
+            File file = new File ( "src/Admins.txt" );
             try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
                 String nameAndPass;
                 while ( (nameAndPass = bufferedReader.readLine ( )) != null ) {
