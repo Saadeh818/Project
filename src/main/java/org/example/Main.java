@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.Date;
 import java.util.Scanner;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
@@ -21,29 +22,59 @@ public class Main {
                     break;
 
                 case "installer-login":
+                    installerActions();
                     break;
                 case "signUp-page":
-                    System.out.println("Choose type 1 for installer 2 for customer")
+                    System.out.println("Choose type 1 for installer 2 for customer");
                     String type= scanner.nextLine();
                     System.out.print("Enter Your Email: ");
                     String email= scanner.nextLine();
                     System.out.print("Enter Your Password: ");
-                    if (type.equals("1")){
-                        //TODO: add installer
-                    }
-                    else if (type.equals("2")){
-                        //TODO: add customer
-                    }
-                    else {
-                        //TODO: reload signup page
-                    }
+                    Users.adduser ( type,email,scanner.nextLine ());
                     break;
-
                 default:
                     break;
             }
         }
     }
+
+    private static
+    void installerActions ( ) {
+        System.out.print ( "Welcome Installer Please fill your data to login\n"
+                                   + "Enter your name please: " );
+        Installer.clearCredentials ();
+        String username = scanner.nextLine ();
+        System.out.println ( );
+        System.out.println ( "Enter Password please: "  );
+        String password = scanner.nextLine ();
+
+        Installer.login (username,password);
+        installerDashboard ( username , password );
+
+    }
+
+    private static
+    void installerDashboard ( String username , String password ) {
+        String userInput = scanner.nextLine ();
+        Installer.dashboardManager ( userInput );
+        if (userInput.equals ( "1" )){
+            System.out.println ( "Choose ID To Schedule An Appointment Or Enter # To return To dashboard " );
+            userInput = scanner.nextLine ();
+            if (userInput.equals ( "#" ))
+                installerDashboard ( username , password );
+            else
+
+                Installer.SetInstallationRequestId ( userInput );
+            if ( Installer.requestFound ){
+//                    System.out.println ( Installer.requestID +" "+Installer.userRequested );
+                System.out.println ( "Enter The Date to Schedule An Appointment : \" Date Format is day/month/year\" " );
+                Customer.addAppointment(scanner.nextLine (), Installer.requestID, Installer.userRequested);
+                installerDashboard ( username , password );
+            }
+
+        }
+    }
+
 
     private static
     void adminActions ( ) {
@@ -66,7 +97,7 @@ public class Main {
     void adminDashboard ( String username , String password ) {
         switch (scanner.nextLine ()){
             case "1":
-                adminProductManager ( username , password );
+                productManager ( username , password );
                 return;
             case "2":
                 userManager ( username , password );
@@ -129,7 +160,7 @@ public class Main {
     }
 
     private static
-    void adminProductManager ( String username, String password ) {
+    void productManager ( String username, String password ) {
         ProductC productC = new ProductC (  );
         System.out.print ( "*********************************************\n" +
                                    "Here You Can Manage All Products\n" +
@@ -150,7 +181,7 @@ public class Main {
                 System.out.print ("Enter The Product Price: ");
                 String priceI=scanner.nextLine ();
                 productC.addProduct ( categoryI,nameI,quantityI,priceI );
-                adminProductManager ( username, password );
+                productManager ( username, password );
                 break;
             case "2":
                 ProductC.productList();
@@ -169,7 +200,7 @@ public class Main {
                         productC.setCategory ("cat3");
                         break;
                     default:
-                        adminProductManager ( username, password );
+                        productManager ( username, password );
                         break;
                 }
                 System.out.print ( "Enter The ID Of The Product" );
@@ -192,7 +223,7 @@ public class Main {
                         productC.setCategory ("cat3");
                         break;
                     default:
-                        adminProductManager ( username, password );
+                        productManager ( username, password );
                         break;
                 }
                 System.out.println ( "Any Field that you dont want to change just insert #..." );
@@ -209,7 +240,7 @@ public class Main {
                 productC.updateValues(productC.productId, category,name,quantity,price);
                 break;
             case "4":
-                adminProductManager ( username, password );
+                productManager ( username, password );
                 break;
             case "5":
                 break;
@@ -219,41 +250,41 @@ public class Main {
 
     private static
     void Customer() {
-            System.out.println("Welcome Customer! Please choose an option:");
-            System.out.println("1. View Products");
-            System.out.println("2. Write a Product Review");
-            System.out.println("3. Return to Dashboard");
+        System.out.println("Welcome Customer! Please choose an option:");
+        System.out.println("1. View Products");
+        System.out.println("2. Write a Product Review");
+        System.out.println("3. Return to Dashboard");
 
-            String userInput = scanner.nextLine();
+        String userInput = scanner.nextLine();
 
-            switch (userInput) {
-                case "1":
-                    viewProducts();
-                    break;
-                case "2":
-                    writeProductReview();
-                    break;
-                case "3":
-                    return;
-                default:
-                    System.out.println("Invalid input. Please try again.");
-                    Customer();
-            }
+        switch (userInput) {
+            case "1":
+                viewProducts();
+                break;
+            case "2":
+                writeProductReview();
+                break;
+            case "3":
+                return;
+            default:
+                System.out.println("Invalid input. Please try again.");
+                Customer();
         }
+    }
 
-        private static void viewProducts() {
-            // TODO: Implement logic to display products to the customer
-            System.out.println("Displaying products...");
-        }
+    private static void viewProducts() {
+        // TODO: Implement logic to display products to the customer
+        System.out.println("Displaying products...");
+    }
 
-        private static void writeProductReview() {
-            System.out.println("Enter the product name you want to review:");
-            String productName = scanner.nextLine();
+    private static void writeProductReview() {
+        System.out.println("Enter the product name you want to review:");
+        String productName = scanner.nextLine();
 
-            System.out.println("Write your review:");
-            String review = scanner.nextLine();
+        System.out.println("Write your review:");
+        String review = scanner.nextLine();
 
-            // TODO: Implement logic to submit the review
-            System.out.println("Thank you for your review!");
-        }
-        }
+        // TODO: Implement logic to submit the review
+        System.out.println("Thank you for your review!");
+    }
+}
