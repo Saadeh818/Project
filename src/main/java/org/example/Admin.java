@@ -35,7 +35,7 @@ class Admin extends Users {
             }
         }
         catch ( IOException e ) {
-            e.printStackTrace ( System.out );
+            LOGGER.log(java.util.logging.Level.SEVERE,"An Error Occurred "+ e);
         }
     }
 
