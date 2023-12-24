@@ -12,8 +12,8 @@ public class ListInstallationRequests {
         Installer.listRequestsFlag = true;
     }
     @When("user entered installation request id {string}")
-    public void user_entered_installation_request_id(String string) {
-        Installer.SetInstallationRequestId("1. ");
+    public void user_entered_installation_request_id ( ) {
+        Installer.setInstallationRequestId ( "1. " );
     }
     @Then("go to schedule appointment")
     public void go_to_schedule_appointment() {

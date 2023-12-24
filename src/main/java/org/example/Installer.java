@@ -7,26 +7,27 @@ import java.util.logging.Logger;
 
 public
 class Installer extends Users {
-    private static final Map < String, String > users                  = new HashMap <> ( );
-    static public        String                 username;
-    static public        String                 password;
-    static public        boolean                loginFlag              = false;
-    static public        boolean                errorMessageFlag       = false;
-    public static        boolean                addUserSuccess;
-    public static        boolean                adminDashboardFlag;
-    static public        boolean                installerDashboardFlag = false;
-    static public        boolean                listRequestsFlag       = false;
-    static public        boolean                requestFound;
-    public static        String                 requestID;
-    public static        String                 userRequested;
-    private static final Logger                 LOGGER                 = Logger.getLogger ( Customer.class.getName ( ) );
+    private static final Map < String, String > users = new HashMap <> ( );
+    public static final String INSTALLERS_FILE_PATH = "src/Installers.txt";
+    protected static        String                 username;
+    protected static String  password;
+    public static    boolean loginFlag        = false;
+    public static    boolean errorMessageFlag = false;
+    protected static    boolean addUserSuccess;
+    protected static boolean adminDashboardFlag;
+    protected static boolean installerDashboardFlag = false;
+    protected static boolean listRequestsFlag       = false;
+    protected static        boolean                requestFound;
+    protected static        String                 requestID;
+    protected static        String                 userRequested;
+    private static final Logger                 LOGGER                 = Logger.getLogger ( Installer.class.getName ( ) );
 
 
     static
     void getUsersFromFile ( ) {
         try {
             users.clear ( );
-            File file = new File ( "src/Installers.txt" );
+            File file = new File ( INSTALLERS_FILE_PATH );
             try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
                 String nameAndPass;
                 while ( (nameAndPass = bufferedReader.readLine ( )) != null ) {
@@ -36,7 +37,8 @@ class Installer extends Users {
             }
         }
         catch ( IOException e ) {
-            throw new RuntimeException ( e );
+            String s = e.getMessage ();
+            LOGGER.info ( s );
         }
     }
 
@@ -57,7 +59,6 @@ class Installer extends Users {
         String adminPass = users.get ( username );
         loginFlag = adminPass.equals ( password );
         if ( ! loginFlag ) {
-//            JOptionPane.showMessageDialog(null,"wrong Input","Error",JOptionPane.ERROR_MESSAGE);
             errorMessageFlag = false;
         }
         else {
@@ -101,18 +102,20 @@ class Installer extends Users {
         }
         catch ( IOException e ) {
             LOGGER.info ( "Something wrong with your file" );
-            listRequestsFlag = false;
         }
 
     }
 
     private static
     void showInstallerDashboard ( ) {
-        LOGGER.info ( "Welcome Admin " + username + "\n" +
-                                   "What do you want to do?\n" +
-                                   "1. List Installation Requests\n" +
-                                   "2. Sign out\n"
-                         );
+        String s = "Welcome Admin " + username;
+        LOGGER.info ( s );
+        LOGGER.info ( """
+                              What do you want to do?
+                              1. List Installation Requests
+                              2. Sign out
+                              """
+                    );
         installerDashboardFlag = true;
     }
 
@@ -128,7 +131,8 @@ class Installer extends Users {
         int x = 0;
         for ( Map.Entry < String, String > entry : users.entrySet ( ) ) {
             x++;
-            LOGGER.info ( x + ". UserName: " + entry.getKey ( ) );
+            String msg = x + ". UserName: " + entry.getKey ( );
+            LOGGER.info ( msg );
         }
 
     }
@@ -149,7 +153,7 @@ class Installer extends Users {
     void addToFile ( String userName , String password ) {
         try {
             users.clear ( );
-            File           file           = new File ( "src/Installers.txt" );
+            File           file           = new File ( INSTALLERS_FILE_PATH );
             BufferedWriter bufferedWriter = new BufferedWriter ( new FileWriter ( file , true ) );
             String         nameAndPass    = userName + "," + password;
             bufferedWriter.newLine ( );
@@ -158,7 +162,8 @@ class Installer extends Users {
             getUsersFromFile ( );
         }
         catch ( IOException e ) {
-            throw new RuntimeException ( e );
+            String s = e.getMessage ();
+            LOGGER.info ( s );
         }
     }
 
@@ -175,7 +180,7 @@ class Installer extends Users {
     }
 
     public static
-    void SetInstallationRequestId ( String string ) {
+    void setInstallationRequestId ( String string ) {
         File file = new File ( "src/InstallationRequests" );
         try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
             String installationRequest;
@@ -183,7 +188,7 @@ class Installer extends Users {
             while ( (installationRequest = bufferedReader.readLine ( )) != null ) {
                 String[] data = installationRequest.split ( "," );
                 if ( data[ 0 ].contains ( string ) ) {
-                    requestID     = data[ 0 ].replaceAll ( "\\." , "" );
+                    requestID     = data[ 0 ].replace ( "\\." , "" );
                     userRequested = data[ 6 ];
                     requestFound  = true;
                     break;
@@ -203,7 +208,7 @@ class Installer extends Users {
     public static
     void deleteInstallerAccount ( int userToModifyID ) {
         users.clear ( );
-        File file = new File ( "src/Installers.txt" );
+        File file = new File ( INSTALLERS_FILE_PATH );
         try {
             try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
                 String   nameAndPass;
@@ -224,7 +229,8 @@ class Installer extends Users {
         }
         catch ( IOException e ) {
             Users.userDeleted = false;
-            throw new RuntimeException ( e );
+            String s = e.getMessage ();
+            LOGGER.info ( s );
         }
     }
 
@@ -251,7 +257,8 @@ class Installer extends Users {
         }
         catch ( IOException e ) {
             Users.userDeleted = false;
-            throw new RuntimeException ( e );
+            String s = e.getMessage ();
+            LOGGER.info ( s );
         }
     }
 
@@ -287,7 +294,8 @@ class Installer extends Users {
         }
         catch ( IOException e ) {
             Users.usernameChanged = false;
-            throw new RuntimeException ( e );
+            String s = e.getMessage ();
+            LOGGER.info ( s );
         }
     }
 }

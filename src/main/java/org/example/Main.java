@@ -69,7 +69,7 @@ class Main {
                 installerDashboard ( username , password );
             else
 
-                Installer.SetInstallationRequestId ( userInput );
+                Installer.setInstallationRequestId ( userInput );
             if ( Installer.requestFound ) {
                 LOGGER.info ( "Enter The Date to Schedule An Appointment : \" Date Format is day/month/year\" " );
                 Customer.addAppointment ( scanner.nextLine ( ) , Installer.requestID , Installer.userRequested );

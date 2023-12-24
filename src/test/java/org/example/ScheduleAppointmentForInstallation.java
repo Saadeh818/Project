@@ -10,7 +10,7 @@ import static org.junit.Assert.assertTrue;
 public class ScheduleAppointmentForInstallation {
     @Given("request ID")
     public void request_id() {
-        Installer.SetInstallationRequestId ( "0" );
+        Installer.setInstallationRequestId ( "0" );
     }
 
     @When("date is given as {string}")
