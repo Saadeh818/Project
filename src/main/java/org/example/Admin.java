@@ -6,16 +6,16 @@ import java.util.Map;
 
 public class Admin extends Users{
 
-    static public String username;
-    static public String password;
-    static public boolean loginFlag=false;
-    static public boolean adminDashboardFlag=false;
-    static public boolean manageProductFlag;
-    static public boolean manageUsersFlag;
+    public static  String username;
+    public static String password;
+    public static boolean loginFlag=false;
+    public static boolean adminDashboardFlag=false;
+    public static boolean manageProductFlag;
+    public static boolean manageUsersFlag;
 
 
     private static final Map<String, String> users = new HashMap <> ( );
-    static public boolean  errorMessageFlag =false;
+    public static boolean  errorMessageFlag =false;
 
     static void getUsersFromFile(){
         try {
