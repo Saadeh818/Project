@@ -1,13 +1,21 @@
 package org.example;
 
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 
 public class ChangeUsername {
 
+    @Given ("the user is an admin")
+    public void theUserIsAnAdmin() {
+    }
+    @When("admin enters the admin password {string}")
+    public void adminEntersTheAdminPassword(String string) {
+    }
 
-        @When("username entered {string}")
+
+    @When("username entered {string}")
         public void username_entered(String string) {
         }
 

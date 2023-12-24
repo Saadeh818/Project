@@ -4,6 +4,7 @@ public class Users {
 
     public static boolean selectUserToMenageFlag;
     public static String modifyAccountType;
+    protected static boolean userDeleted;
     static boolean installerSelected =false;
     static boolean customerSelected= false;
     static boolean addUserSelected= false;
@@ -89,21 +90,14 @@ public class Users {
         customerSelected = false;
         if(string.equals ( "installer" )) {
             installerSelected = true;
-            printModifyOptions();
+            loadModifyAccountOptions ( );
         }
         else if ( string.equals ( "customer" ) ) {
             customerSelected=true;
-            printModifyOptions();
+            loadModifyAccountOptions ( );
         }
     }
 
-    private static
-    void printModifyOptions ( ) {
-        System.out.print ( "\n What Do You Want To Update ?  \n" +
-                                   "1. Change Password \n" +
-                                   "2. Change UserName \n" +
-                                   "3. Delete Account \n " );
-    }
 
     public static
     void loadModifyAccountOptions ( ) {
@@ -125,5 +119,11 @@ public class Users {
         if (modifyAccountType.equalsIgnoreCase ( "customer" )){
 
         }
+    }
+
+    public static
+    void deleteAccount ( int userToModifyID) {
+        if(installerSelected)Installer.deleteInstallerAccount ( userToModifyID );
+        else if ( customerSelected ) Customer.deleteCustomerAccount ( userToModifyID );
     }
 }

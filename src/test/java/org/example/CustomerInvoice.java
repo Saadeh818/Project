@@ -16,7 +16,26 @@ public class CustomerInvoice {
 
         // Existing step definitions...
 
-        @When("I click on the {string} button")
+    @Given("customer invoice tab is selected")
+    public void customerInvoiceTabIsSelected() {
+        // Write code here that turns the phrase above into concrete actions
+    }
+
+    @Given("I select an invoice from the invoice list")
+    public void iSelectAnInvoiceFromTheInvoiceList() {
+        // Write code here that turns the phrase above into concrete actions
+    }
+
+    @Given("I make changes to the invoice details")
+    public void iMakeChangesToTheInvoiceDetails() {
+        // Write code here that turns the phrase above into concrete actions
+    }
+    @Then("the invoice details are updated in the invoice list")
+    public void theInvoiceDetailsAreUpdatedInTheInvoiceList() {
+        // Write code here that turns the phrase above into concrete actions
+    }
+
+    @When("I click on the {string} button")
         public void iClickOnTheButton(String button) {
             currentInvoice = new Invoice();
             // Implement code for clicking on the specified button
@@ -63,5 +82,11 @@ public class CustomerInvoice {
         public void theInvoiceIsSentToTheCustomerSEmailAddress() {
             invoiceManager.sendInvoice(currentInvoice);
         }
-    }
+
+    @Then("the details of the selected invoice are displayed on the screen")
+    public void theDetailsOfTheSelectedInvoiceAreDisplayedOnTheScreen() {
+//         Write code here that turns the phrase above into concrete actions
+        }
+
+}
 

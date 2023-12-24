@@ -1,10 +1,7 @@
 package org.example;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Installer extends Users{
     static public String username;
@@ -188,6 +185,125 @@ public class Installer extends Users{
         catch ( IOException e ){
             System.out.println ( "Something wrong with your file" );
             listRequestsFlag=false;
+        }
+    }
+
+    public static
+    void deleteInstallerAccount ( int userToModifyID ) {
+        users.clear ();
+        File           file           = new File ( "src/Installers.txt" );
+        try {
+            try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
+                String nameAndPass;
+                String[] data;
+                int index = 0;
+                while ( true ) {
+                    if ( (nameAndPass = bufferedReader.readLine ( )) != null && index != (userToModifyID-1) ) {
+                        data = nameAndPass.split ( "," );
+                        System.out.println ( nameAndPass );
+                        users.put ( data[ 0 ] , data[ 1 ] );
+                        index++;
+                    }
+                    else break;
+                }
+                Users.userDeleted = true;
+                    writeUsersToFile ( users , file.getPath ( ) );
+            }
+        }
+        catch ( IOException e ) {
+            Users.userDeleted =false;
+            throw new RuntimeException ( e );
+        }
+    }
+
+    public static void writeUsersToFile(Map<String, String> users, String filePath) {
+        try (BufferedWriter writer = new BufferedWriter ( new FileWriter ( filePath , false ) )) {
+            // Clear the existing content of the file
+
+            // Write the users to the file
+            for ( Map.Entry < String, String > entry : users.entrySet ( ) ) {
+                // Format each entry as "username,password" and write it to the file
+                String line = entry.getKey ( ) + "," + entry.getValue ( );
+                writer.write ( line );
+                writer.newLine ( );
+            }
+
+            System.out.println ( "Users written to file successfully." );
+        }
+        catch ( IOException e ) {
+            e.printStackTrace ( System.out );
+        }
+    }
+
+    public static
+    void changePassword ( int userToModifyID, String newPassword ) {
+        if (!checkPassword (newPassword)){
+            System.out.println ( "Password Format Wrong" );
+            Users.userDeleted =false;
+            return;
+        }
+        users.clear ();
+        File           file           = new File ( "src/Customers.txt" );
+        try {
+            try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
+                String nameAndPass;
+                String[] data;
+                int index = 0;
+                while (( nameAndPass = bufferedReader.readLine ( )) != null ) {
+                    if ( (index != (userToModifyID-1) )) {
+                        data = nameAndPass.split ( "," );
+                        System.out.println ( nameAndPass );
+                        users.put ( data[ 0 ] , data[ 1 ] );
+                        index++;
+                    }
+                    else if (index == (userToModifyID-1)){
+                        data = nameAndPass.split ( "," );
+                        users.put ( data[ 0 ] , newPassword );
+                    }
+                }
+                Users.userDeleted = true;
+                writeUsersToFile ( users , file.getPath ( ) );
+            }
+        }
+        catch ( IOException e ) {
+            Users.userDeleted =false;
+            throw new RuntimeException ( e );
+        }
+    }
+
+    public static
+    void changeUserName ( int userToModifyID , String newUserName ) {
+        if(!checkUserName ( newUserName )){
+            System.out.println ( "UserName Format Wrong or Used" );
+            Users.userDeleted =false;
+            return;
+        }
+        users.clear ();
+        File           file           = new File ( "src/Customers.txt" );
+        try {
+            try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
+                String nameAndPass;
+                String[] data;
+                int index = 0;
+                while (( nameAndPass = bufferedReader.readLine ( )) != null ) {
+                    if ( (index != (userToModifyID-1) )) {
+                        data = nameAndPass.split ( "," );
+                        System.out.println ( nameAndPass );
+                        users.put ( data[ 0 ] , data[ 1 ] );
+                        index++;
+                    }
+                    else if (index == (userToModifyID-1)){
+                        data = nameAndPass.split ( "," );
+                        users.put (newUserName, data[1] );
+                    }
+                }
+                Users.userDeleted = true;
+                writeUsersToFile ( users , file.getPath ( ) );
+            }
+        }
+        catch ( IOException e ) {
+            Users.userDeleted =false;
+            throw new RuntimeException ( e );
         }
     }
 }
