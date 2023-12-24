@@ -3,57 +3,34 @@ package org.example;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 
 public class ChangeUsername {
-
-    @Given ("the user is an admin")
-    public void theUserIsAnAdmin() {
-    }
-    @When("admin enters the admin password {string}")
-    public void adminEntersTheAdminPassword(String string) {
+    @When ( "user enters the right username format")
+    public
+    void userEntersTheRightUsernameFormat ( ) {
     }
 
-
-    @When("username entered {string}")
-        public void username_entered(String string) {
-        }
-
-        @Then("set username")
-        public void set_username() {
-        }
-    @When("user enters the unacceptable new username {string}")
-    public void userEntersTheUnacceptableNewUsername(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        //throw new io.cucumber.java.PendingException();
-    }
-    @Then("a wrong input message appears")
-    public void aWrongInputMessageAppears() {
-        // Write code here that turns the phrase above into concrete actions
-       // throw new io.cucumber.java.PendingException();
-    }
-   @When("admin changes the username to {string} for user {string}")
-    public void adminChangesTheUsernameToForUser(String string, String string2) {
-        // Write code here that turns the phrase above into concrete actions
-       // throw new io.cucumber.java.PendingException();
-    }
-    @Then("the username is changed successfully")
-    public void theUsernameIsChangedSuccessfully() {
-        // Write code here that turns the phrase above into concrete actions
-        //throw new io.cucumber.java.PendingException();
+    @Then ( "the username is set successfully")
+    public
+    void theUsernameIsSetSuccessfully ( ) {
+        Customer.changeUserName ( 1,"SaaSaa@gmail.com" );
+        assertTrue(Users.usernameChanged);
     }
 
+    @When ( "user enters the wrong userName format")
+    public
+    void userEntersTheWrongUserNameFormat ( ) {
+    }
 
-
-    @Then("the username is set successfully")
-    public void theUsernameIsSetSuccessfully() {
-        // Write code here that turns the phrase above into concrete actions
-        //throw new io.cucumber.java.PendingException();
+    @Then ( "the userName is not set")
+    public
+    void theUserNameIsNotSet ( ) {
+        Installer.changeUserName ( 1,"saada2gmail,com" );
+        assertFalse ( Users.usernameChanged );
     }
-    
-    @When("user enters the acceptable new username {string}")
-    public void userEntersTheAcceptableNewUsername(String string) {
-        // Write code here that turns the phrase above into concrete actions
-       // throw new io.cucumber.java.PendingException();
-    }
-    }
+}

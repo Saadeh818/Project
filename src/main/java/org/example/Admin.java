@@ -82,9 +82,6 @@ public class Admin extends Users{
         adminDashboardFlag=true;
     }
 
-    public Map<String, String> getUsers() {
-        return users;
-    }
     public static void dashboardManager(String userInput){
         switch (userInput) {
             case "1":

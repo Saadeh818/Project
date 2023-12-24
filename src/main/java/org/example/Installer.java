@@ -274,7 +274,7 @@ public class Installer extends Users{
     void changeUserName ( int userToModifyID , String newUserName ) {
         if(!checkUserName ( newUserName )){
             System.out.println ( "UserName Format Wrong or Used" );
-            Users.userDeleted =false;
+            Users.usernameChanged =false;
             return;
         }
         users.clear ();
@@ -296,12 +296,12 @@ public class Installer extends Users{
                         users.put (newUserName, data[1] );
                     }
                 }
-                Users.userDeleted = true;
+                Users.usernameChanged = true;
                 writeUsersToFile ( users , file.getPath ( ) );
             }
         }
         catch ( IOException e ) {
-            Users.userDeleted =false;
+            Users.usernameChanged =false;
             throw new RuntimeException ( e );
         }
     }

@@ -126,7 +126,7 @@ public class Main {
                     case "1":
                         System.out.print ( "Enter new password: " );
                         if ( Users.installerSelected ) Installer.changePassword ( Users.userToModifyID , scanner.nextLine ( ) );
-                        else if ( Users.customerSelected ) Customer.changePassword ( Users.userToModifyID,scanner.nextLine () );
+                        else if ( Users.customerSelected ) Customer.changePassword ( Users.userToModifyID, scanner.nextLine ( ) );
                         break;
                     case "2":
                         System.out.print ( "Enter new UserName: " );

@@ -4,7 +4,9 @@ public class Users {
 
     public static boolean selectUserToMenageFlag;
     public static String modifyAccountType;
-    protected static boolean userDeleted;
+    public static boolean userDeleted;
+    public static boolean passwordUpdated;
+    public static boolean usernameChanged;
     static boolean installerSelected =false;
     static boolean customerSelected= false;
     static boolean addUserSelected= false;
@@ -49,6 +51,11 @@ public class Users {
                 customerSelected=false;
                 addUserSelected=false;
         }
+    }
+
+    public static
+    void changePassword ( int userToModifyID, String newPassword ){
+
     }
 
     public static void adduser(String userType, String userName, String password) {

@@ -91,7 +91,7 @@ public class Customer extends Users{
             getUsersFromFile ();
         }
         catch ( IOException e ) {
-            throw new RuntimeException ( e );
+            e.printStackTrace ( System.out );
         }
     }
 
@@ -138,15 +138,14 @@ public class Customer extends Users{
         }
         catch ( IOException e ) {
             Users.userDeleted =false;
-            throw new RuntimeException ( e );
+            e.printStackTrace ( System.out );
         }
     }
-
     public static
     void changePassword ( int userToModifyID, String newPassword ) {
         if (!checkPassword (newPassword)){
             LOGGER.info ( "Password Format Wrong" );
-            Users.userDeleted =false;
+            Users.passwordUpdated =false;
             return;
         }
         users.clear ();
@@ -168,22 +167,18 @@ public class Customer extends Users{
                         users.put ( data[ 0 ] , newPassword );
                     }
                 }
-                Users.userDeleted = true;
+                Users.passwordUpdated = true;
                 writeUsersToFile ( users , file.getPath ( ) );
             }
         }
         catch ( IOException e ) {
-            Users.userDeleted =false;
+            Users.passwordUpdated =false;
             throw new RuntimeException ( e );
         }
     }
     public static void writeUsersToFile(Map<String, String> users, String filePath) {
         try (BufferedWriter writer = new BufferedWriter ( new FileWriter ( filePath , false ) )) {
-            // Clear the existing content of the file
-
-            // Write the users to the file
             for ( Map.Entry < String, String > entry : users.entrySet ( ) ) {
-                // Format each entry as "username,password" and write it to the file
                 String line = entry.getKey ( ) + "," + entry.getValue ( );
                 writer.write ( line );
                 writer.newLine ( );
@@ -200,7 +195,7 @@ public class Customer extends Users{
     void changeUserName ( int userToModifyID , String newUserName ) {
         if(!checkUserName ( newUserName )){
             LOGGER.info ( "UserName Format Wrong or Used" );
-            Users.userDeleted =false;
+            Users.usernameChanged =false;
             return;
         }
         users.clear ();
@@ -222,12 +217,12 @@ public class Customer extends Users{
                         users.put (newUserName, data[1] );
                     }
                 }
-                Users.userDeleted = true;
+                Users.usernameChanged = true;
                 writeUsersToFile ( users , file.getPath ( ) );
             }
         }
         catch ( IOException e ) {
-            Users.userDeleted =false;
+            Users.usernameChanged =false;
             throw new RuntimeException ( e );
         }
     }
