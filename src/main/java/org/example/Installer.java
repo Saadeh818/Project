@@ -11,8 +11,8 @@ class Installer extends Users {
     public static final String INSTALLERS_FILE_PATH = "src/Installers.txt";
     protected static        String                 username;
     protected static String  password;
-    public static    boolean loginFlag        = false;
-    public static    boolean errorMessageFlag = false;
+    protected static    boolean loginFlag        = false;
+    protected static    boolean errorMessageFlag = false;
     protected static    boolean addUserSuccess;
     protected static boolean adminDashboardFlag;
     protected static boolean installerDashboardFlag = false;
@@ -154,11 +154,11 @@ class Installer extends Users {
         try {
             users.clear ( );
             File           file           = new File ( INSTALLERS_FILE_PATH );
-            BufferedWriter bufferedWriter = new BufferedWriter ( new FileWriter ( file , true ) );
-            String         nameAndPass    = userName + "," + password;
-            bufferedWriter.newLine ( );
-            bufferedWriter.write ( nameAndPass );
-            bufferedWriter.close ( );
+            try (BufferedWriter bufferedWriter = new BufferedWriter ( new FileWriter ( file , true ) )) {
+                String nameAndPass = userName + "," + password;
+                bufferedWriter.newLine ( );
+                bufferedWriter.write ( nameAndPass );
+            }
             getUsersFromFile ( );
         }
         catch ( IOException e ) {

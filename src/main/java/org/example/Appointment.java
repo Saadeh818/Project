@@ -103,11 +103,11 @@ class Appointment {
     void addAppointmentToTheFile ( Appointment appointment ) {
         try {
             File           file             = new File ( "src/Appointments" );
-            BufferedWriter bufferedWriter   = new BufferedWriter ( new FileWriter ( file , true ) );
-            String         appointmentToAdd = appointment.requestID + ", " + appointment.user + ", " + appointment.appointmentDate.toString ( );
-            bufferedWriter.newLine ( );
-            bufferedWriter.write ( appointmentToAdd );
-            bufferedWriter.close ( );
+            try (BufferedWriter bufferedWriter = new BufferedWriter ( new FileWriter ( file , true ) )) {
+                String appointmentToAdd = appointment.requestID + ", " + appointment.user + ", " + appointment.appointmentDate.toString ( );
+                bufferedWriter.newLine ( );
+                bufferedWriter.write ( appointmentToAdd );
+            }
         }
         catch ( IOException e ) {
             String s = e.getMessage ();
