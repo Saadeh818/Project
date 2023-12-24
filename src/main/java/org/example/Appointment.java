@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 public
 class Appointment {
     private static final Logger  LOGGER     = Logger.getLogger ( Appointment.class.getName ( ) );
-    protected static        boolean addSuccess;
+    protected static        boolean addSuccess = false;
     String             user;
     String             requestID;
     Date               appointmentDate;
@@ -110,8 +110,8 @@ class Appointment {
             bufferedWriter.close ( );
         }
         catch ( IOException e ) {
-            LOGGER.log(java.util.logging.Level.SEVERE,"An Error Occurred "+ e);
+            String s = e.getMessage ();
+            LOGGER.info ( s );
         }
-
     }
 }
