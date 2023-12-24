@@ -6,8 +6,7 @@ import java.util.List;
 
 public class ProductC {
 
-    private static int nextProductId = 0;
-    public int productId;
+    public               int productId;
     public static boolean readyToDelete;
     public static boolean readyToUpdate;
     public static boolean wrongInputFlag;
@@ -119,16 +118,6 @@ public class ProductC {
         System.out.println();
     }
 
-    public static
-    void displayProduct ( ProductC product ){
-        System.out.print(product.productId);
-        System.out.print(", " + product.category);
-        System.out.print(", " + product.name);
-        System.out.print(", " + product.quantity);
-        System.out.println(", " + product.price);
-        System.out.println();
-    }
-
     public void addProduct(String categoryI, String nameI, String quantityI, String priceI) {
         try {
 
@@ -197,9 +186,6 @@ public class ProductC {
         return false;
     }
 
-    public void update() {
-
-    }
 
     public void updateValues(int ID,String category, String name, String quantity, String price) {
         for (ProductC product : productList){

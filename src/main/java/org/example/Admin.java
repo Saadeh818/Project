@@ -1,6 +1,5 @@
 package org.example;
 
-import javax.swing.*;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +14,7 @@ public class Admin extends Users{
     static public boolean manageUsersFlag;
 
 
-    private static final Map<String, String> users = new HashMap<String, String>();
+    private static final Map<String, String> users = new HashMap <> ( );
     static public boolean  errorMessageFlag =false;
 
     static void getUsersFromFile(){

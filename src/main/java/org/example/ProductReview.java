@@ -6,10 +6,6 @@ public class ProductReview {
     private String reviewFormText;
     private int reviewFormRating;
 
-    public void setUserLoggedIn(boolean userLoggedIn) {
-        this.userLoggedIn = userLoggedIn;
-    }
-
     public void setReviewFormText(String reviewFormText) {
         this.reviewFormText = reviewFormText;
     }

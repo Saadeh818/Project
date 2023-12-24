@@ -56,30 +56,26 @@ class Appointment {
         int month = calendar.get ( Calendar.MONTH ) + 1;
         int year  = calendar.get ( Calendar.YEAR );
 
-        if ( month < 1 || month > 12 ) {
+        if ( month > 12 ) {
             throw new IllegalArgumentException ( "Invalid month in the date." );
         }
 
         int monthDays = getDaysInMonth ( month , year );
-        if ( day < 1 || day > monthDays ) {
+        if ( day > monthDays ) {
             throw new IllegalArgumentException ( "Invalid day in this month." );
         }
     }
 
     private
     int getDaysInMonth ( int month , int year ) {
-        switch (month) {
-            case 2:
-                if ( (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0) ) return 29;
-                return 28;
-            case 4:
-            case 6:
-            case 9:
-            case 11:
-                return 30;
-            default:
-                return 31;
-        }
+        return switch (month) {
+            case 2 -> {
+                if ( (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0) ) yield 29;
+                yield 28;
+            }
+            case 4 , 6 , 9 , 11 -> 30;
+            default -> 31;
+        };
     }
 
     public

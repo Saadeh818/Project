@@ -8,7 +8,7 @@ public class Customer extends Users{
 
     static public String username;
     static public String password;
-    private static final Map<String, String> users = new HashMap<String, String>();
+    private static final Map<String, String> users = new HashMap <> ( );
     static public boolean loginFlag=false;
     static public boolean errorMessageFlag=false;
     public static boolean addUserSuccess;
@@ -49,12 +49,6 @@ public class Customer extends Users{
 //            JOptionPane.showMessageDialog(null,"wrong Input","Error",JOptionPane.ERROR_MESSAGE);
             errorMessageFlag = false;
         }
-        else{
-            dashboardManager("Load Dashboard");
-        }
-    }
-
-    private static void dashboardManager(String loadDashboard) {
     }
 
     public static Map<String, String> getUsers() {

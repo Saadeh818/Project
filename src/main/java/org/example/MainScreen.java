@@ -1,29 +1,22 @@
 package org.example;
 
-import java.util.Scanner;
-
 public class MainScreen {
     static String userInput;
     static String currentPage;
-    Scanner scanner=new Scanner(System.in);
 
     public static void displayPage(String currentPage) {
         if (currentPage.equals("home-page"))
-            System.out.print("Welcome To Car Accessories Company \n" +
-                    "Choose To login by your type or signUp\n" +
-                    "1. Admin Login\n" +
-                    "2. Customer Login\n" +
-                    "3. Installer Login\n" +
-                    "4. SignUp\n" +
-                    "5. Exit Program\n" +
-                     "6. Press Any key to reload this Page\n"
+            System.out.print( """
+                                      Welcome To Car Accessories Company\s
+                                      Choose To login by your type or signUp
+                                      1. Admin Login
+                                      2. Customer Login
+                                      3. Installer Login
+                                      4. SignUp
+                                      5. Exit Program
+                                      6. Press Any key to reload this Page
+                                      """
             );
-//        else if (currentPage.equals("admin-login") || currentPage.equals("customer-login") || currentPage.equals("installer-login")){
-//            System.out.println ( "Enter Admin User Name And Password: " );
-//        }
-//        else if (currentPage.equals ( "signUp-page" )){
-//
-//        }
     }
 
     public static void setUserInput(String string) {

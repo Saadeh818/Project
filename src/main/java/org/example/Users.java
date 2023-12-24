@@ -10,16 +10,17 @@ public class Users {
     static boolean addUserSelected= false;
     public static boolean  failToAdd;
     public static int userToModifyID;
-    private static boolean userDisplayed;
     public static  boolean userIsFound= false;
 
     static void userManagementScreen(){
-        System.out.print("What do you want to do? \n" +
-                "1. Display All Installers To Modify One Of Them\n" +
-                "2. Display All Customers To Modify One Of Them\n" +
-                "3. Add New User\n" +
-                 "4. Return To Dashboard\n" +
-                 "5. LogOut\n"
+        System.out.print( """
+                                  What do you want to do?\s
+                                  1. Display All Installers To Modify One Of Them
+                                  2. Display All Customers To Modify One Of Them
+                                  3. Add New User
+                                  4. Return To Dashboard
+                                  5. LogOut
+                                  """
         );
     }
 
@@ -79,7 +80,7 @@ public class Users {
             }
         }
         catch ( NumberFormatException e ) {
-            userIsFound=false;;
+            userIsFound=false;
             System.out.println ( "Wrong Input Format For ID" );
         }
     }
@@ -101,29 +102,11 @@ public class Users {
 
     public static
     void loadModifyAccountOptions ( ) {
-        System.out.println ( "1. Change Password.\n" +
-                                     "2. Change Username.\n" +
-                                     "3.Delete Account.\n" +
-                                     "4. Return Back\n" +
-                                     "5. Go To Dashboard." );
-    }
-
-    public static
-    void modifyAccount ( String modifyAccountType , int userToModifyID , String modifyOption ) {
-        if (modifyAccountType.equalsIgnoreCase ( "installer" )){
-            switch (modifyOption){
-                case "1":
-
-            }
-        }
-        if (modifyAccountType.equalsIgnoreCase ( "customer" )){
-
-        }
-    }
-
-    public static
-    void deleteAccount ( int userToModifyID) {
-        if(installerSelected)Installer.deleteInstallerAccount ( userToModifyID );
-        else if ( customerSelected ) Customer.deleteCustomerAccount ( userToModifyID );
+        System.out.println ( """
+                                     1. Change Password.
+                                     2. Change Username.
+                                     3.Delete Account.
+                                     4. Return Back
+                                     5. Go To Dashboard.""" );
     }
 }

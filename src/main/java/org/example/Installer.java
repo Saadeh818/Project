@@ -6,14 +6,13 @@ import java.util.*;
 public class Installer extends Users{
     static public String username;
     static public String password;
-    private static final Map<String, String> users = new HashMap<String, String>();
+    private static final Map<String, String> users = new HashMap <> ( );
     static public boolean loginFlag=false;
     static public boolean errorMessageFlag=false;
     public static boolean addUserSuccess;
     public static boolean adminDashboardFlag;
     static public boolean installerDashboardFlag = false;
     static public        boolean         listRequestsFlag = false;
-    private static final List < ProductC > requests         = new ArrayList <> (  );
     static public  boolean requestFound;
     public static  String  requestID;
     public static String  userRequested;
