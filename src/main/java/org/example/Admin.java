@@ -15,11 +15,11 @@ class Admin extends Users {
     private static final Map < String, String > users            = new HashMap <> ( );
     protected static String  username;
     protected static String  password;
-    public static boolean loginFlag          = false;
-    public static boolean adminDashboardFlag = false;
-    public static boolean manageProductFlag;
-    public static boolean manageUsersFlag;
-    public static        boolean                errorMessageFlag = false;
+    protected static  boolean loginFlag          = false;
+    protected static boolean adminDashboardFlag = false;
+    protected static boolean manageProductFlag;
+    protected static boolean manageUsersFlag;
+    protected static         boolean                errorMessageFlag = false;
 
     static
     void getUsersFromFile ( ) {
@@ -35,7 +35,7 @@ class Admin extends Users {
             }
         }
         catch ( IOException e ) {
-            throw new RuntimeException ( e );
+            e.printStackTrace ( System.out );
         }
     }
 
@@ -79,11 +79,13 @@ class Admin extends Users {
 
     private static
     void showAdminDashboard ( ) {
-        LOGGER.info ( "Welcome Admin " + username + "\n" +
-                              "What do you want to do?\n" +
-                              "1. Manage products\n" +
-                              "2. Manage users\n" +
-                              "3. Sign out" );
+        String welcomeMessage = "Welcome Admin " + username;
+        LOGGER.info ( welcomeMessage);
+        LOGGER.info ( """
+                              What do you want to do?
+                              1. Manage products
+                              2. Manage users
+                              3. Sign out""" );
         adminDashboardFlag = true;
     }
 
