@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 public
 class Appointment {
     private static final Logger  LOGGER     = Logger.getLogger ( Appointment.class.getName ( ) );
-    public static        boolean addSuccess = false;
+    public static        boolean addSuccess;
     String             user;
     String             requestID;
     Date               appointmentDate;
@@ -110,7 +110,7 @@ class Appointment {
             bufferedWriter.close ( );
         }
         catch ( IOException e ) {
-            throw new RuntimeException ( e );
+            e.printStackTrace ( System.out );
         }
 
     }

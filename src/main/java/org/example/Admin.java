@@ -13,8 +13,8 @@ class Admin extends Users {
 
     private static final Logger LOGGER = Logger.getLogger ( Admin.class.getName ( ) );
     private static final Map < String, String > users            = new HashMap <> ( );
-    public static String  username;
-    public static String  password;
+    protected static String  username;
+    protected static String  password;
     public static boolean loginFlag          = false;
     public static boolean adminDashboardFlag = false;
     public static boolean manageProductFlag;
