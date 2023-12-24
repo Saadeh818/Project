@@ -253,6 +253,73 @@ public class Main {
         }
     }
 
+    private InvoiceManager invoiceManager = new InvoiceManager();
+    private Invoice currentInvoice;
+        public void performInvoiceActions(String action) {
+            switch (action) {
+                case "Create New Invoice":
+                    createNewInvoice();
+                    break;
+                case "Delete Invoice":
+                    deleteInvoice();
+                    break;
+                case "Edit Invoice":
+                    editInvoice();
+                    break;
+                case "View Invoice":
+                    viewInvoice();
+                    break;
+                case "Send Invoice":
+                    sendInvoice();
+                    break;
+                default:
+                    System.out.println("Invalid action: " + action);
+            }
+        }
+
+    private void viewInvoice() {
+    }
+
+    private void editInvoice() {
+    }
+
+    private void createNewInvoice() {
+            currentInvoice = new Invoice();
+            enterNecessaryDetailsForNewInvoice();
+            invoiceManager.createInvoice(currentInvoice);
+            verifyNewInvoiceIsAddedToList();
+        }
+
+    private void verifyNewInvoiceIsAddedToList() {
+    }
+
+    private void enterNecessaryDetailsForNewInvoice() {
+            currentInvoice.setInvoiceNumber("001");
+            currentInvoice.setCustomerName("dena");
+            currentInvoice.setTotalAmount("$500");
+            currentInvoice.setDueDate("2023-02-15");
+        }
+        
+
+        private void deleteInvoice() {
+            enterNecessaryDetailsForNewInvoice(); // Assuming you need details for deletion
+            invoiceManager.deleteInvoice(currentInvoice);
+            verifySelectedInvoiceIsDeleted();
+        }
+
+    private void verifySelectedInvoiceIsDeleted() {
+    }
+
+
+    private void sendInvoice() {
+            enterCustomerEmailAddress();
+            invoiceManager.sendInvoice(currentInvoice);
+        }
+
+        private void enterCustomerEmailAddress() {
+            currentInvoice.setCustomerEmail("dena123@email.com");
+        }
+
 
     private static
     void Customer() {

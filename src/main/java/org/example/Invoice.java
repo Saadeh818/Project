@@ -70,9 +70,12 @@ class InvoiceManager {
 }
 
  class CustomerInvoice {
-    public static void main(String[] args) {
-        // You can now use the InvoiceManager and Invoice classes in your testing scenarios
-    }
+         public static void main(String[] args) {
+             CustomerInvoice customerInvoice = new CustomerInvoice();
+             customerInvoice.performInvoiceActions("Create New Invoice");
+             customerInvoice.performInvoiceActions("Delete Invoice");
+             // Perform other actions as needed
+         }
 
      public static void performInvoiceActions(String createNewInvoice) {
      }
