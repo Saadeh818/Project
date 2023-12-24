@@ -83,11 +83,11 @@ public class Customer extends Users{
         try {
             users.clear ();
             File           file           = new File ( "src/Customers.txt" );
-            BufferedWriter bufferedWriter = new BufferedWriter ( new FileWriter ( file,true ) );
-            String nameAndPass = userName +","+password;
-            bufferedWriter.newLine ();
-            bufferedWriter.write ( nameAndPass );
-            bufferedWriter.close ();
+            try (BufferedWriter bufferedWriter = new BufferedWriter ( new FileWriter ( file , true ) )) {
+                String nameAndPass = userName + "," + password;
+                bufferedWriter.newLine ( );
+                bufferedWriter.write ( nameAndPass );
+            }
             getUsersFromFile ();
         }
         catch ( IOException e ) {
