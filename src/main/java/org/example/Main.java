@@ -5,8 +5,9 @@ import java.util.Scanner;
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
-
-    static Scanner scanner = new Scanner ( System.in );
+    static Scanner scanner = new Scanner(System.in);
+    static InvoiceManager invoiceManager = new InvoiceManager();  // Assuming you have an InvoiceManager instance
+    static Invoice currentInvoice;
 
     public static
     void main ( String[] args ) {
@@ -253,8 +254,6 @@ public class Main {
         }
     }
 
-    private InvoiceManager invoiceManager = new InvoiceManager();
-    private Invoice currentInvoice;
         public void performInvoiceActions(String action) {
             switch (action) {
                 case "Create New Invoice":
@@ -311,15 +310,6 @@ public class Main {
     }
 
 
-    private void sendInvoice() {
-            enterCustomerEmailAddress();
-            invoiceManager.sendInvoice(currentInvoice);
-        }
-
-        private void enterCustomerEmailAddress() {
-            currentInvoice.setCustomerEmail("dena123@email.com");
-        }
-
 
     private static
     void Customer() {
@@ -360,4 +350,23 @@ public class Main {
         // TODO: Implement logic to submit the review
         System.out.println("Thank you for your review!");
     }
+
+
+    // Other methods...
+
+    private static void sendInvoice() {
+        enterCustomerEmailAddress();
+        invoiceManager.sendInvoice(currentInvoice);
+    }
+
+    private static void enterCustomerEmailAddress() {
+        currentInvoice.setCustomerEmail("dena123@email.com");
+    }
+    private void logoutUser() {
+        currentInvoice = null;
+        System.out.println("Logged out...");
+        System.out.println("Thanks for using iCar.");
+    }
+
+
 }
