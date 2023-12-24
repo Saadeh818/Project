@@ -3,205 +3,219 @@ package org.example;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
-public class ProductC {
+public
+class ProductC {
 
-    public               int productId;
-    public static boolean readyToDelete;
-    public static boolean readyToUpdate;
-    public static boolean wrongInputFlag;
-    public String category;
-    public String name;
-    public int quantity;
-    public int price;
-    public boolean productAddSuccessfully;
-    public static boolean readyToAdd=false;
-    public static final List<ProductC> productList=new ArrayList<>();
-    public static boolean listProductFlag=false;
-    public static boolean productDeletedSuccessfully=true;
+    public static final  List < ProductC > productList                = new ArrayList <> ( );
+    public static        boolean           readyToDelete;
+    public static        boolean           readyToUpdate;
+    public static        boolean           wrongInputFlag;
+    public static        boolean           readyToAdd                 = false;
+    public static        boolean           listProductFlag            = false;
+    public static        boolean           productDeletedSuccessfully = true;
+    private static final Logger            LOGGER                     = Logger.getLogger ( Customer.class.getName ( ) );
+
 
     static {
-        productList.add(new ProductC(0, "cat1", "product1", 18, 100));
-        productList.add(new ProductC(1, "cat1", "product2", 85, 150));
-        productList.add(new ProductC(2, "cat2", "product3", 44, 480));
-        productList.add(new ProductC(3, "cat3", "product4", 48, 940));
-        productList.add(new ProductC(4, "cat1", "product5", 10, 613));
-        productList.add(new ProductC(5, "cat3", "product6", 88, 984));
-        productList.add(new ProductC(6, "cat2", "product7", 91, 513));
-        productList.add(new ProductC(7, "cat1", "product8", 77, 560));
-        productList.add(new ProductC(8, "cat2", "product9", 24, 613));
+        productList.add ( new ProductC ( 0 , "cat1" , "product1" , 18 , 100 ) );
+        productList.add ( new ProductC ( 1 , "cat1" , "product2" , 85 , 150 ) );
+        productList.add ( new ProductC ( 2 , "cat2" , "product3" , 44 , 480 ) );
+        productList.add ( new ProductC ( 3 , "cat3" , "product4" , 48 , 940 ) );
+        productList.add ( new ProductC ( 4 , "cat1" , "product5" , 10 , 613 ) );
+        productList.add ( new ProductC ( 5 , "cat3" , "product6" , 88 , 984 ) );
+        productList.add ( new ProductC ( 6 , "cat2" , "product7" , 91 , 513 ) );
+        productList.add ( new ProductC ( 7 , "cat1" , "product8" , 77 , 560 ) );
+        productList.add ( new ProductC ( 8 , "cat2" , "product9" , 24 , 613 ) );
     }
 
+    public              int               productId;
+    public              String            category;
+    public              String            name;
+    public              int               quantity;
+    public              int               price;
+    public              boolean           productAddSuccessfully;
     public boolean updateProductSuccess;
 
-    public ProductC() {
+    public
+    ProductC ( ) {
     }
 
-    public ProductC(int ID,String category, String name, int quantity, int price) {
+    public
+    ProductC ( int ID , String category , String name , int quantity , int price ) {
         this.productId = ID;
-        this.category = category;
-        this.name = name;
-        this.quantity = quantity;
-        this.price = price;
+        this.category  = category;
+        this.name      = name;
+        this.quantity  = quantity;
+        this.price     = price;
     }
 
-    public static void productManager(String userInput) {
-        switch (userInput){
+    public static
+    void productManager ( String userInput ) {
+        switch (userInput) {
             case "1":
-                readyToAdd=true;
-                readyToUpdate=false;
-                readyToDelete=false;
-                Admin.adminDashboardFlag=false;
-                wrongInputFlag=false;
+                readyToAdd = true;
+                readyToUpdate = false;
+                readyToDelete = false;
+                Admin.adminDashboardFlag = false;
+                wrongInputFlag = false;
                 break;
             case "2":
-                readyToAdd=false;
-                readyToUpdate=false;
-                readyToDelete=true;
-                Admin.adminDashboardFlag=false;
-                wrongInputFlag=false;
+                readyToAdd = false;
+                readyToUpdate = false;
+                readyToDelete = true;
+                Admin.adminDashboardFlag = false;
+                wrongInputFlag = false;
                 break;
             case "3":
-                readyToAdd=false;
-                readyToUpdate=true;
-                readyToDelete=false;
-                Admin.adminDashboardFlag=false;
-                wrongInputFlag=false;
+                readyToAdd = false;
+                readyToUpdate = true;
+                readyToDelete = false;
+                Admin.adminDashboardFlag = false;
+                wrongInputFlag = false;
                 break;
             case "4":
-                readyToAdd=false;
-                readyToUpdate=false;
-                readyToDelete=false;
-                Admin.adminDashboardFlag=true;
-                wrongInputFlag=false;
+                readyToAdd = false;
+                readyToUpdate = false;
+                readyToDelete = false;
+                Admin.adminDashboardFlag = true;
+                wrongInputFlag = false;
                 break;
             default:
-                readyToAdd=false;
-                readyToUpdate=false;
-                readyToDelete=false;
-                Admin.adminDashboardFlag=false;
-                wrongInputFlag=true;
+                readyToAdd = false;
+                readyToUpdate = false;
+                readyToDelete = false;
+                Admin.adminDashboardFlag = false;
+                wrongInputFlag = true;
         }
     }
-
 
 
     public static
     void productList ( ) {
-        System.out.println("********** Cat1 *********");
-        for (ProductC product : productList) {
-            if(product.category.equals("cat1")) {
-                productPrint(product);
+       LOGGER.info ( "********** Cat1 *********" );
+        for ( ProductC product : productList ) {
+            if ( product.category.equals ( "cat1" ) ) {
+                productPrint ( product );
             }
         }
-        System.out.println("********** Cat2 *********");
-        for (ProductC product : productList) {
-            if(product.category.equals("cat2")) {
-                productPrint(product);
+        LOGGER.info ( "********** Cat2 *********" );
+        for ( ProductC product : productList ) {
+            if ( product.category.equals ( "cat2" ) ) {
+                productPrint ( product );
             }
         }
-        System.out.println("********** Cat3 *********");
-        for (ProductC product : productList) {
-            if(product.category.equals("cat3")) {
-                productPrint(product);
+        LOGGER.info ( "********** Cat3 *********" );
+        for ( ProductC product : productList ) {
+            if ( product.category.equals ( "cat3" ) ) {
+                productPrint ( product );
             }
         }
     }
 
     private static
     void productPrint ( ProductC product ) {
-        System.out.println("Product ID: " + product.productId);
-        System.out.println("Product Category: " + product.category);
-        System.out.println("Product Name: " + product.name);
-        System.out.println("Product Quantity: " + product.quantity);
-        System.out.println("Product Price: " + product.price);
-        System.out.println();
+        LOGGER.info ( "Product ID: " + product.productId );
+        LOGGER.info ( "Product Category: " + product.category );
+        LOGGER.info ( "Product Name: " + product.name );
+        LOGGER.info ( "Product Quantity: " + product.quantity );
+        LOGGER.info ( "Product Price: " + product.price );
+        LOGGER.info ( "\n");
     }
 
-    public void addProduct(String categoryI, String nameI, String quantityI, String priceI) {
+    public
+    void addProduct ( String categoryI , String nameI , String quantityI , String priceI ) {
         try {
 
-            if (!(categoryI.equals("cat1") || categoryI.equals("cat2") || categoryI.equals("cat3")) || (nameI.length() < 4))
+            if ( ! (categoryI.equals ( "cat1" ) || categoryI.equals ( "cat2" ) || categoryI.equals ( "cat3" )) || (nameI.length ( ) < 4) )
                 productAddSuccessfully = false;
-            else{
-                category=categoryI;
-                name=nameI;
-                quantity = Integer.parseInt(quantityI);
-                price=Integer.parseInt(priceI);
-                ProductC product = new ProductC(productList.size()+1,category, name, quantity, price);
-                productList.add(product);
-                productAddSuccessfully=true;
-                System.out.println ( "Product Added Successfully..." );
+            else {
+                category = categoryI;
+                name     = nameI;
+                quantity = Integer.parseInt ( quantityI );
+                price    = Integer.parseInt ( priceI );
+                ProductC product = new ProductC ( productList.size ( ) + 1 , category , name , quantity , price );
+                productList.add ( product );
+                productAddSuccessfully = true;
+                LOGGER.info ( "Product Added Successfully..." );
             }
         }
-        catch (Exception ignored){
-            productAddSuccessfully=false;
-            System.out.println ( "\nProduct cannot be added" );
+        catch ( Exception ignored ) {
+            productAddSuccessfully = false;
+            LOGGER.info ( "\nProduct cannot be added" );
         }
     }
 
-    public void setCategory(String categoryI) {
-        if (!(categoryI.equals("cat1") || categoryI.equals("cat2") || categoryI.equals("cat3"))) {
-            wrongInputFlag = true;
+    public
+    void setCategory ( String categoryI ) {
+        if ( ! (categoryI.equals ( "cat1" ) || categoryI.equals ( "cat2" ) || categoryI.equals ( "cat3" )) ) {
+            wrongInputFlag             = true;
             productDeletedSuccessfully = false;
         }
         else
-            this.category=categoryI;
+            this.category = categoryI;
     }
 
-    public void setName(String name) {
+    public
+    void setName ( String name ) {
         this.name = name;
     }
 
-    public void setQuantity(int quantity) {
+    public
+    void setQuantity ( int quantity ) {
         this.quantity = quantity;
     }
 
-    public void setPrice(int price) {
+    public
+    void setPrice ( int price ) {
         this.price = price;
     }
 
-    public void selectIdToDelete(String ID, String category) {
-        if(checkIfProductExists(Integer.parseInt(ID))) {
-            productList.removeIf(product -> product.category.equals(category) && product.productId == Integer.parseInt(ID));
-            productDeletedSuccessfully = !checkIfProductExists(Integer.parseInt(ID));
-            System.out.println("The Product has been deleted successfully");
+    public
+    void selectIdToDelete ( String ID , String category ) {
+        if ( checkIfProductExists ( Integer.parseInt ( ID ) ) ) {
+            productList.removeIf ( product -> product.category.equals ( category ) && product.productId == Integer.parseInt ( ID ) );
+            productDeletedSuccessfully = ! checkIfProductExists ( Integer.parseInt ( ID ) );
+            LOGGER.info ( "The Product has been deleted successfully" );
         }
         else {
-            System.out.println("The Product You Are Trying To Delete Is No Longer Available");
-            productDeletedSuccessfully=false;
+            LOGGER.info ( "The Product You Are Trying To Delete Is No Longer Available" );
+            productDeletedSuccessfully = false;
         }
     }
 
 
-    private boolean checkIfProductExists(int ID) {
-        for (ProductC product : productList){
-            if (product.productId==ID){
-                JOptionPane.showMessageDialog(null,"checkIfProductExists","hello",JOptionPane.ERROR_MESSAGE);
+    private
+    boolean checkIfProductExists ( int ID ) {
+        for ( ProductC product : productList ) {
+            if ( product.productId == ID ) {
+                JOptionPane.showMessageDialog ( null , "checkIfProductExists" , "hello" , JOptionPane.ERROR_MESSAGE );
                 return true;
             }
         }
-        JOptionPane.showMessageDialog(null,"checkIfProductExists2","hello",JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog ( null , "checkIfProductExists2" , "hello" , JOptionPane.ERROR_MESSAGE );
 
         return false;
     }
 
 
-    public void updateValues(int ID,String category, String name, String quantity, String price) {
-        for (ProductC product : productList){
-            if (product.productId == ID) {
-                productPrint(product);
-                if (!category.equals ( "#" )) product.setCategory(category);
-                if (!name.equals ( "#" )) product.setName(name);
-                if (!quantity.equals ( "#" )) product.setQuantity(Integer.parseInt(quantity));
-                if (!price.equals ( "#" )) product.setPrice(Integer.parseInt(price));
-                updateProductSuccess=true;
-                System.out.println("**********Product Updated Success**********");
-                productPrint(product);
+    public
+    void updateValues ( int ID , String category , String name , String quantity , String price ) {
+        for ( ProductC product : productList ) {
+            if ( product.productId == ID ) {
+                productPrint ( product );
+                if ( ! category.equals ( "#" ) ) product.setCategory ( category );
+                if ( ! name.equals ( "#" ) ) product.setName ( name );
+                if ( ! quantity.equals ( "#" ) ) product.setQuantity ( Integer.parseInt ( quantity ) );
+                if ( ! price.equals ( "#" ) ) product.setPrice ( Integer.parseInt ( price ) );
+                updateProductSuccess = true;
+                LOGGER.info ( "**********Product Updated Success**********" );
+                productPrint ( product );
                 return;
             }
             else {
-                updateProductSuccess=false;
+                updateProductSuccess = false;
             }
         }
 

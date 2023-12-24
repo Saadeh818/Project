@@ -1,32 +1,42 @@
 package org.example;
 
-public class MainScreen {
-    static String userInput;
-    static String currentPage;
+import java.util.logging.Logger;
 
-    public static void displayPage(String currentPage) {
-        if (currentPage.equals("home-page"))
-            System.out.print( """
-                                      Welcome To Car Accessories Company\s
-                                      Choose To login by your type or signUp
-                                      1. Admin Login
-                                      2. Customer Login
-                                      3. Installer Login
-                                      4. SignUp
-                                      5. Exit Program
-                                      6. Press Any key to reload this Page
-                                      """
-            );
+public
+class MainScreen {
+    static               String userInput;
+    static               String currentPage;
+    private static final Logger LOGGER = Logger.getLogger ( Customer.class.getName ( ) );
+
+
+    public static
+    void displayPage ( String currentPage ) {
+        if ( currentPage.equals ( "home-page" ) )
+            LOGGER.info ( """
+                                       Welcome To Car Accessories Company\s
+                                       Choose To login by your type or signUp
+                                       1. Admin Login
+                                       2. Customer Login
+                                       3. Installer Login
+                                       4. SignUp
+                                       5. Exit Program
+                                       6. Press Any key to reload this Page
+                                       """
+                             );
     }
 
-    public static void setUserInput(String string) {
-        userInput=string;
+    public static
+    void setUserInput ( String string ) {
+        userInput = string;
     }
 
-    public static void nextScreen(String userInput) {
-        if (userInput.equals(" '")){ MainScreen.currentPage = "home-page";
-            return;}
-        switch (MainScreen.userInput){
+    public static
+    void nextScreen ( String userInput ) {
+        if ( userInput.equals ( " '" ) ) {
+            MainScreen.currentPage = "home-page";
+            return;
+        }
+        switch (MainScreen.userInput) {
             case "1":
                 MainScreen.currentPage = "admin-login";
                 break;

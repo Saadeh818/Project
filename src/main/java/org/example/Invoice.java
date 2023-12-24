@@ -1,67 +1,81 @@
 package org.example;
+
 import java.util.ArrayList;
 import java.util.List;
-
 class Invoice {
-    private String invoiceNumber;
-    private String customerName;
-    private String totalAmount;
-    private String dueDate;
+    private              String invoiceNumber;
+    private              String customerName;
+    private              String totalAmount;
+    private              String dueDate;
+
 
     // Getters and setters
 
-    public String getInvoiceNumber() {
+    public
+    String getInvoiceNumber ( ) {
         return invoiceNumber;
     }
 
-    public void setInvoiceNumber(String invoiceNumber) {
+    public
+    void setInvoiceNumber ( String invoiceNumber ) {
         this.invoiceNumber = invoiceNumber;
     }
 
-    public String getCustomerName() {
+    public
+    String getCustomerName ( ) {
         return customerName;
     }
 
-    public void setCustomerName(String customerName) {
+    public
+    void setCustomerName ( String customerName ) {
         this.customerName = customerName;
     }
 
-    public String getTotalAmount() {
+    public
+    String getTotalAmount ( ) {
         return totalAmount;
     }
 
-    public void setTotalAmount(String totalAmount) {
+    public
+    void setTotalAmount ( String totalAmount ) {
         this.totalAmount = totalAmount;
     }
 
-    public String getDueDate() {
+    public
+    String getDueDate ( ) {
         return dueDate;
     }
 
-    public void setDueDate(String dueDate) {
+    public
+    void setDueDate ( String dueDate ) {
         this.dueDate = dueDate;
     }
 
-    public void setCustomerEmail(String mail) {
+    public
+    void setCustomerEmail ( String mail ) {
     }
 }
 
 class InvoiceManager {
-    private List<Invoice> invoiceList = new ArrayList<>();
+    private final List < Invoice > invoiceList = new ArrayList <> ( );
 
-    public void createInvoice(Invoice invoice) {
-        invoiceList.add(invoice);
+    public
+    void createInvoice ( Invoice invoice ) {
+        invoiceList.add ( invoice );
     }
 
-    public void deleteInvoice(Invoice invoice) {
-        invoiceList.remove(invoice);
+    public
+    void deleteInvoice ( Invoice invoice ) {
+        invoiceList.remove ( invoice );
     }
 
-    public boolean invoiceExists(Invoice invoice) {
-        return invoiceList.contains(invoice);
+    public
+    boolean invoiceExists ( Invoice invoice ) {
+        return invoiceList.contains ( invoice );
     }
 
-    public void sendInvoice(Invoice currentInvoice) {
+    public
+    void sendInvoice ( Invoice currentInvoice ) {
     }
 
     // Additional methods for managing invoices
@@ -69,14 +83,16 @@ class InvoiceManager {
     // ...
 }
 
- class CustomerInvoice {
-         public static void main(String[] args) {
-             CustomerInvoice customerInvoice = new CustomerInvoice();
-             customerInvoice.performInvoiceActions("Create New Invoice");
-             customerInvoice.performInvoiceActions("Delete Invoice");
-             // Perform other actions as needed
-         }
+class CustomerInvoice {
+    public static
+    void main ( String[] args ) {
+        CustomerInvoice customerInvoice = new CustomerInvoice ( );
+        performInvoiceActions ( "Create New Invoice" );
+        performInvoiceActions ( "Delete Invoice" );
+        // Perform other actions as needed
+    }
 
-     public static void performInvoiceActions(String createNewInvoice) {
-     }
- }
+    public static
+    void performInvoiceActions ( String createNewInvoice ) {
+    }
+}

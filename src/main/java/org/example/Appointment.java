@@ -12,9 +12,8 @@ import java.util.logging.Logger;
 
 public
 class Appointment {
-    public static boolean addSuccess= false;
-    private static final Logger LOGGER = Logger.getLogger ( Appointment.class.getName ( ) );
-
+    private static final Logger  LOGGER     = Logger.getLogger ( Appointment.class.getName ( ) );
+    public static        boolean addSuccess = false;
     String             user;
     String             requestID;
     Date               appointmentDate;
@@ -38,13 +37,13 @@ class Appointment {
                     return true;
                 else {
                     LOGGER.info ( "You cant make an appointment in passed days :/" );
-                    addSuccess=false;
+                    addSuccess = false;
                     return false;
                 }
             }
             catch ( ParseException | IllegalArgumentException e ) {
                 LOGGER.info ( "Date Format Wrong or Try another date ;)" );
-                addSuccess=false;
+                addSuccess = false;
                 return false;
             }
         }
@@ -87,15 +86,15 @@ class Appointment {
             simpleDateFormat.setLenient ( false );
             try {
                 appointmentDate = simpleDateFormat.parse ( date );
-                this.user = userRequested;
-                this.requestID= requestID;
-                addAppointmentToTheFile(this);
-                LOGGER.info ("Appointment added successfully.");
+                this.user       = userRequested;
+                this.requestID  = requestID;
+                addAppointmentToTheFile ( this );
+                LOGGER.info ( "Appointment added successfully." );
                 addSuccess = true;
                 return;
             }
             catch ( ParseException e ) {
-                addSuccess=false;
+                addSuccess = false;
             }
         }
     }
@@ -103,12 +102,12 @@ class Appointment {
     private
     void addAppointmentToTheFile ( Appointment appointment ) {
         try {
-            File file = new File ( "src/Appointments" );
-            BufferedWriter bufferedWriter= new BufferedWriter ( new FileWriter ( file,true ) );
-            String appointmentToAdd = appointment.requestID+", "+ appointment.user+", "+appointment.appointmentDate.toString ();
-            bufferedWriter.newLine ();
+            File           file             = new File ( "src/Appointments" );
+            BufferedWriter bufferedWriter   = new BufferedWriter ( new FileWriter ( file , true ) );
+            String         appointmentToAdd = appointment.requestID + ", " + appointment.user + ", " + appointment.appointmentDate.toString ( );
+            bufferedWriter.newLine ( );
             bufferedWriter.write ( appointmentToAdd );
-            bufferedWriter.close ();
+            bufferedWriter.close ( );
         }
         catch ( IOException e ) {
             throw new RuntimeException ( e );

@@ -1,107 +1,114 @@
 package org.example;
 
-public class Users {
+import java.util.logging.Logger;
 
-    public static boolean selectUserToMenageFlag;
-    public static String modifyAccountType;
-    public static boolean userDeleted;
-    public static boolean passwordUpdated;
-    public static boolean usernameChanged;
-    static boolean installerSelected =false;
-    static boolean customerSelected= false;
-    static boolean addUserSelected= false;
-    public static boolean  failToAdd;
-    public static int userToModifyID;
-    public static  boolean userIsFound= false;
+public
+class Users {
 
-    static void userManagementScreen(){
-        System.out.print( """
-                                  What do you want to do?\s
-                                  1. Display All Installers To Modify One Of Them
-                                  2. Display All Customers To Modify One Of Them
-                                  3. Add New User
-                                  4. Return To Dashboard
-                                  5. LogOut
-                                  """
-        );
+    public static        boolean selectUserToMenageFlag;
+    public static        String  modifyAccountType;
+    public static        boolean userDeleted;
+    public static        boolean passwordUpdated;
+    public static        boolean usernameChanged;
+    public static        boolean failToAdd;
+    public static        int     userToModifyID;
+    public static        boolean userIsFound     = false;
+    static        boolean installerSelected = false;
+    static        boolean customerSelected  = false;
+    static               boolean addUserSelected = false;
+    private static final Logger  LOGGER          = Logger.getLogger ( Customer.class.getName ( ) );
+
+
+    static
+    void userManagementScreen ( ) {
+        LOGGER.info ( """
+                                   What do you want to do?\s
+                                   1. Display All Installers To Modify One Of Them
+                                   2. Display All Customers To Modify One Of Them
+                                   3. Add New User
+                                   4. Return To Dashboard
+                                   5. LogOut
+                                   """
+                         );
     }
 
-    public static void selectUserToMenage(String userType) {
-        switch (userType){
+    public static
+    void selectUserToMenage ( String userType ) {
+        switch (userType) {
             case "1":
-                Installer.printUsers();
-                installerSelected=true;
-                customerSelected=false;
-                addUserSelected=false;
-            break;
+                Installer.printUsers ( );
+                installerSelected = true;
+                customerSelected = false;
+                addUserSelected = false;
+                break;
             case "2":
-                Customer.printUsers();
-                installerSelected=false;
-                customerSelected=true;
-                addUserSelected=false;
+                Customer.printUsers ( );
+                installerSelected = false;
+                customerSelected = true;
+                addUserSelected = false;
                 break;
             case "3":
-                installerSelected=false;
-                customerSelected=false;
-                addUserSelected=true;
+                installerSelected = false;
+                customerSelected = false;
+                addUserSelected = true;
                 break;
 
             default:
-                installerSelected=false;
-                customerSelected=false;
-                addUserSelected=false;
+                installerSelected = false;
+                customerSelected = false;
+                addUserSelected = false;
         }
     }
 
     public static
-    void changePassword ( int userToModifyID, String newPassword ){
-
+    void changePassword ( ) {
     }
 
-    public static void adduser(String userType, String userName, String password) {
-        if(userType.isEmpty()){
-            failToAdd =true;
+    public static
+    void adduser ( String userType , String userName , String password ) {
+        if ( userType.isEmpty ( ) ) {
+            failToAdd = true;
             return;
         }
-        if(userType.equals("1")){
-            Installer.addInstaller(userName,password);
-            failToAdd = !Installer.addUserSuccess;
+        if ( userType.equals ( "1" ) ) {
+            Installer.addInstaller ( userName , password );
+            failToAdd = ! Installer.addUserSuccess;
         }
-        else if(userType.equals("2")){
-            Customer.addCustomer(userName,password);
-            failToAdd = !Customer.addUserSuccess;
+        else if ( userType.equals ( "2" ) ) {
+            Customer.addCustomer ( userName , password );
+            failToAdd = ! Customer.addUserSuccess;
         }
-        else failToAdd =true;
+        else failToAdd = true;
     }
 
 
     public static
     void userToModifyID ( String ID ) {
-        try{
+        try {
             userToModifyID = Integer.parseInt ( ID );
-            if(customerSelected && (userToModifyID-1 <= Customer.getUsers ().size ()))userIsFound=true;
-            else if ( installerSelected && (userToModifyID-1 <= Installer.getUsers ().size ()) ) userIsFound=true;
+            if ( customerSelected && (userToModifyID - 1 <= Customer.getUsers ( ).size ( )) ) userIsFound = true;
+            else if ( installerSelected && (userToModifyID - 1 <= Installer.getUsers ( ).size ( )) ) userIsFound = true;
             else {
                 userIsFound = false;
-                System.out.println ( "Wrong User ID" );
+                LOGGER.info ( "Wrong User ID" );
             }
         }
         catch ( NumberFormatException e ) {
-            userIsFound=false;
-            System.out.println ( "Wrong Input Format For ID" );
+            userIsFound = false;
+            LOGGER.info ( "Wrong Input Format For ID" );
         }
     }
 
     public static
     void setTypeToModify ( String string ) {
-        installerSelected=false;
-        customerSelected = false;
-        if(string.equals ( "installer" )) {
+        installerSelected = false;
+        customerSelected  = false;
+        if ( string.equals ( "installer" ) ) {
             installerSelected = true;
             loadModifyAccountOptions ( );
         }
         else if ( string.equals ( "customer" ) ) {
-            customerSelected=true;
+            customerSelected = true;
             loadModifyAccountOptions ( );
         }
     }
@@ -109,7 +116,7 @@ public class Users {
 
     public static
     void loadModifyAccountOptions ( ) {
-        System.out.println ( """
+        LOGGER.info ( """
                                      1. Change Password.
                                      2. Change Username.
                                      3.Delete Account.

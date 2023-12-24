@@ -1,28 +1,30 @@
 package org.example;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
-public class Admin extends Users{
+public
+class Admin extends Users {
 
-    public static  String username;
-    public static String password;
-    public static boolean loginFlag=false;
-    public static boolean adminDashboardFlag=false;
+    private static final Logger LOGGER = Logger.getLogger ( Admin.class.getName ( ) );
+    private static final Map < String, String > users            = new HashMap <> ( );
+    public static String  username;
+    public static String  password;
+    public static boolean loginFlag          = false;
+    public static boolean adminDashboardFlag = false;
     public static boolean manageProductFlag;
     public static boolean manageUsersFlag;
+    public static        boolean                errorMessageFlag = false;
 
-    private static final Logger LOGGER = Logger.getLogger(Admin.class.getName());
-
-
-    private static final Map<String, String> users = new HashMap <> ( );
-    public static boolean  errorMessageFlag =false;
-
-    static void getUsersFromFile(){
+    static
+    void getUsersFromFile ( ) {
         try {
-            users.clear ();
+            users.clear ( );
             File file = new File ( "src/Admins.txt" );
             try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
                 String nameAndPass;
@@ -36,69 +38,73 @@ public class Admin extends Users{
             throw new RuntimeException ( e );
         }
     }
-    public static void clearCredentials() {
-            // Reset the username and password to clear the credentials.
-            username = null;
-            password = null;
-            loginFlag=false;
-        }
+
+    public static
+    void clearCredentials ( ) {
+        // Reset the username and password to clear the credentials.
+        username  = null;
+        password  = null;
+        loginFlag = false;
+    }
 
     public static
     void setUsername ( String username ) {
-            Admin.username =username;
+        Admin.username = username;
     }
 
     public static
     void setPassword ( String password ) {
-            Admin.password=password;
+        Admin.password = password;
     }
 
 
-        public static
-        void login ( ) {
-            getUsersFromFile();
-            if (!users.containsKey(username)) {
-                loginFlag = false;
-                LOGGER.info ( "Wrong username" );
-                return;
-            }
-            String adminPass = users.get(username);
-            loginFlag = adminPass.equals(password);
-            if(!loginFlag){
-                LOGGER.info ( "Wrong password" );
-                errorMessageFlag = false;
-            }
-            else{
-                dashboardManager("Load Dashboard");
-            }
+    public static
+    void login ( ) {
+        getUsersFromFile ( );
+        if ( ! users.containsKey ( username ) ) {
+            loginFlag = false;
+            LOGGER.info ( "Wrong username" );
+            return;
         }
-
-    private static void showAdminDashboard() {
-        LOGGER.info("Welcome Admin " + username + "\n" +
-                            "What do you want to do?\n" +
-                            "1. Manage products\n" +
-                            "2. Manage users\n" +
-                            "3. Sign out");
-        adminDashboardFlag=true;
+        String adminPass = users.get ( username );
+        loginFlag = adminPass.equals ( password );
+        if ( ! loginFlag ) {
+            LOGGER.info ( "Wrong password" );
+            errorMessageFlag = false;
+        }
+        else {
+            dashboardManager ( "Load Dashboard" );
+        }
     }
 
-    public static void dashboardManager(String userInput){
+    private static
+    void showAdminDashboard ( ) {
+        LOGGER.info ( "Welcome Admin " + username + "\n" +
+                              "What do you want to do?\n" +
+                              "1. Manage products\n" +
+                              "2. Manage users\n" +
+                              "3. Sign out" );
+        adminDashboardFlag = true;
+    }
+
+    public static
+    void dashboardManager ( String userInput ) {
         switch (userInput) {
             case "1":
 
-                manageProductFlag=true;
+                manageProductFlag = true;
                 break;
             case "2":
-                manageUsersFlag=true;
+                manageUsersFlag = true;
                 break;
             case "3":
-                MainScreen.currentPage="home-page";
-                MainScreen.displayPage(MainScreen.currentPage);
-                clearCredentials();
+                MainScreen.currentPage = "home-page";
+                MainScreen.displayPage ( MainScreen.currentPage );
+                clearCredentials ( );
                 break;
             default:
-                showAdminDashboard();
-                loginFlag=true;
+                showAdminDashboard ( );
+                loginFlag = true;
                 break;
         }
     }

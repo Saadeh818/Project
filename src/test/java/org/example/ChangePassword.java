@@ -9,7 +9,7 @@ import static org.junit.Assert.assertTrue;
 public class ChangePassword {
     @When("user enters the right password format")
     public void userEntersTheRightPasswordFormat() {
-        Users.changePassword ( 1,"00000000" );
+        Users.changePassword ( );
     }
     @Then("the password is set successfully")
     public void thePasswordIsSetSuccessfully() {

@@ -1,94 +1,121 @@
 package org.example;
 
-public class ProductReview {
+import java.util.logging.Logger;
 
-    private boolean userLoggedIn;
-    private String reviewFormText;
-    private int reviewFormRating;
+public
+class ProductReview {
 
-    public void setReviewFormText(String reviewFormText) {
+    private              boolean userLoggedIn;
+    private              String  reviewFormText;
+    private              int     reviewFormRating;
+    private static final Logger  LOGGER = Logger.getLogger ( Customer.class.getName ( ) );
+
+
+    public
+    void setReviewFormText ( String reviewFormText ) {
         this.reviewFormText = reviewFormText;
     }
 
-    public void setReviewFormRating(int reviewFormRating) {
+    public
+    void setReviewFormRating ( int reviewFormRating ) {
         this.reviewFormRating = reviewFormRating;
     }
 
-    public void logInUser() {
+    public
+    void logInUser ( ) {
         // Logic for logging in the user
-        System.out.println("User is logged in");
+        LOGGER.info ( "User is logged in" );
         userLoggedIn = true;
     }
 
-    public void logOutUser() {
+    public
+    void logOutUser ( ) {
         // Logic for logging out the user
-        System.out.println("User is logged out");
+        LOGGER.info ( "User is logged out" );
         userLoggedIn = false;
     }
 
-    public void navigateToReviewFormPage() {
+    public
+    void navigateToReviewFormPage ( ) {
         // Logic for navigating to the review form page
-        System.out.println("User is on the review form page");
+        LOGGER.info ( "User is on the review form page" );
     }
 
-    public void clickWriteReviewButton() {
+    public
+    void clickWriteReviewButton ( ) {
         // Logic for clicking the write a review button
-        System.out.println("User clicks on the write a review button");
+        LOGGER.info ( "User clicks on the write a review button" );
     }
 
-    public void fillOutReviewForm() {
+    public
+    void fillOutReviewForm ( ) {
         // Logic for filling out the review form
-        System.out.println("User fills out the review form with text: " + reviewFormText + ", rating: " + reviewFormRating);
+        LOGGER.info ( "User fills out the review form with text: " + reviewFormText + ", rating: " + reviewFormRating );
     }
 
-    public void submitReviewForm() {
+    public
+    void submitReviewForm ( ) {
         // Logic for submitting the review form
-        if (userLoggedIn) {
-            System.out.println("User submits the review form");
+        if ( userLoggedIn ) {
+            LOGGER.info ( "User submits the review form" );
             // Additional logic for submitting the form
-        } else {
-            System.out.println("User is not logged in. Cannot submit the review form.");
+        }
+        else {
+            LOGGER.info ( "User is not logged in. Cannot submit the review form." );
         }
     }
 
-    public boolean isReviewAdded() {
+    public
+    boolean isReviewAdded ( ) {
         return false;
     }
 
-    public void navigateToProductPage() {
+    public
+    void navigateToProductPage ( ) {
     }
 
-    public void clickDeleteReviewButton() {
+    public
+    void clickDeleteReviewButton ( ) {
     }
 
-    public void verifyReviewRemoved() {
+    public
+    void verifyReviewRemoved ( ) {
     }
 
-    public void verifySuccessMessage() {
+    public
+    void verifySuccessMessage ( ) {
     }
 
-    public void verifyReviewUpdated() {
+    public
+    void verifyReviewUpdated ( ) {
     }
 
-    public void editReviewForm() {
+    public
+    void editReviewForm ( ) {
     }
 
-    public void clickEditReviewButton() {
+    public
+    void clickEditReviewButton ( ) {
     }
 
-    public void verifyErrorMessageForExceededLength() {
+    public
+    void verifyErrorMessageForExceededLength ( ) {
     }
 
-    public void verifyErrorMessageForMissingFields() {
+    public
+    void verifyErrorMessageForMissingFields ( ) {
     }
 
-    public void submitFormWithMissingFields() {
+    public
+    void submitFormWithMissingFields ( ) {
     }
 
-    public void displayLogInPrompt() {
+    public
+    void displayLogInPrompt ( ) {
     }
 
-    public void redirectToLoginPage() {
+    public
+    void redirectToLoginPage ( ) {
     }
 
     // Add other methods for handling different scenarios
