@@ -3,6 +3,7 @@ package org.example;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class Admin extends Users{
 
@@ -12,6 +13,8 @@ public class Admin extends Users{
     public static boolean adminDashboardFlag=false;
     public static boolean manageProductFlag;
     public static boolean manageUsersFlag;
+
+    private static final Logger LOGGER = Logger.getLogger(Admin.class.getName());
 
 
     private static final Map<String, String> users = new HashMap <> ( );
@@ -56,13 +59,13 @@ public class Admin extends Users{
             getUsersFromFile();
             if (!users.containsKey(username)) {
                 loginFlag = false;
-                System.out.println ( "Wrong username" );
+                LOGGER.info ( "Wrong username" );
                 return;
             }
             String adminPass = users.get(username);
             loginFlag = adminPass.equals(password);
             if(!loginFlag){
-                System.out.println ( "Wrong password" );
+                LOGGER.info ( "Wrong password" );
                 errorMessageFlag = false;
             }
             else{
@@ -71,12 +74,11 @@ public class Admin extends Users{
         }
 
     private static void showAdminDashboard() {
-        System.out.print("Welcome Admin " +username+"\n"+
-                "What do you want to do?\n" +
-                "1. Manage products\n" +
-                "2. Manage users\n" +
-                "3. Sign out\n"
-        );
+        LOGGER.info("Welcome Admin " + username + "\n" +
+                            "What do you want to do?\n" +
+                            "1. Manage products\n" +
+                            "2. Manage users\n" +
+                            "3. Sign out");
         adminDashboardFlag=true;
     }
 

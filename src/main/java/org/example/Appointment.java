@@ -8,10 +8,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Logger;
 
 public
 class Appointment {
     public static boolean addSuccess= false;
+    private static final Logger LOGGER = Logger.getLogger ( Appointment.class.getName ( ) );
+
     String             user;
     String             requestID;
     Date               appointmentDate;
@@ -34,13 +37,13 @@ class Appointment {
                 if ( ! inputDate.before ( currentDate ) )
                     return true;
                 else {
-                    System.out.println ( "You cant make an appointment in passed days :/" );
+                    LOGGER.info ( "You cant make an appointment in passed days :/" );
                     addSuccess=false;
                     return false;
                 }
             }
             catch ( ParseException | IllegalArgumentException e ) {
-                System.out.println ( "Date Format Wrong or Try another date ;)" );
+                LOGGER.info ( "Date Format Wrong or Try another date ;)" );
                 addSuccess=false;
                 return false;
             }
@@ -87,7 +90,7 @@ class Appointment {
                 this.user = userRequested;
                 this.requestID= requestID;
                 addAppointmentToTheFile(this);
-                System.out.println("Appointment added successfully.");
+                LOGGER.info ("Appointment added successfully.");
                 addSuccess = true;
                 return;
             }

@@ -3,6 +3,7 @@ package org.example;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class Customer extends Users{
 
@@ -12,6 +13,9 @@ public class Customer extends Users{
     static public boolean loginFlag=false;
     static public boolean errorMessageFlag=false;
     public static boolean addUserSuccess;
+
+    private static final Logger LOGGER = Logger.getLogger ( Customer.class.getName ( ) );
+
 
     static
     void getUsersFromFile ( ){
@@ -61,7 +65,7 @@ public class Customer extends Users{
         int x=0;
         for (Map.Entry<String, String> entry : users.entrySet()) {
             x++;
-            System.out.println(x+ ". UserName: " + entry.getKey());
+            LOGGER.info (x+ ". UserName: " + entry.getKey());
         }
     }
 
@@ -123,7 +127,7 @@ public class Customer extends Users{
                 while (( nameAndPass = bufferedReader.readLine ( )) != null ) {
                     if ( (index != (userToModifyID-1) )) {
                         data = nameAndPass.split ( "," );
-                        System.out.println ( nameAndPass );
+                        LOGGER.info ( nameAndPass );
                         users.put ( data[ 0 ] , data[ 1 ] );
                         index++;
                     }
@@ -141,7 +145,7 @@ public class Customer extends Users{
     public static
     void changePassword ( int userToModifyID, String newPassword ) {
         if (!checkPassword (newPassword)){
-            System.out.println ( "Password Format Wrong" );
+            LOGGER.info ( "Password Format Wrong" );
             Users.userDeleted =false;
             return;
         }
@@ -155,7 +159,7 @@ public class Customer extends Users{
                 while (( nameAndPass = bufferedReader.readLine ( )) != null ) {
                     if ( (index != (userToModifyID-1) )) {
                         data = nameAndPass.split ( "," );
-                        System.out.println ( nameAndPass );
+                        LOGGER.info ( nameAndPass);
                         users.put ( data[ 0 ] , data[ 1 ] );
                         index++;
                     }
@@ -185,7 +189,7 @@ public class Customer extends Users{
                 writer.newLine ( );
             }
 
-            System.out.println ( "Users written to file successfully." );
+            LOGGER.info ( "Users written to file successfully.");
         }
         catch ( IOException e ) {
             e.printStackTrace ( System.out );
@@ -195,7 +199,7 @@ public class Customer extends Users{
     public static
     void changeUserName ( int userToModifyID , String newUserName ) {
         if(!checkUserName ( newUserName )){
-            System.out.println ( "UserName Format Wrong or Used" );
+            LOGGER.info ( "UserName Format Wrong or Used" );
             Users.userDeleted =false;
             return;
         }
@@ -209,7 +213,7 @@ public class Customer extends Users{
                 while (( nameAndPass = bufferedReader.readLine ( )) != null ) {
                     if ( (index != (userToModifyID-1) )) {
                         data = nameAndPass.split ( "," );
-                        System.out.println ( nameAndPass );
+                        LOGGER.info ( nameAndPass );
                         users.put ( data[ 0 ] , data[ 1 ] );
                         index++;
                     }
