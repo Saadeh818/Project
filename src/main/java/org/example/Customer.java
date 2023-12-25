@@ -14,7 +14,8 @@ class Customer extends Users {
     static public        String                 password;
     static public        boolean                loginFlag        = false;
     static public        boolean                errorMessageFlag = false;
-    public static        boolean                addUserSuccess;
+    public static    boolean addUserSuccess;
+    protected static boolean installationRequestAdded = false;
 
     static
     void getUsersFromFile ( ) {
@@ -252,5 +253,32 @@ class Customer extends Users {
 
     public static void setPassword(String password) {
         Customer.password = password;
+    }
+
+    public static
+    void addInstallationRequest ( int productID , int quantity , String user ) {
+//        InstallationID, ProductID,category, productName, quantity, price, user
+        int installationID = Installer.getNumberOfInstallation ();
+        String category="NO CATEGORY FOUND";
+        String productName= "NO PRODUCT NAME FOUND";
+        int price= 0;
+        for ( ProductC product : ProductC.productList ) {
+            if ( product.productId == productID ) {
+                category =  product.category;
+                productName= product.name;
+                price = product.price;
+            }else{
+                LOGGER.info ( "Product is Not Found" );
+                installationRequestAdded = false;
+                return;
+            }
+        }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/InstallationRequests", true))) {
+            writer.write(installationID + ". ," + productID + ", " + category + ", " + productName+ ", "+ quantity + ", " + price+ ", "+user);
+            installationRequestAdded = true;
+        } catch (IOException e) {
+            installationRequestAdded = false;
+            e.printStackTrace(); // Handle the exception based on your application's needs
+        }
     }
 }

@@ -193,7 +193,7 @@ class ProductC {
     }
 
 
-    private
+    protected static
     boolean checkIfProductExists ( int ID ) {
         for ( ProductC product : productList ) {
             if ( product.productId == ID ) {

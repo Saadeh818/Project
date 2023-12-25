@@ -1,6 +1,5 @@
 package org.example;
 
-import java.awt.image.LookupOp;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -117,7 +116,7 @@ class Main {
         }
         else
         {
-            customerDachdoard();
+            customerDashboard ( );
         }
     }
     private static
@@ -279,7 +278,7 @@ class Main {
     }
 
     private static
-    void customerDachdoard ( ) {
+    void customerDashboard ( ) {
         LOGGER.info ( "Welcome Customer! Please choose an option:" );
         LOGGER.info ( "1. View Products" );
         LOGGER.info ( "2. Write a Product Review" );
@@ -290,15 +289,17 @@ class Main {
         switch (userInput) {
             case "1":
                 ProductC.productList ( );
+
                 break;
             case "2":
                 writeProductReview ( );
                 break;
             case "3":
+                customerDashboard ();
                 return;
             default:
                 LOGGER.info ( "Invalid input. Please try again." );
-                customerDachdoard ( );
+                customerDashboard ( );
         }
     }
 

@@ -22,7 +22,18 @@ class Installer extends Users {
     protected static        String                 userRequested;
     private static final Logger                 LOGGER                 = Logger.getLogger ( Installer.class.getName ( ) );
 
-
+    public static int getNumberOfInstallation(){
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/InstallationRequests"))) {
+            int lineCount = 0;
+            while (reader.readLine() != null) {
+                lineCount++;
+            }
+            return +1;
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception based on your application's needs
+            return -1; // Return a special value indicating an error
+        }
+    }
     static
     void getUsersFromFile ( ) {
         try {
