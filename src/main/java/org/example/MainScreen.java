@@ -31,11 +31,7 @@ class MainScreen {
     }
 
     public static
-    void nextScreen ( String userInput ) {
-        if ( userInput.equals ( " '" ) ) {
-            MainScreen.currentPage = "home-page";
-            return;
-        }
+    void nextScreen ( ) {
         switch (MainScreen.userInput) {
             case "1":
                 MainScreen.currentPage = "admin-login";

@@ -48,4 +48,15 @@ class AddInstallationRequest {
         assertTrue ( Appointment.userHasAppointments );
     }
 
+    @When ( "view Appointment methode been called by Installer")
+    public
+    void viewAppointmentMethodeBeenCalledByInstaller ( ) {
+        Appointment.viewAllAppointments ();
+    }
+
+    @Then ( "Show all appointments")
+    public
+    void showAllAppointments ( ) {
+        assertTrue ( Appointment.appointmentsDisplayed );
+    }
 }

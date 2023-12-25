@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 public
 class Appointment {
     private static final Logger  LOGGER     = Logger.getLogger ( Appointment.class.getName ( ) );
+    public static boolean appointmentsDisplayed;
     protected static        boolean addSuccess = false;
     protected static boolean userHasAppointments;
     String             user;
@@ -43,6 +44,30 @@ class Appointment {
         }
         catch ( IOException e ) {
             userHasAppointments= false;
+            String s = e.getMessage ();
+            LOGGER.info ( s );
+        }
+    }
+
+    public static
+    void viewAllAppointments ( ) {
+        File file = new File ( "src/Appointments" );
+        try {
+            try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
+                String   appointment;
+                String[] data;
+                while ( (appointment = bufferedReader.readLine ( )) != null ) {
+                    data = appointment.split ( "," );
+                        LOGGER.info ( appointment );
+                        appointmentsDisplayed= true;
+                }
+                if(!appointmentsDisplayed){
+                    LOGGER.info ( "No Appointments Yet" );
+                }
+            }
+        }
+        catch ( IOException e ) {
+            appointmentsDisplayed= false;
             String s = e.getMessage ();
             LOGGER.info ( s );
         }

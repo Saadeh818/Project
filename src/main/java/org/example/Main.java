@@ -19,7 +19,7 @@ class Main {
             MainScreen.displayPage ( "home-page" );
             MainScreen.userInput = scanner.nextLine ( );
             if ( MainScreen.userInput.equals ( "5" ) ) break;
-            MainScreen.nextScreen ( MainScreen.userInput );
+            MainScreen.nextScreen ( );
             switch (MainScreen.currentPage) {
                 case "admin-login":
                     adminActions ( );

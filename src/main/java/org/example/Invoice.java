@@ -11,39 +11,20 @@ class Invoice {
 
     // Getters and setters
 
-    public
-    String getInvoiceNumber ( ) {
-        return invoiceNumber;
-    }
 
     public
     void setInvoiceNumber ( String invoiceNumber ) {
         this.invoiceNumber = invoiceNumber;
     }
 
-    public
-    String getCustomerName ( ) {
-        return customerName;
-    }
 
     public
     void setCustomerName ( String customerName ) {
         this.customerName = customerName;
     }
-
-    public
-    String getTotalAmount ( ) {
-        return totalAmount;
-    }
-
     public
     void setTotalAmount ( String totalAmount ) {
         this.totalAmount = totalAmount;
-    }
-
-    public
-    String getDueDate ( ) {
-        return dueDate;
     }
 
     public

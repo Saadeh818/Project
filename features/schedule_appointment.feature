@@ -18,3 +18,4 @@ Feature: schedule appointment for installation
       | 31/2/2024|
       |12/122024|
       | 2/9/2000|
+      |30/2/2024|

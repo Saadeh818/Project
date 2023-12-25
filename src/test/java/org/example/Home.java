@@ -6,7 +6,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class Home {
-    MainScreen mainScreen= new MainScreen();
     @Given("user is on home page")
     public void userIsOnHomePage() {
        MainScreen.displayPage("home-page");
@@ -14,7 +13,7 @@ public class Home {
     @When("the user enters {string}")
     public void the_user_enters(String string) {
           MainScreen.setUserInput(string);
-          MainScreen.nextScreen(MainScreen.userInput);
+          MainScreen.nextScreen ( );
     }
 
     @Then("go to the admin login page")

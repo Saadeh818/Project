@@ -254,14 +254,6 @@ class Customer extends Users {
         }
     }
 
-    public static void setUsername(String username) {
-        Customer.username = username;
-    }
-
-    public static void setPassword(String password) {
-        Customer.password = password;
-    }
-
     public static
     void addInstallationRequest ( int productID , int quantity , String user ) {
 //        InstallationID, ProductID,category, productName, quantity, price, user

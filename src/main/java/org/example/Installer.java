@@ -86,7 +86,8 @@ class Installer extends Users {
             case "1":
                 listInstallationRequests ( );
                 break;
-            case "2":
+
+            case "3":
                 MainScreen.currentPage = "home-page";
                 MainScreen.displayPage ( MainScreen.currentPage );
                 clearCredentials ( );
@@ -127,7 +128,8 @@ class Installer extends Users {
         LOGGER.info ( """
                               What do you want to do?
                               1. List Installation Requests
-                              2. Sign out
+                              2. List All Appointments
+                              3. Sign out
                               """
                     );
         installerDashboardFlag = true;
