@@ -128,7 +128,7 @@ class Appointment {
         try {
             File           file             = new File ( "src/Appointments" );
             try (BufferedWriter bufferedWriter = new BufferedWriter ( new FileWriter ( file , true ) )) {
-                String appointmentToAdd = appointment.requestID + ", " + appointment.user + ", " + appointment.appointmentDate.toString ( );
+                String appointmentToAdd = appointment.requestID + "," + appointment.user + "," + appointment.appointmentDate.toString ( );
                 bufferedWriter.newLine ( );
                 bufferedWriter.write ( appointmentToAdd );
             }

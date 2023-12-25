@@ -48,15 +48,15 @@ class Main {
     private static
     void installerActions ( ) {
        LOGGER.info ( "Welcome Installer Please fill your data to login\n"
-                                   + "Enter your name please: " );
+                                   + "Enter your Email please: " );
         Installer.clearCredentials ( );
         String username = scanner.nextLine ( );
         LOGGER.info ( "\nEnter Password please: " );
         String password = scanner.nextLine ( );
 
         Installer.login ( username , password );
+        Installer.username = username;
         installerDashboard ( username , password );
-
     }
 
     private static
@@ -66,18 +66,19 @@ class Main {
         if ( userInput.equals ( "1" ) ) {
             LOGGER.info ( "Choose ID To Schedule An Appointment Or Enter # To return To dashboard " );
             userInput = scanner.nextLine ( );
-            if ( userInput.equals ( "#" ) )
+            if ( userInput.equals ( "#" ) ) {
+                Installer.dashboardManager ( "Load Dashboard" );
                 installerDashboard ( username , password );
+            }
             else
-
                 Installer.setInstallationRequestId ( userInput );
             if ( Installer.requestFound ) {
                 LOGGER.info ( "Enter The Date to Schedule An Appointment : \" Date Format is day/month/year\" " );
                 Customer.addAppointment ( scanner.nextLine ( ) , Installer.requestID , Installer.userRequested );
                 installerDashboard ( username , password );
             }
-
         }
+        installerDashboard ( username , password );
     }
 
 
@@ -139,32 +140,13 @@ class Main {
         Users.selectUserToMenage ( userInput );
         switch (userInput) {
             case "1":
-            case "2":
                 LOGGER.info ( "Enter Installer ID To Modify: " );
-                Users.userToModifyID ( scanner.nextLine ( ) );
-                Users.loadModifyAccountOptions ( );
-                switch (scanner.nextLine ( )) {
-                    case "1":
-                        LOGGER.info ( "Enter new password: " );
-                        if ( Users.installerSelected ) Installer.changePassword ( Users.userToModifyID , scanner.nextLine ( ) );
-                        else if ( Users.customerSelected ) Customer.changePassword ( Users.userToModifyID , scanner.nextLine ( ) );
-                        break;
-                    case "2":
-                        LOGGER.info ( "Enter new UserName: " );
-                        if ( Users.installerSelected ) Installer.changeUserName ( Users.userToModifyID , scanner.nextLine ( ) );
-                        else if ( Users.customerSelected ) Customer.changeUserName ( Users.userToModifyID , scanner.nextLine ( ) );
-                        break;
-                    case "3":
-                        if ( Users.installerSelected ) Installer.deleteInstallerAccount ( Users.userToModifyID );
-                        else if ( Users.customerSelected ) Customer.deleteCustomerAccount ( Users.userToModifyID );
-                        break;
-                    case "5":
-                        return;
-                    default:
-                        userManager ( username , password );
-                        break;
-                }
-                break;
+                modifyUser ( username , password );
+                userManager ( username,password );
+            case "2":
+                LOGGER.info ( "Enter Customer ID To Modify: " );
+                modifyUser ( username , password );
+                userManager ( username,password );
             case "3":
                  LOGGER.info ( """
                                        Choose User Type To Add:
@@ -177,7 +159,6 @@ class Main {
                 String newUserPassword = scanner.nextLine ( );
                 Users.adduser ( NewUserType , NewUserName , newUserPassword );
                 userManager ( username , password );
-                break;
             case "4":
                 adminDashboard ( username , password );
             case "5":
@@ -185,6 +166,34 @@ class Main {
             default:
                 userManager ( username , password );
         }
+    }
+
+    private static
+    void modifyUser ( String username , String password ) {
+        Users.userToModifyID ( scanner.nextLine ( ) );
+        Users.loadModifyAccountOptions ( );
+        switch (scanner.nextLine ( )) {
+            case "1":
+                LOGGER.info ( "Enter new password: " );
+                if ( Users.installerSelected ) Installer.changePassword ( Users.userToModifyID , scanner.nextLine ( ) );
+                else if ( Users.customerSelected ) Customer.changePassword ( Users.userToModifyID , scanner.nextLine ( ) );
+                break;
+            case "2":
+                LOGGER.info ( "Enter new UserName: " );
+                if ( Users.installerSelected ) Installer.changeUserName ( Users.userToModifyID , scanner.nextLine ( ) );
+                else if ( Users.customerSelected ) Customer.changeUserName ( Users.userToModifyID , scanner.nextLine ( ) );
+                break;
+            case "3":
+                if ( Users.installerSelected ) Installer.deleteInstallerAccount ( Users.userToModifyID );
+                else if ( Users.customerSelected ) Customer.deleteCustomerAccount ( Users.userToModifyID );
+                break;
+            case "5":
+                return;
+            default:
+                userManager ( username , password );
+                break;
+        }
+        return;
     }
 
     private static
@@ -246,9 +255,10 @@ class Main {
                 LOGGER.info ( "Enter new Price : " );
                 String price = scanner.nextLine ( );
                 productC.updateValues ( productC.productId , category , name , quantity , price );
+                productManager ( username , password );
                 break;
             case "4":
-                productManager ( username , password );
+                adminDashboard ( username , password );
                 break;
             case "5":
                 break;

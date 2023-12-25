@@ -5,9 +5,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import static org.example.Customer.fileRead;
+import static org.example.Customer.fileRead2;
+
 public
 class Installer extends Users {
-    private static final Map < String, String > users = new HashMap <> ( );
+    private static Map < String, String > users = new HashMap <> ( );
     public static final String INSTALLERS_FILE_PATH = "src/Installers.txt";
     protected static        String                 username;
     protected static String  password;
@@ -117,9 +120,9 @@ class Installer extends Users {
 
     }
 
-    private static
+    protected static
     void showInstallerDashboard ( ) {
-        String s = "Welcome Admin " + username;
+        String s = "Welcome Installer ";
         LOGGER.info ( s );
         LOGGER.info ( """
                               What do you want to do?
@@ -167,8 +170,7 @@ class Installer extends Users {
             File           file           = new File ( "src/Installers.txt" );
             try (BufferedWriter bufferedWriter = new BufferedWriter ( new FileWriter ( file , true ) )) {
                 String nameAndPass = userName + "," + password;
-                bufferedWriter.newLine ( );
-                bufferedWriter.write ( nameAndPass );
+                bufferedWriter.write ( nameAndPass+ "\n" );
             }
             getUsersFromFile ( );
         }
@@ -225,14 +227,13 @@ class Installer extends Users {
                 String   nameAndPass;
                 String[] data;
                 int      index = 0;
-                while ( true ) {
-                    if ( (nameAndPass = bufferedReader.readLine ( )) != null && index != (userToModifyID - 1) ) {
+                while ( (nameAndPass = bufferedReader.readLine ( )) != null ) {
+                    if ( (index != (userToModifyID - 1)) ) {
                         data = nameAndPass.split ( "," );
                         LOGGER.info ( nameAndPass );
                         users.put ( data[ 0 ] , data[ 1 ] );
                         index++;
                     }
-                    else break;
                 }
                 Users.userDeleted = true;
                 writeUsersToFile ( users , file.getPath ( ) );
@@ -240,8 +241,7 @@ class Installer extends Users {
         }
         catch ( IOException e ) {
             Users.userDeleted = false;
-            String s = e.getMessage ();
-            LOGGER.info ( s );
+            e.printStackTrace ( System.out );
         }
     }
 
@@ -254,59 +254,43 @@ class Installer extends Users {
     void changePassword ( int userToModifyID , String newPassword ) {
         if ( ! checkPassword ( newPassword ) ) {
             LOGGER.info ( "Password Format Wrong" );
-            Users.userDeleted = false;
+            Users.passwordUpdated = false;
             return;
         }
         users.clear ( );
-        File file = new File ( "src/Customers.txt" );
+        File file = new File ( "src/Installers.txt" );
         try {
             try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
-                Customer.fileRead ( userToModifyID , newPassword , bufferedReader , LOGGER , users );
-                Users.userDeleted = true;
+                fileRead ( userToModifyID , newPassword , bufferedReader , LOGGER , users );
+                Users.passwordUpdated = true;
                 writeUsersToFile ( users , file.getPath ( ) );
             }
         }
         catch ( IOException e ) {
-            Users.userDeleted = false;
-            String s = e.getMessage ();
-            LOGGER.info ( s );
+            Users.passwordUpdated = false;
+            throw new RuntimeException ( e );
         }
     }
 
     public static
     void changeUserName ( int userToModifyID , String newUserName ) {
         if ( ! checkUserName ( newUserName ) ) {
-            LOGGER.info ( "UserName Format Wrong or Used" );
+            LOGGER.info ( "Username Format Wrong Or Used" );
             Users.usernameChanged = false;
             return;
         }
         users.clear ( );
-        File file = new File ( "src/Customers.txt" );
+        File file = new File ( "src/Installers.txt" );
         try {
             try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
-                String   nameAndPass;
-                String[] data;
-                int      index = 0;
-                while ( (nameAndPass = bufferedReader.readLine ( )) != null ) {
-                    if ( (index != (userToModifyID - 1)) ) {
-                        data = nameAndPass.split ( "," );
-                        LOGGER.info ( nameAndPass );
-                        users.put ( data[ 0 ] , data[ 1 ] );
-                        index++;
-                    }
-                    else if ( index == (userToModifyID - 1) ) {
-                        data = nameAndPass.split ( "," );
-                        users.put ( newUserName , data[ 1 ] );
-                    }
-                }
+                fileRead2 ( userToModifyID , newUserName , bufferedReader , LOGGER , users );
                 Users.usernameChanged = true;
                 writeUsersToFile ( users , file.getPath ( ) );
             }
         }
         catch ( IOException e ) {
             Users.usernameChanged = false;
-            String s = e.getMessage ();
-            LOGGER.info ( s );
+            throw new RuntimeException ( e );
         }
     }
 }

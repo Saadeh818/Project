@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 public
 class Customer extends Users {
 
-    private static final Map < String, String > users            = new HashMap <> ( );
+    private static  Map < String, String > users            = new HashMap <> ( );
     private static final Logger LOGGER = Logger.getLogger ( Customer.class.getName ( ) );
     static public        String                 username;
     static public        String                 password;
@@ -80,24 +80,26 @@ class Customer extends Users {
         if ( checkUserName ( userName ) && checkPassword ( password ) && ! users.containsKey ( userName ) ) {
             addToFile ( userName , password );
             addUserSuccess = true;
+            LOGGER.info ( "Customer Added Successfully" );
         }
         else addUserSuccess = false;
+        LOGGER.info ( "Fail To Add " );
     }
 
     private static
     void addToFile ( String userName , String password ) {
         try {
             users.clear ( );
-            File file = new File ( "src/Customers.txt" );
+            File           file           = new File ( "src/Customers.txt" );
             try (BufferedWriter bufferedWriter = new BufferedWriter ( new FileWriter ( file , true ) )) {
                 String nameAndPass = userName + "," + password;
-                bufferedWriter.newLine ( );
-                bufferedWriter.write ( nameAndPass );
+                bufferedWriter.write ( nameAndPass+ "\n" );
             }
             getUsersFromFile ( );
         }
         catch ( IOException e ) {
-            e.printStackTrace ( System.out );
+            String s = e.getMessage ();
+            LOGGER.info ( s );
         }
     }
 
@@ -191,6 +193,25 @@ class Customer extends Users {
         }
     }
 
+    static
+    void fileRead2 ( int userToModifyID , String newUsername , BufferedReader bufferedReader , Logger logger , Map < String, String > users ) throws IOException {
+        String   nameAndPass;
+        String[] data;
+        int      index = 0;
+        while ( (nameAndPass = bufferedReader.readLine ( )) != null ) {
+            if ( (index != (userToModifyID - 1)) ) {
+                data = nameAndPass.split ( "," );
+                logger.info ( nameAndPass );
+                users.put ( data[ 0 ] , data[ 1 ] );
+                index++;
+            }
+            else if ( index == (userToModifyID - 1) ) {
+                data = nameAndPass.split ( "," );
+                users.put ( newUsername , data[ 1 ] );
+            }
+        }
+    }
+
     public static
     void writeUsersToFile ( Map < String, String > users , String filePath ) {
         bufferWriter ( users , filePath , LOGGER );
@@ -200,9 +221,8 @@ class Customer extends Users {
     void bufferWriter ( Map < String, String > users , String filePath , Logger logger ) {
         try (BufferedWriter writer = new BufferedWriter ( new FileWriter ( filePath , false ) )) {
             for ( Map.Entry < String, String > entry : users.entrySet ( ) ) {
-                String line = entry.getKey ( ) + "," + entry.getValue ( );
+                String line = entry.getKey ( ) + "," + entry.getValue ( )+"\n";
                 writer.write ( line );
-                writer.newLine ( );
             }
 
             logger.info ( "Users written to file successfully." );
@@ -215,7 +235,7 @@ class Customer extends Users {
     public static
     void changeUserName ( int userToModifyID , String newUserName ) {
         if ( ! checkUserName ( newUserName ) ) {
-            LOGGER.info ( "UserName Format Wrong or Used" );
+            LOGGER.info ( "Password Format Wrong" );
             Users.usernameChanged = false;
             return;
         }
@@ -223,21 +243,7 @@ class Customer extends Users {
         File file = new File ( "src/Customers.txt" );
         try {
             try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
-                String   nameAndPass;
-                String[] data;
-                int      index = 0;
-                while ( (nameAndPass = bufferedReader.readLine ( )) != null ) {
-                    if ( (index != (userToModifyID - 1)) ) {
-                        data = nameAndPass.split ( "," );
-                        LOGGER.info ( nameAndPass );
-                        users.put ( data[ 0 ] , data[ 1 ] );
-                        index++;
-                    }
-                    else if ( index == (userToModifyID - 1) ) {
-                        data = nameAndPass.split ( "," );
-                        users.put ( newUserName , data[ 1 ] );
-                    }
-                }
+                fileRead2 ( userToModifyID , newUserName , bufferedReader , LOGGER , users );
                 Users.usernameChanged = true;
                 writeUsersToFile ( users , file.getPath ( ) );
             }
