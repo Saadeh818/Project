@@ -104,8 +104,6 @@ class Main {
         String username = scanner.nextLine ( );
         LOGGER.info ( "\nEnter Password please: " );
         String password = scanner.nextLine ( );
-
-
         Customer.login ( username, password);
         if(!Customer.loginFlag)
         {
@@ -279,7 +277,7 @@ class Main {
     void customerDashboard ( String username ) {
         LOGGER.info ( "Welcome Customer! Please choose an option:" );
         LOGGER.info ( "1. View Products" );
-        LOGGER.info ( "2. Write a Product Review" );
+        LOGGER.info ( "2. View My Appointments" );
         LOGGER.info ( "3. Return to Dashboard" );
 
         String userInput = scanner.nextLine ( );
@@ -292,6 +290,7 @@ class Main {
                 LOGGER.info ( "Enter the quantity" );
                 int prQu = scanner.nextInt ();
                 Customer.addInstallationRequest ( prID,prQu,username );
+                customerDashboard(username);
                 break;
             case "2":
                 writeProductReview ( );
