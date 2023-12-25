@@ -153,7 +153,7 @@ class Installer extends Users {
     void addToFile ( String userName , String password ) {
         try {
             users.clear ( );
-            File           file           = new File ( INSTALLERS_FILE_PATH );
+            File           file           = new File ( "src/Installers.txt" );
             try (BufferedWriter bufferedWriter = new BufferedWriter ( new FileWriter ( file , true ) )) {
                 String nameAndPass = userName + "," + password;
                 bufferedWriter.newLine ( );
@@ -208,7 +208,7 @@ class Installer extends Users {
     public static
     void deleteInstallerAccount ( int userToModifyID ) {
         users.clear ( );
-        File file = new File ( INSTALLERS_FILE_PATH );
+        File file = new File ( "src/Installers.txt" );
         try {
             try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
                 String   nameAndPass;

@@ -1,5 +1,6 @@
 package org.example;
 
+import java.awt.image.LookupOp;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -204,6 +205,8 @@ class Main {
                 switchStatement ( username , password , productC );
                 LOGGER.info ( "Enter The ID Of The Product" );
                 productC.selectIdToDelete ( scanner.nextLine ( ) , productC.category );
+                LOGGER.info ( "Product Deleted Successfully.................. " );
+                productManager ( username , password );
                 break;
             case "3":
                 ProductC.productList ( );

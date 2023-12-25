@@ -174,14 +174,21 @@ class ProductC {
 
     public
     void selectIdToDelete ( String ID , String category ) {
-        if ( checkIfProductExists ( Integer.parseInt ( ID ) ) ) {
-            productList.removeIf ( product -> product.category.equals ( category ) && product.productId == Integer.parseInt ( ID ) );
-            productDeletedSuccessfully = ! checkIfProductExists ( Integer.parseInt ( ID ) );
-            LOGGER.info ( "The Product has been deleted successfully" );
+        try {
+            int id = Integer.parseInt ( ID );
+            if ( checkIfProductExists ( id ) ) {
+                productList.removeIf ( product -> product.category.equals ( category ) && product.productId == id );
+                productDeletedSuccessfully = !checkIfProductExists ( id );
+                LOGGER.info ( "The Product has been deleted successfully" );
+            }
+            else {
+                LOGGER.info ( "The Product You Are Trying To Delete Is No Longer Available" );
+                productDeletedSuccessfully = false;
+            }
         }
-        else {
-            LOGGER.info ( "The Product You Are Trying To Delete Is No Longer Available" );
-            productDeletedSuccessfully = false;
+        catch ( NumberFormatException e ) {
+            String s = e.getMessage ();
+            LOGGER.info ( s );
         }
     }
 
