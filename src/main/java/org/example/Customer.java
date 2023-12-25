@@ -245,4 +245,12 @@ class Customer extends Users {
             throw new RuntimeException ( e );
         }
     }
+
+    public static void setUsername(String username) {
+        Customer.username = username;
+    }
+
+    public static void setPassword(String password) {
+        Customer.password = password;
+    }
 }

@@ -26,6 +26,7 @@ class Main {
                     adminActions ( );
                     break;
                 case "customer-login":
+                    customerAction();
                     break;
 
                 case "installer-login":
@@ -96,7 +97,29 @@ class Main {
         Admin.login ( );
         adminDashboard ( username , password );
     }
+    private static
+    void customerAction ( ) {
+        LOGGER.info ( "Welcome Admin Please fill your data to login\n"
+                + "Enter your name please: " );
+        Customer.clearCredentials ( );
+        String username = scanner.nextLine ( );
+        LOGGER.info ( "\nEnter Password please: " );
+        String password = scanner.nextLine ( );
 
+        Customer.setUsername ( username );
+        Customer.setPassword ( password );
+
+        Customer.login ( username, password);
+        if(!Customer.loginFlag)
+        {
+         LOGGER.info("USERNAME OR PASSWORD IS WRONG");
+         customerAction();
+        }
+        else
+        {
+            customerDachdoard();
+        }
+    }
     private static
     void adminDashboard ( String username , String password ) {
         switch (scanner.nextLine ( )) {
@@ -256,7 +279,7 @@ class Main {
     }
 
     private static
-    void Customer ( ) {
+    void customerDachdoard ( ) {
         LOGGER.info ( "Welcome Customer! Please choose an option:" );
         LOGGER.info ( "1. View Products" );
         LOGGER.info ( "2. Write a Product Review" );
@@ -266,7 +289,7 @@ class Main {
 
         switch (userInput) {
             case "1":
-                viewProducts ( );
+                ProductC.productList ( );
                 break;
             case "2":
                 writeProductReview ( );
@@ -275,7 +298,7 @@ class Main {
                 return;
             default:
                 LOGGER.info ( "Invalid input. Please try again." );
-                Customer ( );
+                customerDachdoard ( );
         }
     }
 

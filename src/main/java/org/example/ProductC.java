@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 public
 class ProductC {
 
-    public static final  List < ProductC > productList                = new ArrayList <> ( );
+    public static final  List < ProductC > productList= new ArrayList <> ( );
     public static        boolean           readyToDelete;
     public static        boolean           readyToUpdate;
     public static        boolean           wrongInputFlag;
