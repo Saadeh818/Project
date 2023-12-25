@@ -262,22 +262,24 @@ class Customer extends Users {
         String category="NO CATEGORY FOUND";
         String productName= "NO PRODUCT NAME FOUND";
         int price= 0;
-        for ( ProductC product : ProductC.productList ) {
-            if ( product.productId == productID ) {
-                category =  product.category;
-                productName= product.name;
-                price = product.price;
-            }else{
-                LOGGER.info ( "Product is Not Found" );
-                installationRequestAdded = false;
-                return;
-            }
+
+        ProductC productC = null;
+        try {
+            productC = ProductC.productList.get ( productID );
         }
+        catch ( Exception e ) {
+
+            installationRequestAdded =false;
+        }
+        category =  productC.category;
+        productName= productC.name;
+        price = productC.price;
+        installationRequestAdded = true;
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/InstallationRequests", true))) {
             writer.write(installationID + ". ," + productID + ", " + category + ", " + productName+ ", "+ quantity + ", " + price+ ", "+user);
             installationRequestAdded = true;
         } catch (IOException e) {
-            installationRequestAdded = false;
+            installationRequestAdded =false;
             e.printStackTrace(); // Handle the exception based on your application's needs
         }
     }

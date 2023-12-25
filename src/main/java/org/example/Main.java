@@ -105,8 +105,6 @@ class Main {
         LOGGER.info ( "\nEnter Password please: " );
         String password = scanner.nextLine ( );
 
-        Customer.setUsername ( username );
-        Customer.setPassword ( password );
 
         Customer.login ( username, password);
         if(!Customer.loginFlag)
@@ -116,7 +114,7 @@ class Main {
         }
         else
         {
-            customerDashboard ( );
+            customerDashboard (username );
         }
     }
     private static
@@ -278,7 +276,7 @@ class Main {
     }
 
     private static
-    void customerDashboard ( ) {
+    void customerDashboard ( String username ) {
         LOGGER.info ( "Welcome Customer! Please choose an option:" );
         LOGGER.info ( "1. View Products" );
         LOGGER.info ( "2. Write a Product Review" );
@@ -289,17 +287,21 @@ class Main {
         switch (userInput) {
             case "1":
                 ProductC.productList ( );
-
+                LOGGER.info ( "Enter The product ID" );
+                int prID= scanner.nextInt ();
+                LOGGER.info ( "Enter the quantity" );
+                int prQu = scanner.nextInt ();
+                Customer.addInstallationRequest ( prID,prQu,username );
                 break;
             case "2":
                 writeProductReview ( );
                 break;
             case "3":
-                customerDashboard ();
+                customerDashboard (username);
                 return;
             default:
                 LOGGER.info ( "Invalid input. Please try again." );
-                customerDashboard ( );
+                customerDashboard (username );
         }
     }
 

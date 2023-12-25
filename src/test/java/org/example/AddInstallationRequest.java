@@ -8,7 +8,7 @@ import static org.junit.Assert.assertTrue;
 
 public
 class AddInstallationRequest {
-    ProductC productC = new ProductC (  );
+    int productID=1;
     @When ("customer choos the product successfully")
     public void customer_choose_the_product_successfully() {
         Customer.addInstallationRequest(3 , 5 , "frommain@installer.com,ahmad010101" );
@@ -26,7 +26,7 @@ class AddInstallationRequest {
 
     @When("customer choos the product wrong")
     public void customer_choos_the_product_wrong() {
-        Customer.addInstallationRequest(3 , 5 , "frommain@installer.com,ahmad010101" );
+        Customer.addInstallationRequest(productID , 888 , "frommain@installer.com,ahmad010101" );
     }
 
     @Then("Check product Fail")
