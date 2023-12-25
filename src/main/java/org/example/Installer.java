@@ -28,7 +28,7 @@ class Installer extends Users {
             while (reader.readLine() != null) {
                 lineCount++;
             }
-            return +1;
+            return lineCount;
         } catch (IOException e) {
             e.printStackTrace(); // Handle the exception based on your application's needs
             return -1; // Return a special value indicating an error

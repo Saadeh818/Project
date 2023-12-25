@@ -26,12 +26,12 @@ class AddInstallationRequest {
 
     @When("customer choos the product wrong")
     public void customer_choos_the_product_wrong() {
-        Customer.addInstallationRequest(productID , 888 , "frommain@installer.com,ahmad010101" );
+        Customer.addInstallationRequest(888 , 5 , "frommain@installer.com,ahmad010101" );
     }
 
     @Then("Check product Fail")
     public void check_product_fail() {
-        assertFalse(ProductC.checkIfProductExists ( 3 ));
+        assertFalse(ProductC.checkIfProductExists ( 888));
     }
 
     @Then("add installation request Fail")

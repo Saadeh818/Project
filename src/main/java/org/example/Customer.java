@@ -16,6 +16,7 @@ class Customer extends Users {
     static public        boolean                errorMessageFlag = false;
     public static    boolean addUserSuccess;
     protected static boolean installationRequestAdded = false;
+    private static int installationID= 1;
 
     static
     void getUsersFromFile ( ) {
@@ -258,25 +259,25 @@ class Customer extends Users {
     public static
     void addInstallationRequest ( int productID , int quantity , String user ) {
 //        InstallationID, ProductID,category, productName, quantity, price, user
-        int installationID = Installer.getNumberOfInstallation ();
-        String category="NO CATEGORY FOUND";
-        String productName= "NO PRODUCT NAME FOUND";
+        installationID = Installer.getNumberOfInstallation ()+1;
+        String category;
+        String productName;
         int price= 0;
-
         ProductC productC = null;
         try {
             productC = ProductC.productList.get ( productID );
         }
         catch ( Exception e ) {
-
+            LOGGER.info ( "Not Found" );
             installationRequestAdded =false;
+            return;
         }
         category =  productC.category;
         productName= productC.name;
         price = productC.price;
         installationRequestAdded = true;
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/InstallationRequests", true))) {
-            writer.write(installationID + ". ," + productID + ", " + category + ", " + productName+ ", "+ quantity + ", " + price+ ", "+user);
+            writer.write("\n"+installationID + ". ," + productID + ", " + category + ", " + productName+ ", "+ quantity + ", " + price+ ", "+user );
             installationRequestAdded = true;
         } catch (IOException e) {
             installationRequestAdded =false;
