@@ -293,7 +293,8 @@ class Main {
                 customerDashboard(username);
                 break;
             case "2":
-                writeProductReview ( );
+                LOGGER.info ( "Your UserName Is: "+username );
+                Appointment.viewAppointments ( username );
                 break;
             case "3":
                 customerDashboard (username);

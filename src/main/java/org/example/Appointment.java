@@ -1,9 +1,6 @@
 package org.example;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -14,6 +11,7 @@ public
 class Appointment {
     private static final Logger  LOGGER     = Logger.getLogger ( Appointment.class.getName ( ) );
     protected static        boolean addSuccess = false;
+    protected static boolean userHasAppointments;
     String             user;
     String             requestID;
     Date               appointmentDate;
@@ -23,6 +21,32 @@ class Appointment {
             new SimpleDateFormat ( "d/MM/yyyy" ) ,
             new SimpleDateFormat ( "d/M/yyyy" )
     };
+
+    public static
+    void viewAppointments ( String mail ) {
+        File file = new File ( "src/Appointments" );
+        try {
+            try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
+                String   appointment;
+                String[] data;
+                while ( (appointment = bufferedReader.readLine ( )) != null ) {
+                    data = appointment.split ( "," );
+                    if (data[1].equals ( mail )){
+                        LOGGER.info ( appointment );
+                        userHasAppointments= true;
+                    }
+                }
+                if(!userHasAppointments){
+                    LOGGER.info ( "No Appointments Yet" );
+                }
+            }
+        }
+        catch ( IOException e ) {
+            userHasAppointments= false;
+            String s = e.getMessage ();
+            LOGGER.info ( s );
+        }
+    }
 
 
     public

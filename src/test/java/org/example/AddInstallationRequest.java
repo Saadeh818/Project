@@ -38,4 +38,14 @@ class AddInstallationRequest {
     public void add_installation_request_fail() {
         assertFalse ( Customer.installationRequestAdded );
     }
+
+    @When("view Appointment methode been called")
+    public void view_appointment_methode_been_called() {
+        Appointment.viewAppointments("saadeh@gmail.com");
+    }
+    @Then("show all appintments related to the customer")
+    public void show_all_appintments_related_to_the_customer() {
+        assertTrue ( Appointment.userHasAppointments );
+    }
+
 }
