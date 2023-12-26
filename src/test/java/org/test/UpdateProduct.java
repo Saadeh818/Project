@@ -9,7 +9,7 @@ public class UpdateProduct {
     ProductC product =new ProductC();
     @When("user choose category update{string}")
     public void user_choose_category_update_category(String string) {
-        ProductC.setCategory ( string );
+        product.setCategory ( string );
     }
 
     @When("choose product id update {string}")
