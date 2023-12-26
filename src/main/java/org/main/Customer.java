@@ -279,7 +279,8 @@ class Customer extends Users {
             writer.write ( "\n%d. ,%d, %s, %s, %d, %d, %s".formatted ( installationID , productID , category , productName , quantity , price , user ) );
         } catch (IOException e) {
             installationRequestAdded =false;
-            e.printStackTrace(); // Handle the exception based on your application's needs
+            String s = e.getMessage ();
+            LOGGER.info ( s );
         }
     }
 }

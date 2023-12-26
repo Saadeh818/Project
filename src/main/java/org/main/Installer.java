@@ -36,7 +36,8 @@ class Installer extends Users {
             }
             return lineCount;
         } catch (IOException e) {
-            e.printStackTrace(); // Handle the exception based on your application's needs
+            String s = e.getMessage ();
+            LOGGER.info ( s );
             return -1; // Return a special value indicating an error
         }
     }
