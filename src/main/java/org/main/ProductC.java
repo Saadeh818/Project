@@ -30,9 +30,9 @@ class ProductC {
         productList.add ( new ProductC ( 8 , "cat2" , "product9" , 24 , 613 ) );
     }
 
-    public              int               productId;
-    public              String            category;
-    public              String            name;
+    public        int    productId;
+    public static String category;
+    public        String name;
     public              int               quantity;
     public              int               price;
     public              boolean           productAddSuccessfully;
@@ -43,9 +43,9 @@ class ProductC {
     }
 
     public
-    ProductC ( int id , String category , String name , int quantity , int price ) {
+    ProductC ( int id , String categoryIn , String name , int quantity , int price ) {
         this.productId = id;
-        this.category  = category;
+        category  = categoryIn;
         this.name      = name;
         this.quantity  = quantity;
         this.price     = price;
@@ -96,19 +96,19 @@ class ProductC {
     void displayProductsByCategory ( ) {
        LOGGER.info ( "********** Cat1 *********" );
         for ( ProductC product : productList ) {
-            if ( product.category.equals ( "cat1" ) ) {
+            if ( category.equals ( "cat1" ) ) {
                 productPrint ( product );
             }
         }
         LOGGER.info ( "********** Cat2 *********" );
         for ( ProductC product : productList ) {
-            if ( product.category.equals ( "cat2" ) ) {
+            if ( category.equals ( "cat2" ) ) {
                 productPrint ( product );
             }
         }
         LOGGER.info ( "********** Cat3 *********" );
         for ( ProductC product : productList ) {
-            if ( product.category.equals ( "cat3" ) ) {
+            if ( category.equals ( "cat3" ) ) {
                 productPrint ( product );
             }
         }
@@ -117,7 +117,7 @@ class ProductC {
     private static
     void productPrint ( ProductC product ) {
         String msg = ("Product ID: " + product.productId +
-                "\nProduct Category: " + product.category +
+                "\nProduct Category: " + category +
                 "\nProduct Name: " + product.name+
                 "\nProduct Quantity: " + product.quantity +
                 "\nProduct Price: " + product.price + "\n");
@@ -147,14 +147,14 @@ class ProductC {
         }
     }
 
-    public
+    public static
     void setCategory ( String categoryI ) {
         if ( ! (categoryI.equals ( "cat1" ) || categoryI.equals ( "cat2" ) || categoryI.equals ( "cat3" )) ) {
             wrongInputFlag             = true;
             productDeletedSuccessfully = false;
         }
         else
-            this.category = categoryI;
+            category = categoryI;
     }
 
     public
@@ -172,12 +172,12 @@ class ProductC {
         this.price = price;
     }
 
-    public
-    void selectIdToDelete ( String id , String category ) {
+    public static
+    void selectIdToDelete ( String id , String categoryIn ) {
         try {
             int idInt = Integer.parseInt ( id );
             if ( checkIfProductExists ( idInt ) ) {
-                productList.removeIf ( product -> product.category.equals ( category ) && product.productId == idInt );
+                productList.removeIf ( product -> category.equals ( categoryIn ) && product.productId == idInt );
                 productDeletedSuccessfully = !checkIfProductExists ( idInt );
                 LOGGER.info ( "The Product has been deleted successfully" );
             }
@@ -212,7 +212,7 @@ class ProductC {
         for ( ProductC product : productList ) {
             if ( product.productId == id ) {
                 productPrint ( product );
-                if ( ! category.equals ( "#" ) ) product.setCategory ( category );
+                if ( ! category.equals ( "#" ) ) setCategory ( category );
                 if ( ! name.equals ( "#" ) ) product.setName ( name );
                 if ( ! quantity.equals ( "#" ) ) product.setQuantity ( Integer.parseInt ( quantity ) );
                 if ( ! price.equals ( "#" ) ) product.setPrice ( Integer.parseInt ( price ) );

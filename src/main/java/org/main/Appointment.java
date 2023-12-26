@@ -14,10 +14,10 @@ class Appointment {
     public static boolean appointmentsDisplayed;
     public static boolean addSuccess = false;
     public static boolean userHasAppointments;
-    String             user;
-    String             requestID;
-    Date               appointmentDate;
-    static SimpleDateFormat[] simpleDateFormats = {
+    private static String user;
+    private static String             thisRequestID;
+    static         Date               appointmentDate;
+    static         SimpleDateFormat[] simpleDateFormats = {
             new SimpleDateFormat ( "dd/MM/yyyy" ) ,
             new SimpleDateFormat ( "dd/M/yyyy" ) ,
             new SimpleDateFormat ( "d/MM/yyyy" ) ,
@@ -126,15 +126,15 @@ class Appointment {
         };
     }
 
-    public
+    public static
     void addNewAppointment ( String date , String requestID , String userRequested ) {
         for ( SimpleDateFormat simpleDateFormat : simpleDateFormats ) {
             simpleDateFormat.setLenient ( false );
             try {
                 appointmentDate = simpleDateFormat.parse ( date );
-                this.user       = userRequested;
-                this.requestID  = requestID;
-                addAppointmentToTheFile ( this );
+                user          = userRequested;
+                thisRequestID = requestID;
+                addAppointmentToTheFile ( );
                 LOGGER.info ( "Appointment added successfully." );
                 addSuccess = true;
                 return;
@@ -147,12 +147,12 @@ class Appointment {
         }
     }
 
-    private
-    void addAppointmentToTheFile ( Appointment appointment ) {
+    private static
+    void addAppointmentToTheFile ( ) {
         try {
             File           file             = new File ( SRC_APPOINTMENTS );
             try (BufferedWriter bufferedWriter = new BufferedWriter ( new FileWriter ( file , true ) )) {
-                String appointmentToAdd = appointment.requestID + "," + appointment.user + "," + appointment.appointmentDate.toString ( );
+                String appointmentToAdd = Appointment.thisRequestID + "," + Appointment.user + "," + Appointment.appointmentDate.toString ( );
                 bufferedWriter.newLine ( );
                 bufferedWriter.write ( appointmentToAdd );
             }

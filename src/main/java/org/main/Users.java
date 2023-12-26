@@ -20,6 +20,7 @@ class Users {
 
     public
     Users ( ) {
+        modifyAccountType="";
     }
 
 

@@ -10,6 +10,8 @@ class MainScreen {
 
     public
     MainScreen ( ) {
+        userInput = "";
+        currentPage="";
     }
 
 
