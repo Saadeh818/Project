@@ -16,7 +16,11 @@ class Users {
     public static boolean installerSelected = false;
     public static        boolean customerSelected = false;
     public static        boolean addUserSelected  = false;
-    private static final Logger  LOGGER           = Logger.getLogger ( Customer.class.getName ( ) );
+    private static final Logger  LOGGER           = Logger.getLogger ( Users.class.getName ( ) );
+
+    public
+    Users ( ) {
+    }
 
 
     public static
@@ -79,9 +83,9 @@ class Users {
 
 
     public static
-    void setUserToModifyID ( String ID ) {
+    void setUserToModifyID ( String id ) {
         try {
-            userToModifyID = Integer.parseInt ( ID );
+            userToModifyID = Integer.parseInt ( id );
             if ( customerSelected && (userToModifyID - 1 <= Customer.getUsers ( ).size ( )) ) userIsFound = true;
             else if ( installerSelected && (userToModifyID - 1 <= Installer.getUsers ( ).size ( )) ) userIsFound = true;
             else {

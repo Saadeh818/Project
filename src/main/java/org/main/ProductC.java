@@ -8,14 +8,14 @@ import java.util.logging.Logger;
 public
 class ProductC {
 
-    public static final  List < ProductC > productList= new ArrayList <> ( );
+    protected static final  List < ProductC > productList= new ArrayList <> ( );
     public static        boolean           readyToDelete;
     public static        boolean           readyToUpdate;
     public static        boolean           wrongInputFlag;
     public static        boolean           readyToAdd                 = false;
     public static        boolean           listProductFlag            = false;
     public static        boolean           productDeletedSuccessfully = true;
-    private static final Logger            LOGGER                     = Logger.getLogger ( Customer.class.getName ( ) );
+    private static final Logger            LOGGER                     = Logger.getLogger ( ProductC.class.getName ( ) );
 
 
     static {
@@ -43,8 +43,8 @@ class ProductC {
     }
 
     public
-    ProductC ( int ID , String category , String name , int quantity , int price ) {
-        this.productId = ID;
+    ProductC ( int id , String category , String name , int quantity , int price ) {
+        this.productId = id;
         this.category  = category;
         this.name      = name;
         this.quantity  = quantity;
@@ -173,12 +173,12 @@ class ProductC {
     }
 
     public
-    void selectIdToDelete ( String ID , String category ) {
+    void selectIdToDelete ( String id , String category ) {
         try {
-            int id = Integer.parseInt ( ID );
-            if ( checkIfProductExists ( id ) ) {
-                productList.removeIf ( product -> product.category.equals ( category ) && product.productId == id );
-                productDeletedSuccessfully = !checkIfProductExists ( id );
+            int idInt = Integer.parseInt ( id );
+            if ( checkIfProductExists ( idInt ) ) {
+                productList.removeIf ( product -> product.category.equals ( category ) && product.productId == idInt );
+                productDeletedSuccessfully = !checkIfProductExists ( idInt );
                 LOGGER.info ( "The Product has been deleted successfully" );
             }
             else {
@@ -193,9 +193,9 @@ class ProductC {
 
 
     public static
-    boolean checkIfProductExists ( int ID ) {
+    boolean checkIfProductExists ( int id ) {
         for ( ProductC product : productList ) {
-            if ( product.productId == ID ) {
+            if ( product.productId == id ) {
                 JOptionPane.showMessageDialog ( null , "checkIfProductExists" , "hello" , JOptionPane.ERROR_MESSAGE );
                 return true;
             }
@@ -207,10 +207,10 @@ class ProductC {
 
 
     public
-    void updateValues ( int ID , String category , String name , String quantity , String price ) {
+    void updateValues ( int id , String category , String name , String quantity , String price ) {
         LOGGER.info ( "If You Dont Want To Change A Filed Just Insert A # On It." );
         for ( ProductC product : productList ) {
-            if ( product.productId == ID ) {
+            if ( product.productId == id ) {
                 productPrint ( product );
                 if ( ! category.equals ( "#" ) ) product.setCategory ( category );
                 if ( ! name.equals ( "#" ) ) product.setName ( name );

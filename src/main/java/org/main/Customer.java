@@ -14,11 +14,10 @@ class Customer extends Users {
     private static final Logger LOGGER = Logger.getLogger ( Customer.class.getName ( ) );
     public static         String                 username;
     public static        String                 password;
-    static public        boolean                loginFlag        = false;
-    static public        boolean                errorMessageFlag = false;
+    public static        boolean                loginFlag        = false;
+    public static        boolean                errorMessageFlag = false;
     public static  boolean addUserSuccess;
     public static  boolean installationRequestAdded = false;
-    private static int     installationID           = 1;
 
     static
     void getUsersFromFile ( ) {
@@ -251,7 +250,7 @@ class Customer extends Users {
     public static
     void addInstallationRequest ( int productID , int quantity , String user ) {
 //        InstallationID, ProductID,category, productName, quantity, price, user
-        installationID = Installer.getNumberOfInstallation ()+1;
+        int      installationID = Installer.getNumberOfInstallation ( ) + 1;
         String category;
         String productName;
         int price= 0;

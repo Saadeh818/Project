@@ -6,7 +6,11 @@ public
 class MainScreen {
     static               String userInput;
     public static        String currentPage;
-    private static final Logger LOGGER = Logger.getLogger ( Customer.class.getName ( ) );
+    private static final Logger LOGGER = Logger.getLogger ( MainScreen.class.getName ( ) );
+
+    public
+    MainScreen ( ) {
+    }
 
 
     public static
