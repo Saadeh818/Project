@@ -10,7 +10,7 @@ public
 class Customer extends Users {
 
     public static final String SRC_CUSTOMERS_TXT = "src/Customers.txt";
-    private static Map < String, String > users = new HashMap <> ( );
+    private static final Map < String, String > users = new HashMap <> ( );
     private static final Logger LOGGER = Logger.getLogger ( Customer.class.getName ( ) );
     public static         String                 username;
     public static        String                 password;
@@ -82,21 +82,11 @@ class Customer extends Users {
 
     private static
     void addToFile ( String userName , String password ) {
-        try {
-            users.clear ( );
-            File           file           = new File ( SRC_CUSTOMERS_TXT );
-            try (BufferedWriter bufferedWriter = new BufferedWriter ( new FileWriter ( file , true ) )) {
-                String nameAndPass = userName + "," + password;
-                bufferedWriter.write ( nameAndPass+ "\n" );
-            }
-            getUsersFromFile ( );
-        }
-        catch ( IOException e ) {
-            printException ( e.getMessage () );
-        }
+        writeUsers ( userName , password , SRC_CUSTOMERS_TXT, users);
     }
 
-    private static
+
+    static
     boolean checkPassword ( String password ) {
         getUsersFromFile ( );
         return password.length ( ) >= 8;
@@ -110,61 +100,21 @@ class Customer extends Users {
 
     public static
     void addAppointment ( String date , String requestID , String userRequested ) {
-        Appointment appointment = new Appointment ( );
-        if ( ! appointment.checkDate ( date ) ) {
+        if ( ! Appointment.checkDate ( date ) ) {
             return;
         }
-        appointment.addNewAppointment ( date , requestID , userRequested );
+        Appointment.addNewAppointment ( date , requestID , userRequested );
     }
 
 
     public static
     void deleteCustomerAccount ( int userToModifyID ) {
-        users.clear ( );
-        File file = new File ( SRC_CUSTOMERS_TXT );
-        try {
-            try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
-                String   nameAndPass;
-                String[] data;
-                int      index = 0;
-                while ( (nameAndPass = bufferedReader.readLine ( )) != null ) {
-                    if ( (index != (userToModifyID - 1)) ) {
-                        data = nameAndPass.split ( "," );
-                        LOGGER.info ( nameAndPass );
-                        users.put ( data[ 0 ] , data[ 1 ] );
-                        index++;
-                    }
-                }
-                Users.userDeleted = true;
-                writeUsersToFile ( users , file.getPath ( ) );
-            }
-        }
-        catch ( IOException e ) {
-            Users.userDeleted = false;
-            printException ( e.getMessage () );
-        }
+        deleteUser ( userToModifyID, users, SRC_CUSTOMERS_TXT );
     }
 
     public static
     void changePassword ( int userToModifyID , String newPassword ) {
-        if ( ! checkPassword ( newPassword ) ) {
-            LOGGER.info ( "Password Format Wrong" );
-            Users.passwordUpdated = false;
-            return;
-        }
-        users.clear ( );
-        File file = new File ( SRC_CUSTOMERS_TXT );
-        try {
-            try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
-                fileRead ( userToModifyID , newPassword , bufferedReader , LOGGER , users );
-                Users.passwordUpdated = true;
-                writeUsersToFile ( users , file.getPath ( ) );
-            }
-        }
-        catch ( IOException e ) {
-            Users.passwordUpdated = false;
-            printException ( e.getMessage () );
-        }
+        checkThenSetNewPassword ( userToModifyID , newPassword, users, SRC_CUSTOMERS_TXT);
     }
 
     static
@@ -253,9 +203,11 @@ class Customer extends Users {
         int      installationID = Installer.getNumberOfInstallation ( ) + 1;
         String category;
         String productName;
-        int price= 0;
-        ProductC productC = null;
+        int price;
+
+        @SuppressWarnings ( "unused") ProductC productC;
         try {
+            //noinspection UnusedAssignment
             productC = ProductC.productList.get ( productID );
         }
         catch ( Exception e ) {
@@ -263,9 +215,9 @@ class Customer extends Users {
             installationRequestAdded =false;
             return;
         }
-        category =  productC.category;
-        productName= productC.name;
-        price = productC.price;
+        category = ProductC.category;
+        productName= ProductC.name;
+        price = ProductC.price;
         installationRequestAdded = true;
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/InstallationRequests", true))) {
             writer.write ( "%n%d. ,%d, %s, %s, %d, %d, %s".formatted ( installationID , productID , category , productName , quantity , price , user ) );

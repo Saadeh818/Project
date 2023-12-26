@@ -24,6 +24,11 @@ class Appointment {
             new SimpleDateFormat ( "d/M/yyyy" )
     };
 
+    public
+    Appointment ( ) {
+        thisRequestID="";
+    }
+
     public static
     void viewAppointments ( String mail ) {
         File file = new File ( SRC_APPOINTMENTS );

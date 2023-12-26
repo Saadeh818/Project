@@ -1,6 +1,10 @@
 package org.main;
 
+import java.io.*;
+import java.util.Map;
 import java.util.logging.Logger;
+
+import static org.main.Customer.fileRead;
 
 public
 class Users {
@@ -129,5 +133,85 @@ class Users {
                                      3.Delete Account.
                                      4. Return Back
                                      5. Go To Dashboard.""" );
+    }
+
+    static
+    void writeUsers ( String userName , String password , String filePath , Map < String, String > users ) {
+        try {
+            users.clear ( );
+            File file = new File ( filePath );
+            try (BufferedWriter bufferedWriter = new BufferedWriter ( new FileWriter ( file , true ) )) {
+                String nameAndPass = userName + "," + password;
+                bufferedWriter.write ( nameAndPass+ "\n" );
+            }
+            if(filePath.contains ( "Customer" ))
+            Customer.getUsersFromFile ( );
+            else if ( filePath.contains ( "Installer" ) ) {
+                Installer.getUsersFromFile ();
+            }
+        }
+        catch ( IOException e ) {
+            printException ( e.getMessage () );
+        }
+    }
+
+    protected static
+    void deleteUser ( int userToModifyID , Map < String, String > users , String srcInstallersTxt ) {
+        users.clear ( );
+        File file = new File ( srcInstallersTxt );
+        try {
+            try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
+                String   nameAndPass;
+                String[] data;
+                int      index = 0;
+                while ( (nameAndPass = bufferedReader.readLine ( )) != null ) {
+                    if ( (index != (userToModifyID - 1)) ) {
+                        data = nameAndPass.split ( "," );
+                        LOGGER.info ( nameAndPass );
+                        users.put ( data[ 0 ] , data[ 1 ] );
+                        index++;
+                    }
+                }
+                Users.userDeleted = true;
+                if(srcInstallersTxt.contains ( "Installer" ))
+                Installer.writeUsersToFile ( users , file.getPath ( ) );
+                else if ( srcInstallersTxt.contains ( "Customer" ) )
+                    Customer.writeUsersToFile ( users, file.getPath () );
+            }
+        }
+        catch ( IOException e ) {
+            Users.userDeleted = false;
+            printException ( e.getMessage () );
+        }
+    }
+    protected static
+    void checkThenSetNewPassword ( int userToModifyID , String newPassword , Map < String, String > users , String srcInstallersTxt ) {
+        if (srcInstallersTxt.contains ( "Installer" ) && ! Installer.checkPassword ( newPassword ) ) {
+            LOGGER.info ( "Password Format Wrong" );
+            Users.passwordUpdated = false;
+            return;
+        }
+        if (srcInstallersTxt.contains ( "Customer" ) && ! Customer.checkPassword ( newPassword ) ) {
+            LOGGER.info ( "Password Format Wrong" );
+            Users.passwordUpdated = false;
+            return;
+        }
+        users.clear ( );
+        File file = new File ( srcInstallersTxt );
+        try {
+            try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
+                fileRead ( userToModifyID , newPassword , bufferedReader , LOGGER , users );
+                Users.passwordUpdated = true;
+                if(srcInstallersTxt.contains ( "Installer" ))
+                Installer.writeUsersToFile ( users , file.getPath ( ) );
+                else if ( srcInstallersTxt.contains ( "Customer" ) ) {
+                    Customer.writeUsersToFile ( users,file.getPath () );
+                }
+            }
+        }
+        catch ( IOException e ) {
+            Users.passwordUpdated = false;
+            printException ( e.getMessage () );
+        }
     }
 }

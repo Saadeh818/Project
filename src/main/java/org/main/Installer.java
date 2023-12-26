@@ -5,8 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import static org.main.Customer.fileRead;
-import static org.main.Customer.fileRead2;
+import static org.main.Customer.*;
 
 public
 class Installer extends Users {
@@ -174,21 +173,10 @@ class Installer extends Users {
 
     private static
     void addToFile ( String userName , String password ) {
-        try {
-            users.clear ( );
-            File           file           = new File ( SRC_INSTALLERS_TXT );
-            try (BufferedWriter bufferedWriter = new BufferedWriter ( new FileWriter ( file , true ) )) {
-                String nameAndPass = userName + "," + password;
-                bufferedWriter.write ( nameAndPass+ "\n" );
-            }
-            getUsersFromFile ( );
-        }
-        catch ( IOException e ) {
-            printException ( e.getMessage () );
-        }
+        writeUsers ( userName , password , SRC_INSTALLERS_TXT, users);
     }
 
-    private static
+    static
     boolean checkPassword ( String password ) {
         getUsersFromFile ( );
         return password.length ( ) >= 8;
@@ -228,29 +216,7 @@ class Installer extends Users {
 
     public static
     void deleteInstallerAccount ( int userToModifyID ) {
-        users.clear ( );
-        File file = new File ( SRC_INSTALLERS_TXT );
-        try {
-            try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
-                String   nameAndPass;
-                String[] data;
-                int      index = 0;
-                while ( (nameAndPass = bufferedReader.readLine ( )) != null ) {
-                    if ( (index != (userToModifyID - 1)) ) {
-                        data = nameAndPass.split ( "," );
-                        LOGGER.info ( nameAndPass );
-                        users.put ( data[ 0 ] , data[ 1 ] );
-                        index++;
-                    }
-                }
-                Users.userDeleted = true;
-                writeUsersToFile ( users , file.getPath ( ) );
-            }
-        }
-        catch ( IOException e ) {
-            Users.userDeleted = false;
-            printException ( e.getMessage () );
-        }
+        deleteUser ( userToModifyID, users, SRC_INSTALLERS_TXT );
     }
 
     public static
@@ -260,24 +226,7 @@ class Installer extends Users {
 
     public static
     void changePassword ( int userToModifyID , String newPassword ) {
-        if ( ! checkPassword ( newPassword ) ) {
-            LOGGER.info ( "Password Format Wrong" );
-            Users.passwordUpdated = false;
-            return;
-        }
-        users.clear ( );
-        File file = new File ( SRC_INSTALLERS_TXT );
-        try {
-            try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
-                fileRead ( userToModifyID , newPassword , bufferedReader , LOGGER , users );
-                Users.passwordUpdated = true;
-                writeUsersToFile ( users , file.getPath ( ) );
-            }
-        }
-        catch ( IOException e ) {
-            Users.passwordUpdated = false;
-            printException ( e.getMessage () );
-        }
+        checkThenSetNewPassword ( userToModifyID , newPassword, users, SRC_INSTALLERS_TXT);
     }
 
     public static

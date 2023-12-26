@@ -32,23 +32,23 @@ class ProductC {
 
     public        int    productId;
     public static String category;
-    public        String name;
-    public              int               quantity;
-    public              int               price;
-    public              boolean           productAddSuccessfully;
-    public boolean updateProductSuccess;
+    public static String name;
+    public static int     quantity;
+    public static int     price;
+    public static boolean productAddSuccessfully;
+    public        boolean updateProductSuccess;
 
     public
     ProductC ( ) {
     }
 
     public
-    ProductC ( int id , String categoryIn , String name , int quantity , int price ) {
+    ProductC ( int id , String categoryIn , String nameIn , int quantityIn , int priceIn ) {
         this.productId = id;
         category  = categoryIn;
-        this.name      = name;
-        this.quantity  = quantity;
-        this.price     = price;
+        name      = nameIn;
+        quantity  = quantityIn;
+        price     = priceIn;
     }
 
     public static
@@ -118,13 +118,13 @@ class ProductC {
     void productPrint ( ProductC product ) {
         String msg = ("Product ID: " + product.productId +
                 "\nProduct Category: " + category +
-                "\nProduct Name: " + product.name+
-                "\nProduct Quantity: " + product.quantity +
-                "\nProduct Price: " + product.price + "\n");
+                "\nProduct Name: " + name+
+                "\nProduct Quantity: " + quantity +
+                "\nProduct Price: " + price + "\n");
         LOGGER.info ( msg );
     }
 
-    public
+    public static
     void addProduct ( String categoryI , String nameI , String quantityI , String priceI ) {
         try {
 
@@ -158,18 +158,18 @@ class ProductC {
     }
 
     public
-    void setName ( String name ) {
-        this.name = name;
+    void setName ( String nameIn ) {
+        name = nameIn;
     }
 
     public
-    void setQuantity ( int quantity ) {
-        this.quantity = quantity;
+    void setQuantity ( int quantityIn ) {
+        quantity = quantityIn;
     }
 
     public
-    void setPrice ( int price ) {
-        this.price = price;
+    void setPrice ( int priceIn ) {
+        price = priceIn;
     }
 
     public static
