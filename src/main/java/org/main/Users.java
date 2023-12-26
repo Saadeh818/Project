@@ -92,7 +92,13 @@ class Users {
         catch ( NumberFormatException e ) {
             userIsFound = false;
             LOGGER.info ( "Wrong Input Format For ID" );
+            printException ( e.getMessage ( ) );
         }
+    }
+
+    public static
+    void printException ( String s ) {
+        LOGGER.info ( s );
     }
 
     public static

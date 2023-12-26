@@ -26,7 +26,7 @@ class Customer extends Users {
             Installer.putUsers ( users , SRC_CUSTOMERS_TXT );
         }
         catch ( IOException e ) {
-            throw new RuntimeException ( e );
+            printException ( e.getMessage () );
         }
     }
 
@@ -92,8 +92,7 @@ class Customer extends Users {
             getUsersFromFile ( );
         }
         catch ( IOException e ) {
-            String s = e.getMessage ();
-            LOGGER.info ( s );
+            printException ( e.getMessage () );
         }
     }
 
@@ -164,7 +163,7 @@ class Customer extends Users {
         }
         catch ( IOException e ) {
             Users.passwordUpdated = false;
-            throw new RuntimeException ( e );
+            printException ( e.getMessage () );
         }
     }
 
@@ -244,7 +243,7 @@ class Customer extends Users {
         }
         catch ( IOException e ) {
             Users.usernameChanged = false;
-            throw new RuntimeException ( e );
+            printException ( e.getMessage () );
         }
     }
 
@@ -272,8 +271,7 @@ class Customer extends Users {
             writer.write ( "\n%d. ,%d, %s, %s, %d, %d, %s".formatted ( installationID , productID , category , productName , quantity , price , user ) );
         } catch (IOException e) {
             installationRequestAdded =false;
-            String s = e.getMessage ();
-            LOGGER.info ( s );
+            printException ( e.getMessage () );
         }
     }
 }

@@ -36,8 +36,7 @@ class Installer extends Users {
             }
             return lineCount;
         } catch (IOException e) {
-            String s = e.getMessage ();
-            LOGGER.info ( s );
+            printException ( e.getMessage () );
             return -1; // Return a special value indicating an error
         }
     }
@@ -47,8 +46,7 @@ class Installer extends Users {
             putUsers ( users , SRC_INSTALLERS_TXT );
         }
         catch ( IOException e ) {
-            String s = e.getMessage ();
-            LOGGER.info ( s );
+            printException ( e.getMessage () );
         }
     }
 
@@ -186,8 +184,7 @@ class Installer extends Users {
             getUsersFromFile ( );
         }
         catch ( IOException e ) {
-            String s = e.getMessage ();
-            LOGGER.info ( s );
+            printException ( e.getMessage () );
         }
     }
 
@@ -252,7 +249,7 @@ class Installer extends Users {
         }
         catch ( IOException e ) {
             Users.userDeleted = false;
-            e.printStackTrace ( System.out );
+            printException ( e.getMessage () );
         }
     }
 
@@ -279,7 +276,7 @@ class Installer extends Users {
         }
         catch ( IOException e ) {
             Users.passwordUpdated = false;
-            throw new RuntimeException ( e );
+            printException ( e.getMessage () );
         }
     }
 
@@ -301,7 +298,7 @@ class Installer extends Users {
         }
         catch ( IOException e ) {
             Users.usernameChanged = false;
-            throw new RuntimeException ( e );
+            printException ( e.getMessage () );
         }
     }
 }

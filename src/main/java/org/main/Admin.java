@@ -34,8 +34,7 @@ class Admin extends Users {
             }
         }
         catch ( IOException e ) {
-            String s = e.getMessage ();
-            LOGGER.info ( s );
+            printException ( e.getMessage () );
         }
     }
 

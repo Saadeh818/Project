@@ -45,8 +45,7 @@ class Appointment {
         }
         catch ( IOException e ) {
             userHasAppointments= false;
-            String s = e.getMessage ();
-            LOGGER.info ( s );
+            Users.printException ( e.getMessage () );
         }
     }
 
@@ -67,8 +66,7 @@ class Appointment {
         }
         catch ( IOException e ) {
             appointmentsDisplayed= false;
-            String s = e.getMessage ();
-            LOGGER.info ( s );
+            Users.printException ( e.getMessage () );
         }
     }
 
@@ -142,6 +140,8 @@ class Appointment {
                 return;
             }
             catch ( ParseException e ) {
+                String s = e.getMessage ();
+                LOGGER.info ( s );
                 addSuccess = false;
             }
         }
@@ -158,8 +158,7 @@ class Appointment {
             }
         }
         catch ( IOException e ) {
-            String s = e.getMessage ();
-            LOGGER.info ( s );
+            Users.printException ( e.getMessage () );
         }
     }
 }

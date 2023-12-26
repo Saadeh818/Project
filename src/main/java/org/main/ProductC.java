@@ -187,8 +187,7 @@ class ProductC {
             }
         }
         catch ( NumberFormatException e ) {
-            String s = e.getMessage ();
-            LOGGER.info ( s );
+            Users.printException ( e.getMessage () );
         }
     }
 
