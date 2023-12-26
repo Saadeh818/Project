@@ -79,11 +79,11 @@ class Users {
         }
         if ( userType.equals ( "1" ) ) {
             Installer.addInstaller ( userName , password );
-            failToAdd = ! Installer.addUserSuccess;
+            failToAdd = ! Installer.isAddUserSuccess ();
         }
         else if ( userType.equals ( "2" ) ) {
             Customer.addCustomer ( userName , password );
-            failToAdd = ! Customer.addUserSuccess;
+            failToAdd = ! Customer.isAddUserSuccess ();
         }
         else failToAdd = true;
     }

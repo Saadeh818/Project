@@ -18,16 +18,16 @@ public class ScheduleAppointmentForInstallation {
 
     @When("date is given as {string}")
     public void date_is_given_as(String string) {
-        Customer.addAppointment ( string, Installer.requestID, Installer.userRequested );
+        Customer.addAppointment ( string, Installer.getRequestID (), Installer.getUserRequested () );
     }
 
     @Then("add new appointment")
     public void add_new_appointment() {
-        assertTrue ( Appointment.addSuccess );
+        assertTrue ( Appointment.isAddSuccess () );
     }
 
     @Then("retry appointment")
     public void retry_appointment() {
-        assertFalse(Appointment.addSuccess);
+        assertFalse(Appointment.isAddSuccess ());
     }
 }

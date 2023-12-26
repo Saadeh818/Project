@@ -52,7 +52,7 @@ class Main {
         String password = scanner.nextLine ( );
 
         Installer.login ( username , password );
-        Installer.username = username;
+        Installer.setUsername (  username);
         installerDashboard ( username , password );
     }
 
@@ -68,9 +68,9 @@ class Main {
             }
             else
                 Installer.setInstallationRequestId ( userInput );
-            if ( Installer.requestFound ) {
+            if ( Installer.isRequestFound () ) {
                 LOGGER.info ( "Enter The Date to Schedule An Appointment : \" Date Format is day/month/year\" " );
-                Customer.addAppointment ( scanner.nextLine ( ) , Installer.requestID , Installer.userRequested );
+                Customer.addAppointment ( scanner.nextLine ( ) , Installer.getRequestID () , Installer.getUserRequested () );
                 installerDashboard ( ignoredUsername , ignoredPassword );
             }
         }
@@ -101,7 +101,7 @@ class Main {
         LOGGER.info ( ENTER_PASSWORD_PLEASE );
         String password = scanner.nextLine ( );
         Customer.login ( username, password);
-        if(!Customer.loginFlag)
+        if(!Customer.isLoginFlag ())
         {
          LOGGER.info("USERNAME OR PASSWORD IS WRONG");
          customerAction();

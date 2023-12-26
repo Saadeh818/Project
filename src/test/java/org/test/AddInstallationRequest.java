@@ -11,7 +11,6 @@ import static org.junit.Assert.assertTrue;
 
 public
 class AddInstallationRequest {
-    int productID=1;
     @When ("customer choos the product successfully")
     public void customer_choose_the_product_successfully() {
         Customer.addInstallationRequest ( 3 , 5 , "frommain@installer.com,ahmad010101" );
@@ -24,7 +23,7 @@ class AddInstallationRequest {
 
     @Then("add installation request")
     public void add_installation_request() {
-        assertTrue ( Customer.installationRequestAdded );
+        assertTrue ( Customer.isInstallationRequestAdded () );
     }
 
     @When("customer choos the product wrong")
@@ -39,7 +38,7 @@ class AddInstallationRequest {
 
     @Then("add installation request Fail")
     public void add_installation_request_fail() {
-        assertFalse ( Customer.installationRequestAdded );
+        assertFalse ( Customer.isInstallationRequestAdded () );
     }
 
     @When("view Appointment methode been called")
@@ -48,7 +47,7 @@ class AddInstallationRequest {
     }
     @Then("show all appintments related to the customer")
     public void show_all_appintments_related_to_the_customer() {
-        assertTrue ( Appointment.userHasAppointments );
+        assertTrue ( Appointment.isUserHasAppointments () );
     }
 
     @When ( "view Appointment methode been called by Installer")
@@ -60,6 +59,6 @@ class AddInstallationRequest {
     @Then ( "Show all appointments")
     public
     void showAllAppointments ( ) {
-        assertTrue ( Appointment.appointmentsDisplayed );
+        assertTrue ( Appointment.isAppointmentsDisplayed () );
     }
 }

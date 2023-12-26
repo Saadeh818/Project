@@ -12,17 +12,81 @@ class Installer extends Users {
     public static final String SRC_INSTALLATION_REQUESTS = "src/InstallationRequests";
     public static final String SRC_INSTALLERS_TXT = "src/Installers.txt";
     private static Map < String, String > users = new HashMap <> ( );
-    public static String  username;
-    public static String  password;
-    public static boolean loginFlag        = false;
-    protected static boolean errorMessageFlag = false;
-    protected static boolean addUserSuccess;
-    public static    boolean adminDashboardFlag;
-    protected static boolean installerDashboardFlag = false;
-    public static    boolean listRequestsFlag       = false;
-    public static    boolean requestFound;
-    public static        String requestID;
-    public static        String userRequested;
+
+    public static
+    String getUsername ( ) {
+        return username;
+    }
+
+    public static
+    String getPassword ( ) {
+        return password;
+    }
+
+    public static
+    boolean isLoginFlag ( ) {
+        return loginFlag;
+    }
+
+    public static
+    boolean isAddUserSuccess ( ) {
+        return addUserSuccess;
+    }
+
+    public static
+    boolean isListRequestsFlag ( ) {
+        return listRequestsFlag;
+    }
+
+    public static
+    boolean isRequestFound ( ) {
+        return requestFound;
+    }
+
+    public static
+    String getRequestID ( ) {
+        return requestID;
+    }
+
+    public static
+    String getUserRequested ( ) {
+        return userRequested;
+    }
+
+    private static String  username;
+    private static String  password;
+    private static boolean loginFlag        = false;
+    private static boolean errorMessageFlag = false;
+    private static boolean addUserSuccess;
+
+    public static
+    void setAdminDashboardFlag ( boolean adminDashboardFlag ) {
+        Installer.adminDashboardFlag = adminDashboardFlag;
+    }
+
+    private static boolean adminDashboardFlag;
+    private static boolean installerDashboardFlag = false;
+
+    public static
+    void setListRequestsFlag ( boolean listRequestsFlag ) {
+        Installer.listRequestsFlag = listRequestsFlag;
+    }
+
+    private static boolean listRequestsFlag = false;
+    private static boolean requestFound;
+    private static String  requestID;
+
+    public static
+    void setUsername ( String username ) {
+        Installer.username = username;
+    }
+
+    public static
+    void setPassword ( String password ) {
+        Installer.password = password;
+    }
+
+    private static       String userRequested;
     private static final Logger LOGGER                 = Logger.getLogger ( Installer.class.getName ( ) );
 
     public static int getNumberOfInstallation(){

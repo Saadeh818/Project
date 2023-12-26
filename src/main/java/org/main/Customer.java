@@ -12,12 +12,49 @@ class Customer extends Users {
     public static final String SRC_CUSTOMERS_TXT = "src/Customers.txt";
     private static final Map < String, String > users = new HashMap <> ( );
     private static final Logger LOGGER = Logger.getLogger ( Customer.class.getName ( ) );
-    public static         String                 username;
-    public static        String                 password;
-    public static        boolean                loginFlag        = false;
-    public static        boolean                errorMessageFlag = false;
-    public static  boolean addUserSuccess;
-    public static  boolean installationRequestAdded = false;
+
+    public static
+    void setUsername ( String username ) {
+        Customer.username = username;
+    }
+
+    public static
+    void setPassword ( String password ) {
+        Customer.password = password;
+    }
+
+    public static
+    String getUsername ( ) {
+        return username;
+    }
+
+    public static
+    String getPassword ( ) {
+        return password;
+    }
+
+    public static
+    boolean isLoginFlag ( ) {
+        return loginFlag;
+    }
+
+    public static
+    boolean isAddUserSuccess ( ) {
+        return addUserSuccess;
+    }
+
+    private static String  username;
+    private static String  password;
+    private static boolean loginFlag        = false;
+    private static boolean addUserSuccess;
+
+    public static
+    boolean isInstallationRequestAdded ( ) {
+        return installationRequestAdded;
+    }
+
+    private static boolean installationRequestAdded;
+
 
     static
     void getUsersFromFile ( ) {
@@ -47,7 +84,6 @@ class Customer extends Users {
         loginFlag = adminPass.equals ( password );
         if ( ! loginFlag ) {
             JOptionPane.showMessageDialog ( null, "wrong Input", "Error", JOptionPane.ERROR_MESSAGE );
-            errorMessageFlag = false;
         }
     }
 
@@ -215,9 +251,9 @@ class Customer extends Users {
             installationRequestAdded =false;
             return;
         }
-        category = ProductC.category;
-        productName= ProductC.name;
-        price = ProductC.price;
+        category                 = ProductC.category;
+        productName              = ProductC.name;
+        price                    = ProductC.price;
         installationRequestAdded = true;
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/InstallationRequests", true))) {
             writer.write ( "%n%d. ,%d, %s, %s, %d, %d, %s".formatted ( installationID , productID , category , productName , quantity , price , user ) );

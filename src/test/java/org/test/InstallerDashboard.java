@@ -11,7 +11,7 @@ import static org.junit.Assert.assertTrue;
 public class InstallerDashboard {
     @Given("user is installer")
     public void user_is_installer() {
-        Installer.adminDashboardFlag =true;
+        Installer.setAdminDashboardFlag ( true);
     }
 
     @When("installer entered <{int}>")
@@ -21,7 +21,7 @@ public class InstallerDashboard {
 
     @Then("list installation requests")
     public void list_installation_requests() {
-        assertTrue( Installer.listRequestsFlag);
+        assertTrue( Installer.isListRequestsFlag ());
     }
 
     @When("installer entered {string}")
@@ -31,12 +31,12 @@ public class InstallerDashboard {
 
     @Then("reload installer dashboard")
     public void reload_installer_dashboard() {
-        assertTrue(Installer.loginFlag);
+        assertTrue(Installer.isLoginFlag ());
     }
 
     @Then ( "sign out installer")
     public
     void signOutInstaller ( ) {
-        assertFalse(Installer.loginFlag);
+        assertFalse(Installer.isLoginFlag ());
     }
 }

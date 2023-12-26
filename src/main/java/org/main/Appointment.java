@@ -11,10 +11,26 @@ public
 class Appointment {
     private static final Logger LOGGER = Logger.getLogger ( Appointment.class.getName ( ) );
     public static final String SRC_APPOINTMENTS = "src/Appointments";
-    public static boolean appointmentsDisplayed;
-    public static boolean addSuccess = false;
-    public static boolean userHasAppointments;
-    private static String user;
+
+    public static
+    boolean isAppointmentsDisplayed ( ) {
+        return appointmentsDisplayed;
+    }
+
+    public static
+    boolean isAddSuccess ( ) {
+        return addSuccess;
+    }
+
+    public static
+    boolean isUserHasAppointments ( ) {
+        return userHasAppointments;
+    }
+
+    private static boolean            appointmentsDisplayed;
+    private static boolean            addSuccess;
+    private static boolean            userHasAppointments;
+    private static String             user;
     private static String             thisRequestID;
     static         Date               appointmentDate;
     static         SimpleDateFormat[] simpleDateFormats = {
@@ -23,11 +39,6 @@ class Appointment {
             new SimpleDateFormat ( "d/MM/yyyy" ) ,
             new SimpleDateFormat ( "d/M/yyyy" )
     };
-
-    public
-    Appointment ( ) {
-        //To Hide The Private Constructor
-    }
 
     public static
     void viewAppointments ( String mail ) {
