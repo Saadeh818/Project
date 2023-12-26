@@ -9,7 +9,8 @@ import java.util.logging.Logger;
 
 public
 class Appointment {
-    private static final Logger  LOGGER     = Logger.getLogger ( Appointment.class.getName ( ) );
+    private static final Logger LOGGER = Logger.getLogger ( Appointment.class.getName ( ) );
+    public static final String SRC_APPOINTMENTS = "src/Appointments";
     public static boolean appointmentsDisplayed;
     public static boolean addSuccess = false;
     public static boolean userHasAppointments;
@@ -25,7 +26,7 @@ class Appointment {
 
     public static
     void viewAppointments ( String mail ) {
-        File file = new File ( "src/Appointments" );
+        File file = new File ( SRC_APPOINTMENTS );
         try {
             try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
                 String   appointment;
@@ -51,7 +52,7 @@ class Appointment {
 
     public static
     void viewAllAppointments ( ) {
-        File file = new File ( "src/Appointments" );
+        File file = new File ( SRC_APPOINTMENTS );
         try {
             try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
                 String   appointment;
@@ -149,7 +150,7 @@ class Appointment {
     private
     void addAppointmentToTheFile ( Appointment appointment ) {
         try {
-            File           file             = new File ( "src/Appointments" );
+            File           file             = new File ( SRC_APPOINTMENTS );
             try (BufferedWriter bufferedWriter = new BufferedWriter ( new FileWriter ( file , true ) )) {
                 String appointmentToAdd = appointment.requestID + "," + appointment.user + "," + appointment.appointmentDate.toString ( );
                 bufferedWriter.newLine ( );

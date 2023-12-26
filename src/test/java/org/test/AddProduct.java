@@ -10,7 +10,7 @@ public class AddProduct {
     ProductC product =new ProductC();
     @Given("list of Categories appeared")
     public void list_of_categories_appeared() {
-        product.productList();
+        product.displayProductsByCategory ( );
     }
 
     @When("Admin entered {string}{string}{string}{string}")

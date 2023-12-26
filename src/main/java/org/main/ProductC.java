@@ -93,7 +93,7 @@ class ProductC {
 
 
     public static
-    void productList ( ) {
+    void displayProductsByCategory ( ) {
        LOGGER.info ( "********** Cat1 *********" );
         for ( ProductC product : productList ) {
             if ( product.category.equals ( "cat1" ) ) {

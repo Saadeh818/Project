@@ -6,6 +6,8 @@ class Invoice {
     private              String totalAmount;
     private              String dueDate;
 
+    private  String email;
+
 
     // Getters and setters
 
@@ -32,6 +34,7 @@ class Invoice {
 
     public
     void setCustomerEmail ( String mail ) {
+        email=mail;
     }
 }
 
@@ -46,5 +49,6 @@ class CustomerInvoice {
 
     public static
     void performInvoiceActions ( String createNewInvoice ) {
+
     }
 }

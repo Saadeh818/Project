@@ -11,8 +11,8 @@ import static org.main.Customer.fileRead2;
 public
 class Installer extends Users {
     public static final String SRC_INSTALLATION_REQUESTS = "src/InstallationRequests";
+    public static final String SRC_INSTALLERS_TXT = "src/Installers.txt";
     private static Map < String, String > users = new HashMap <> ( );
-    public static final String INSTALLERS_FILE_PATH = "src/Installers.txt";
     public static String  username;
     public static String  password;
     public static boolean loginFlag        = false;
@@ -44,19 +44,24 @@ class Installer extends Users {
     static
     void getUsersFromFile ( ) {
         try {
-            users.clear ( );
-            File file = new File ( INSTALLERS_FILE_PATH );
-            try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
-                String nameAndPass;
-                while ( (nameAndPass = bufferedReader.readLine ( )) != null ) {
-                    String[] data = nameAndPass.split ( "," );
-                    users.put ( data[ 0 ] , data[ 1 ] );
-                }
-            }
+            putUsers ( users , SRC_INSTALLERS_TXT );
         }
         catch ( IOException e ) {
             String s = e.getMessage ();
             LOGGER.info ( s );
+        }
+    }
+
+    static
+    void putUsers ( Map < String, String > users , String srcInstallersTxt ) throws IOException {
+        users.clear ( );
+        File file = new File ( srcInstallersTxt );
+        try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
+            String nameAndPass;
+            while ( (nameAndPass = bufferedReader.readLine ( )) != null ) {
+                String[] data = nameAndPass.split ( "," );
+                users.put ( data[ 0 ] , data[ 1 ] );
+            }
         }
     }
 
@@ -173,7 +178,7 @@ class Installer extends Users {
     void addToFile ( String userName , String password ) {
         try {
             users.clear ( );
-            File           file           = new File ( "src/Installers.txt" );
+            File           file           = new File ( SRC_INSTALLERS_TXT );
             try (BufferedWriter bufferedWriter = new BufferedWriter ( new FileWriter ( file , true ) )) {
                 String nameAndPass = userName + "," + password;
                 bufferedWriter.write ( nameAndPass+ "\n" );
@@ -227,7 +232,7 @@ class Installer extends Users {
     public static
     void deleteInstallerAccount ( int userToModifyID ) {
         users.clear ( );
-        File file = new File ( "src/Installers.txt" );
+        File file = new File ( SRC_INSTALLERS_TXT );
         try {
             try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
                 String   nameAndPass;
@@ -264,7 +269,7 @@ class Installer extends Users {
             return;
         }
         users.clear ( );
-        File file = new File ( "src/Installers.txt" );
+        File file = new File ( SRC_INSTALLERS_TXT );
         try {
             try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
                 fileRead ( userToModifyID , newPassword , bufferedReader , LOGGER , users );
@@ -286,7 +291,7 @@ class Installer extends Users {
             return;
         }
         users.clear ( );
-        File file = new File ( "src/Installers.txt" );
+        File file = new File ( SRC_INSTALLERS_TXT );
         try {
             try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
                 fileRead2 ( userToModifyID , newUserName , bufferedReader , LOGGER , users );

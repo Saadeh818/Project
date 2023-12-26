@@ -213,7 +213,7 @@ class Main {
                               """ );
         switch (scanner.nextLine ( )) {
             case "1":
-                ProductC.productList ( );
+                ProductC.displayProductsByCategory ( );
                 LOGGER.info ( "Enter The Category: " );
                 String categoryI = scanner.nextLine ( );
                 LOGGER.info ( "Enter The Product Name: " );
@@ -226,7 +226,7 @@ class Main {
                 productManager ( username , password );
                 break;
             case "2":
-                ProductC.productList ( );
+                ProductC.displayProductsByCategory ( );
                 LOGGER.info ( """
                                       1. Cat1.
                                       2. Cat2.
@@ -239,7 +239,7 @@ class Main {
                 productManager ( username , password );
                 break;
             case "3":
-                ProductC.productList ( );
+                ProductC.displayProductsByCategory ( );
                 LOGGER.info ( """
                                       1. Cat1.
                                       2. Cat2.
@@ -300,7 +300,7 @@ class Main {
 
         switch (userInput) {
             case "1":
-                ProductC.productList ( );
+                ProductC.displayProductsByCategory ( );
                 LOGGER.info ( "Enter The product ID" );
                 int prID= scanner.nextInt ();
                 LOGGER.info ( "Enter the quantity" );

@@ -9,7 +9,8 @@ import java.util.logging.Logger;
 public
 class Customer extends Users {
 
-    private static  Map < String, String > users            = new HashMap <> ( );
+    public static final String SRC_CUSTOMERS_TXT = "src/Customers.txt";
+    private static Map < String, String > users = new HashMap <> ( );
     private static final Logger LOGGER = Logger.getLogger ( Customer.class.getName ( ) );
     public static         String                 username;
     public static        String                 password;
@@ -22,15 +23,7 @@ class Customer extends Users {
     static
     void getUsersFromFile ( ) {
         try {
-            users.clear ( );
-            File file = new File ( "src/Customers.txt" );
-            try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
-                String nameAndPass;
-                while ( (nameAndPass = bufferedReader.readLine ( )) != null ) {
-                    String[] data = nameAndPass.split ( "," );
-                    users.put ( data[ 0 ] , data[ 1 ] );
-                }
-            }
+            Installer.putUsers ( users , SRC_CUSTOMERS_TXT );
         }
         catch ( IOException e ) {
             throw new RuntimeException ( e );
@@ -91,7 +84,7 @@ class Customer extends Users {
     void addToFile ( String userName , String password ) {
         try {
             users.clear ( );
-            File           file           = new File ( "src/Customers.txt" );
+            File           file           = new File ( SRC_CUSTOMERS_TXT );
             try (BufferedWriter bufferedWriter = new BufferedWriter ( new FileWriter ( file , true ) )) {
                 String nameAndPass = userName + "," + password;
                 bufferedWriter.write ( nameAndPass+ "\n" );
@@ -129,7 +122,7 @@ class Customer extends Users {
     public static
     void deleteCustomerAccount ( int userToModifyID ) {
         users.clear ( );
-        File file = new File ( "src/Customers.txt" );
+        File file = new File ( SRC_CUSTOMERS_TXT );
         try {
             try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
                 String   nameAndPass;
@@ -161,7 +154,7 @@ class Customer extends Users {
             return;
         }
         users.clear ( );
-        File file = new File ( "src/Customers.txt" );
+        File file = new File ( SRC_CUSTOMERS_TXT );
         try {
             try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
                 fileRead ( userToModifyID , newPassword , bufferedReader , LOGGER , users );
@@ -241,7 +234,7 @@ class Customer extends Users {
             return;
         }
         users.clear ( );
-        File file = new File ( "src/Customers.txt" );
+        File file = new File ( SRC_CUSTOMERS_TXT );
         try {
             try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
                 fileRead2 ( userToModifyID , newUserName , bufferedReader , LOGGER , users );
