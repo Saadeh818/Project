@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 
 public
 class Admin extends Users {
-
     private static final Logger LOGGER = Logger.getLogger ( Admin.class.getName ( ) );
     private static final Map < String, String > users            = new HashMap <> ( );
     protected static String  username;
