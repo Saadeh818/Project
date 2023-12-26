@@ -198,6 +198,7 @@ class Main {
     private static
     void productManager ( String username , String password ) {
         ProductC productC = new ProductC ( );
+        ProductC.displayProductsByCategory ( );
         LOGGER.info ( """
                               *********************************************
                               Here You Can Manage All Products
@@ -228,9 +229,23 @@ class Main {
                                       2. Cat2.
                                       3. Cat3.
                                       Press Any Key To Return.""" );
-                switchStatement ( username , password );
+                switch (scanner.nextLine ( )) {
+                    case "1":
+                        productC.setCategory ( "cat1" );
+                        break;
+                    case "2":
+                        productC.setCategory ( "cat2" );
+                        break;
+                    case "3":
+                        productC.setCategory ( "cat3" );
+                        break;
+                    default:
+                        productManager ( username , password );
+                        break;
+                }
                 LOGGER.info ( "Enter The ID Of The Product" );
-                ProductC.selectIdToDelete ( scanner.nextLine ( ) , ProductC.getCategory () );
+                String id = scanner.nextLine ( );
+                ProductC.selectIdToDelete ( id , productC.getCategory ( ) );
                 LOGGER.info ( "Product Deleted Successfully.................. " );
                 productManager ( username , password );
                 break;
@@ -241,7 +256,7 @@ class Main {
                                       2. Cat2.
                                       3. Cat3.
                                       Press Any Key To Return.""" );
-                switchStatement ( username , password  );
+                switchStatement ( username , password );
                 LOGGER.info ( "Any Field that you dont want to change just insert #..." );
                 LOGGER.info ( "Enter The ID Of The Product" );
                 productC.productId = Integer.parseInt ( scanner.nextLine ( ) );
@@ -269,20 +284,6 @@ class Main {
 
     private static
     void switchStatement ( String username , String password ) {
-        switch (scanner.nextLine ( )) {
-            case "1":
-                ProductC.setCategory ( "cat1" );
-                break;
-            case "2":
-                ProductC.setCategory ( "cat2" );
-                break;
-            case "3":
-                ProductC.setCategory ( "cat3" );
-                break;
-            default:
-                productManager ( username , password );
-                break;
-        }
     }
 
     private static

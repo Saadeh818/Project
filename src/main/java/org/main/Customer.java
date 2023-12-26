@@ -251,7 +251,7 @@ class Customer extends Users {
             installationRequestAdded =false;
             return;
         }
-        category                 = ProductC.getCategory ();
+        category                 = productC.getCategory ();
         productName              = ProductC.getName ();
         price                    = ProductC.getPrice ();
         installationRequestAdded = true;

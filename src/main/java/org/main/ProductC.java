@@ -32,7 +32,7 @@ class ProductC {
 
     public        int    productId;
 
-    public static
+    public
     String getCategory ( ) {
         return category;
     }
@@ -52,7 +52,7 @@ class ProductC {
         return productAddSuccessfully;
     }
 
-    private static String  category;
+    private String  category;
     private static String  name;
     private static int     quantity;
     private static int     price;
@@ -118,19 +118,19 @@ class ProductC {
     void displayProductsByCategory ( ) {
        LOGGER.info ( "********** Cat1 *********" );
         for ( ProductC product : productList ) {
-            if ( category.equals ( "cat1" ) ) {
+            if ( product.category.equals ( "cat1" ) ) {
                 productPrint ( product );
             }
         }
         LOGGER.info ( "********** Cat2 *********" );
         for ( ProductC product : productList ) {
-            if ( category.equals ( "cat2" ) ) {
+            if ( product.category.equals ( "cat2" ) ) {
                 productPrint ( product );
             }
         }
         LOGGER.info ( "********** Cat3 *********" );
         for ( ProductC product : productList ) {
-            if ( category.equals ( "cat3" ) ) {
+            if ( product.category.equals ( "cat3" ) ) {
                 productPrint ( product );
             }
         }
@@ -139,7 +139,7 @@ class ProductC {
     private static
     void productPrint ( ProductC product ) {
         String msg = ("Product ID: " + product.productId +
-                "\nProduct Category: " + category +
+                "\nProduct Category: " + product.category +
                 "\nProduct Name: " + name+
                 "\nProduct Quantity: " + quantity +
                 "\nProduct Price: " + price + "\n");
@@ -153,11 +153,7 @@ class ProductC {
             if ( ! (categoryI.equals ( "cat1" ) || categoryI.equals ( "cat2" ) || categoryI.equals ( "cat3" )) || (nameI.length ( ) < 4) )
                 productAddSuccessfully = false;
             else {
-                category = categoryI;
-                name     = nameI;
-                quantity = Integer.parseInt ( quantityI );
-                price    = Integer.parseInt ( priceI );
-                ProductC product = new ProductC ( productList.size ( ) + 1 , category , name , quantity , price );
+                ProductC product = new ProductC ( productList.size ( ) + 1 , categoryI , nameI , Integer.parseInt ( quantityI ) , Integer.parseInt ( priceI ) );
                 productList.add ( product );
                 productAddSuccessfully = true;
                 LOGGER.info ( "Product Added Successfully..." );
@@ -169,14 +165,14 @@ class ProductC {
         }
     }
 
-    public static
+    public
     void setCategory ( String categoryI ) {
         if ( ! (categoryI.equals ( "cat1" ) || categoryI.equals ( "cat2" ) || categoryI.equals ( "cat3" )) ) {
             wrongInputFlag             = true;
             productDeletedSuccessfully = false;
         }
         else
-            category = categoryI;
+            this.category = categoryI;
     }
 
     public static
@@ -199,7 +195,9 @@ class ProductC {
         try {
             int idInt = Integer.parseInt ( id );
             if ( checkIfProductExists ( idInt ) ) {
-                productList.removeIf ( product -> category.equals ( categoryIn ) && product.productId == idInt );
+                productList.removeIf ( product -> {
+                    return product.category.equals ( categoryIn ) && product.productId == idInt;
+                } );
                 productDeletedSuccessfully = !checkIfProductExists ( idInt );
                 LOGGER.info ( "The Product has been deleted successfully" );
             }
