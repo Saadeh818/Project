@@ -10,7 +10,7 @@ public class ChoosingUserToModify {
 
     @And("admin entered user id {string}")
     public void admin_entered_user_id(String string) {
-        Users.userToModifyID ( string );
+        Users.setUserToModifyID ( string );
     }
 
     @Then("return to choose user to modify")

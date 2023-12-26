@@ -170,7 +170,7 @@ class Main {
 
     private static
     void modifyUser ( String username , String password ) {
-        Users.userToModifyID ( scanner.nextLine ( ) );
+        Users.setUserToModifyID ( scanner.nextLine ( ) );
         Users.loadModifyAccountOptions ( );
         switch (scanner.nextLine ( )) {
             case "1":

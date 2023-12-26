@@ -61,10 +61,6 @@ class Users {
     }
 
     public static
-    void changePassword ( ) {
-    }
-
-    public static
     void adduser ( String userType , String userName , String password ) {
         if ( userType.isEmpty ( ) ) {
             failToAdd = true;
@@ -83,7 +79,7 @@ class Users {
 
 
     public static
-    void userToModifyID ( String ID ) {
+    void setUserToModifyID ( String ID ) {
         try {
             userToModifyID = Integer.parseInt ( ID );
             if ( customerSelected && (userToModifyID - 1 <= Customer.getUsers ( ).size ( )) ) userIsFound = true;
