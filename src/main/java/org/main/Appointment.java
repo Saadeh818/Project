@@ -17,7 +17,7 @@ class Appointment {
     String             user;
     String             requestID;
     Date               appointmentDate;
-    SimpleDateFormat[] simpleDateFormats = {
+    static SimpleDateFormat[] simpleDateFormats = {
             new SimpleDateFormat ( "dd/MM/yyyy" ) ,
             new SimpleDateFormat ( "dd/M/yyyy" ) ,
             new SimpleDateFormat ( "d/MM/yyyy" ) ,
@@ -71,7 +71,7 @@ class Appointment {
     }
 
 
-    public
+    public static
     boolean checkDate ( String date ) {
         for ( SimpleDateFormat simpleDateFormat : simpleDateFormats ) {
             simpleDateFormat.setLenient ( false );
@@ -96,7 +96,7 @@ class Appointment {
         return false;
     }
 
-    private
+    private static
     void checkIfDateValid ( Date inputDate ) {
         Calendar calendar = Calendar.getInstance ( );
         calendar.setTime ( inputDate );
@@ -114,7 +114,7 @@ class Appointment {
         }
     }
 
-    private
+    private static
     int getDaysInMonth ( int month , int year ) {
         return switch (month) {
             case 2 -> {
