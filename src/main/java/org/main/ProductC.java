@@ -209,6 +209,7 @@ class ProductC {
 
     public
     void updateValues ( int ID , String category , String name , String quantity , String price ) {
+        LOGGER.info ( "If You Dont Want To Change A Filed Just Insert A # On It." );
         for ( ProductC product : productList ) {
             if ( product.productId == ID ) {
                 productPrint ( product );
@@ -217,13 +218,11 @@ class ProductC {
                 if ( ! quantity.equals ( "#" ) ) product.setQuantity ( Integer.parseInt ( quantity ) );
                 if ( ! price.equals ( "#" ) ) product.setPrice ( Integer.parseInt ( price ) );
                 updateProductSuccess = true;
-                LOGGER.info ( "**********Product Updated Success**********" );
+                LOGGER.info ( "**********Product Updated Successfully**********" );
                 productPrint ( product );
                 return;
             }
-            else {
                 updateProductSuccess = false;
-            }
         }
 
 

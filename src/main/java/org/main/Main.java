@@ -9,8 +9,6 @@ public
 class Main {
     public static final String ENTER_PASSWORD_PLEASE = "\nEnter Password please: ";
     static Scanner scanner = new Scanner ( System.in );
-    static                   InvoiceManager invoiceManager = new InvoiceManager ( );  // Assuming you have an InvoiceManager instance
-    static                   Invoice        currentInvoice;
     private static final Logger         LOGGER         = Logger.getLogger ( Customer.class.getName ( ) );
 
 
@@ -321,106 +319,4 @@ class Main {
                 customerDashboard (username );
         }
     }
-
-    private static
-    void viewProducts ( ) {
-        LOGGER.info ( "Displaying products..." );
-    }
-
-    private static
-    void writeProductReview ( ) {
-        LOGGER.info ( "Enter the product name you want to review:" );
-        String productName = scanner.nextLine ( );
-
-        LOGGER.info ( "Write your review:" );
-        String review = scanner.nextLine ( );
-
-        // TODO: Implement logic to submit the review
-        LOGGER.info ( "Thank you for your review!" );
-    }
-
-    private static
-    void sendInvoice ( ) {
-        enterCustomerEmailAddress ( );
-        invoiceManager.sendInvoice ( currentInvoice );
-    }
-
-    private static
-    void enterCustomerEmailAddress ( ) {
-        currentInvoice.setCustomerEmail ( "dena123@email.com" );
-    }
-
-    public
-    void performInvoiceActions ( String action ) {
-        switch (action) {
-            case "Create New Invoice":
-                createNewInvoice ( );
-                break;
-            case "Delete Invoice":
-                deleteInvoice ( );
-                break;
-            case "Edit Invoice":
-                editInvoice ( );
-                break;
-            case "View Invoice":
-                viewInvoice ( );
-                break;
-            case "Send Invoice":
-                sendInvoice ( );
-                break;
-            default:
-                LOGGER.info ( "Invalid action: " + action );
-        }
-    }
-
-    private
-    void viewInvoice ( ) {
-    }
-
-    private
-    void editInvoice ( ) {
-    }
-
-    private
-    void createNewInvoice ( ) {
-        currentInvoice = new Invoice ( );
-        enterNecessaryDetailsForNewInvoice ( );
-        invoiceManager.createInvoice ( currentInvoice );
-        verifyNewInvoiceIsAddedToList ( );
-    }
-
-    private
-    void verifyNewInvoiceIsAddedToList ( ) {
-    }
-
-    private
-    void enterNecessaryDetailsForNewInvoice ( ) {
-        currentInvoice.setInvoiceNumber ( "001" );
-        currentInvoice.setCustomerName ( "dena" );
-        currentInvoice.setTotalAmount ( "$500" );
-        currentInvoice.setDueDate ( "2023-02-15" );
-    }
-
-
-    // Other methods...
-
-    private
-    void deleteInvoice ( ) {
-        enterNecessaryDetailsForNewInvoice ( ); // Assuming you need details for deletion
-        invoiceManager.deleteInvoice ( currentInvoice );
-        verifySelectedInvoiceIsDeleted ( );
-    }
-
-    private
-    void verifySelectedInvoiceIsDeleted ( ) {
-    }
-
-    private
-    void logoutUser ( ) {
-        currentInvoice = null;
-        LOGGER.info ( "Logged out..." );
-        LOGGER.info ( "Thanks for using iCar." );
-    }
-
-
 }
