@@ -251,9 +251,9 @@ class Customer extends Users {
             installationRequestAdded =false;
             return;
         }
-        category                 = ProductC.category;
-        productName              = ProductC.name;
-        price                    = ProductC.price;
+        category                 = ProductC.getCategory ();
+        productName              = ProductC.getName ();
+        price                    = ProductC.getPrice ();
         installationRequestAdded = true;
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/InstallationRequests", true))) {
             writer.write ( "%n%d. ,%d, %s, %s, %d, %d, %s".formatted ( installationID , productID , category , productName , quantity , price , user ) );

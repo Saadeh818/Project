@@ -24,12 +24,6 @@ class Users {
     public static        boolean addUserSelected  = false;
     private static final Logger  LOGGER           = Logger.getLogger ( Users.class.getName ( ) );
 
-    public
-    Users ( ) {
-        //To Hide The Private Constructor
-    }
-
-
     public static
     void userManagementScreen ( ) {
         LOGGER.info ( """

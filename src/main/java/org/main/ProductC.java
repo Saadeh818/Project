@@ -31,12 +31,33 @@ class ProductC {
     }
 
     public        int    productId;
-    public static String category;
-    public static String name;
-    public static int     quantity;
-    public static int     price;
-    public static boolean productAddSuccessfully;
-    public        boolean updateProductSuccess;
+
+    public static
+    String getCategory ( ) {
+        return category;
+    }
+
+    public static
+    String getName ( ) {
+        return name;
+    }
+
+    public static
+    int getPrice ( ) {
+        return price;
+    }
+
+    public static
+    boolean isProductAddSuccessfully ( ) {
+        return productAddSuccessfully;
+    }
+
+    private static String  category;
+    private static String  name;
+    private static int     quantity;
+    private static int     price;
+    private static boolean productAddSuccessfully;
+    public         boolean updateProductSuccess;
 
     public
     ProductC ( ) {

@@ -65,7 +65,7 @@ class Installer extends Users {
     }
 
     private static boolean adminDashboardFlag;
-    private static boolean installerDashboardFlag = false;
+    private static boolean installerDashboardFlag;
 
     public static
     void setListRequestsFlag ( boolean listRequestsFlag ) {
@@ -143,7 +143,8 @@ class Installer extends Users {
         String adminPass = users.get ( username );
         loginFlag = adminPass.equals ( password );
         if ( ! loginFlag ) {
-            errorMessageFlag = false;
+            LOGGER.info ( "Can't Log In" );
+            errorMessageFlag = true;
         }
         else {
             dashboardManager ( "Load Dashboard" );
@@ -158,8 +159,8 @@ class Installer extends Users {
                 break;
 
             case "3":
-                MainScreen.currentPage = "home-page";
-                MainScreen.displayPage ( MainScreen.currentPage );
+                MainScreen.setCurrentPage ("home-page");
+                MainScreen.displayPage ( MainScreen.getCurrentPage () );
                 clearCredentials ( );
                 break;
             default:

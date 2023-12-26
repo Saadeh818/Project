@@ -5,15 +5,19 @@ import java.util.logging.Logger;
 public
 class MainScreen {
     static               String userInput;
-    public static        String currentPage;
-    private static final Logger LOGGER = Logger.getLogger ( MainScreen.class.getName ( ) );
 
-    public
-    MainScreen ( ) {
-        //To Hide The Private Constructor
+    public static
+    String getCurrentPage ( ) {
+        return currentPage;
     }
 
+    public static
+    void setCurrentPage ( String currentPage ) {
+        MainScreen.currentPage = currentPage;
+    }
 
+    private static       String currentPage;
+    private static final Logger LOGGER = Logger.getLogger ( MainScreen.class.getName ( ) );
     public static
     void displayPage ( String currentPage ) {
         if ( currentPage.equals ( "home-page" ) )

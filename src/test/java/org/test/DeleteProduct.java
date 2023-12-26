@@ -6,8 +6,6 @@ import org.main.ProductC;
 import org.junit.Assert;
 
 public class DeleteProduct {
-    ProductC product = new ProductC();
-
     @Given("category list appear")
     public void category_list_appear() {
         ProductC.listProductFlag=true;
@@ -15,12 +13,12 @@ public class DeleteProduct {
 
     @When("user choose category {string}")
     public void user_choose_to_delete_from(String string) {
-        product.setCategory(string);
+        ProductC.setCategory ( string );
     }
 
     @When("choose product id {string}")
     public void choose_product_id(String string) {
-        product.selectIdToDelete(string,product.category);
+        ProductC.selectIdToDelete ( string, ProductC.getCategory ( ) );
     }
 
     @Then("print wrong selection message")

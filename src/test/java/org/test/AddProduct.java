@@ -7,24 +7,23 @@ import org.main.ProductC;
 import org.junit.Assert;
 
 public class AddProduct {
-    ProductC product =new ProductC();
     @Given("list of Categories appeared")
     public void list_of_categories_appeared() {
-        product.displayProductsByCategory ( );
+        ProductC.displayProductsByCategory ( );
     }
 
     @When("Admin entered {string}{string}{string}{string}")
     public void admin_entered(String category, String name, String quantity, String price) {
-        product.addProduct(category,name,quantity,price);
+        ProductC.addProduct ( category, name, quantity, price );
     }
 
     @Then("add Product to products list")
     public void add_to_products_list() {
-        Assert.assertTrue(product.productAddSuccessfully);
+        Assert.assertTrue ( ProductC.isProductAddSuccessfully () );
     }
 
     @Then("wrong input message appear and return to add product")
     public void wrong_input_message_appear_and_return_to_add_product() {
-        Assert.assertFalse(product.productAddSuccessfully);
+        Assert.assertFalse ( ProductC.isProductAddSuccessfully ( ) );
     }
 }

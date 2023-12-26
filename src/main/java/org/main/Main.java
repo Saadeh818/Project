@@ -17,7 +17,7 @@ class Main {
             MainScreen.userInput = scanner.nextLine ( );
             if ( MainScreen.userInput.equals ( "5" ) ) break;
             MainScreen.nextScreen ( );
-            switch (MainScreen.currentPage) {
+            switch (MainScreen.getCurrentPage ()) {
                 case "admin-login":
                     adminActions ( );
                     break;
@@ -230,7 +230,7 @@ class Main {
                                       Press Any Key To Return.""" );
                 switchStatement ( username , password );
                 LOGGER.info ( "Enter The ID Of The Product" );
-                ProductC.selectIdToDelete ( scanner.nextLine ( ) , ProductC.category );
+                ProductC.selectIdToDelete ( scanner.nextLine ( ) , ProductC.getCategory () );
                 LOGGER.info ( "Product Deleted Successfully.................. " );
                 productManager ( username , password );
                 break;

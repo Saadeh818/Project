@@ -123,8 +123,8 @@ class Admin extends Users {
                 manageUsersFlag = true;
                 break;
             case "3":
-                MainScreen.currentPage = "home-page";
-                MainScreen.displayPage ( MainScreen.currentPage );
+                MainScreen.setCurrentPage ("home-page");
+                MainScreen.displayPage ( MainScreen.getCurrentPage () );
                 clearCredentials ( );
                 break;
             default:
