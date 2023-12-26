@@ -26,7 +26,7 @@ class Appointment {
 
     public
     Appointment ( ) {
-        thisRequestID="";
+        //To Hide The Private Constructor
     }
 
     public static

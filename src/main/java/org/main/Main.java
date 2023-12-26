@@ -57,21 +57,21 @@ class Main {
     }
 
     private static
-    void installerDashboard ( String username , String password ) {
+    void installerDashboard ( String ignoredUsername , String ignoredPassword ) {
         String userInput = scanner.nextLine ( );
         Installer.dashboardManager ( userInput );
         if ( userInput.equals ( "1" ) ) {
             LOGGER.info ( "Choose ID To Schedule An Appointment Or Enter # To return To dashboard " );
             userInput = scanner.nextLine ( );
             if ( userInput.equals ( "#" ) ) {
-                installerDashboard ( username , password );
+                installerDashboard ( ignoredUsername , ignoredPassword );
             }
             else
                 Installer.setInstallationRequestId ( userInput );
             if ( Installer.requestFound ) {
                 LOGGER.info ( "Enter The Date to Schedule An Appointment : \" Date Format is day/month/year\" " );
                 Customer.addAppointment ( scanner.nextLine ( ) , Installer.requestID , Installer.userRequested );
-                installerDashboard ( username , password );
+                installerDashboard ( ignoredUsername , ignoredPassword );
             }
         }
     }
@@ -218,7 +218,7 @@ class Main {
                 String quantityI = scanner.nextLine ( );
                 LOGGER.info ( "Enter The Product Price: " );
                 String priceI = scanner.nextLine ( );
-                productC.addProduct ( categoryI , nameI , quantityI , priceI );
+                ProductC.addProduct ( categoryI , nameI , quantityI , priceI );
                 productManager ( username , password );
                 break;
             case "2":
@@ -228,9 +228,9 @@ class Main {
                                       2. Cat2.
                                       3. Cat3.
                                       Press Any Key To Return.""" );
-                switchStatement ( username , password , productC );
+                switchStatement ( username , password );
                 LOGGER.info ( "Enter The ID Of The Product" );
-                productC.selectIdToDelete ( scanner.nextLine ( ) , productC.category );
+                ProductC.selectIdToDelete ( scanner.nextLine ( ) , ProductC.category );
                 LOGGER.info ( "Product Deleted Successfully.................. " );
                 productManager ( username , password );
                 break;
@@ -241,7 +241,7 @@ class Main {
                                       2. Cat2.
                                       3. Cat3.
                                       Press Any Key To Return.""" );
-                switchStatement ( username , password , productC );
+                switchStatement ( username , password  );
                 LOGGER.info ( "Any Field that you dont want to change just insert #..." );
                 LOGGER.info ( "Enter The ID Of The Product" );
                 productC.productId = Integer.parseInt ( scanner.nextLine ( ) );
@@ -268,16 +268,16 @@ class Main {
     }
 
     private static
-    void switchStatement ( String username , String password , ProductC productC ) {
+    void switchStatement ( String username , String password ) {
         switch (scanner.nextLine ( )) {
             case "1":
-                productC.setCategory ( "cat1" );
+                ProductC.setCategory ( "cat1" );
                 break;
             case "2":
-                productC.setCategory ( "cat2" );
+                ProductC.setCategory ( "cat2" );
                 break;
             case "3":
-                productC.setCategory ( "cat3" );
+                ProductC.setCategory ( "cat3" );
                 break;
             default:
                 productManager ( username , password );

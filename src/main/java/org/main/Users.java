@@ -26,7 +26,7 @@ class Users {
 
     public
     Users ( ) {
-        modifyAccountType="";
+        //To Hide The Private Constructor
     }
 
 

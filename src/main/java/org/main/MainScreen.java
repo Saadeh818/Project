@@ -10,8 +10,7 @@ class MainScreen {
 
     public
     MainScreen ( ) {
-        userInput = "";
-        currentPage="";
+        //To Hide The Private Constructor
     }
 
 
