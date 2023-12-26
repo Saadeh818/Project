@@ -14,11 +14,36 @@ class Admin extends Users {
     private static final Map < String, String > users            = new HashMap <> ( );
     protected static String  username;
     protected static String  password;
-    public static    boolean loginFlag          = false;
-    public static    boolean adminDashboardFlag = false;
-    public static    boolean manageProductFlag;
-    public static boolean manageUsersFlag;
-    public static boolean errorMessageFlag = false;
+
+    public static
+    boolean isLoginFlag ( ) {
+        return loginFlag;
+    }
+
+    public static
+    boolean isAdminDashboardFlag ( ) {
+        return adminDashboardFlag;
+    }
+
+    public static
+    void setAdminDashboardFlag ( boolean adminDashboardFlag ) {
+        Admin.adminDashboardFlag = adminDashboardFlag;
+    }
+
+    public static
+    boolean isManageUsersFlag ( ) {
+        return manageUsersFlag;
+    }
+
+    public static
+    boolean isErrorMessageFlag ( ) {
+        return errorMessageFlag;
+    }
+
+    private static boolean loginFlag;
+    private static boolean adminDashboardFlag;
+    private static boolean manageUsersFlag;
+    private static boolean errorMessageFlag;
 
     static
     void getUsersFromFile ( ) {
@@ -67,7 +92,7 @@ class Admin extends Users {
         }
         String adminPass = users.get ( username );
         loginFlag = adminPass.equals ( password );
-        if ( ! loginFlag ) {
+        if ( ! isLoginFlag () ) {
             LOGGER.info ( "Wrong password" );
             errorMessageFlag = false;
         }
@@ -93,7 +118,6 @@ class Admin extends Users {
         switch (userInput) {
             case "1":
 
-                manageProductFlag = true;
                 break;
             case "2":
                 manageUsersFlag = true;

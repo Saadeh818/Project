@@ -10,7 +10,7 @@ import static org.junit.Assert.assertTrue;
 public class AdminDashboard {
     @Given("user is admin and admin dashboard opened")
     public void user_is_admin_and_admin_dashboard_opened() {
-        Admin.adminDashboardFlag =true;
+        Admin.setAdminDashboardFlag ( true );
     }
     @When("admin in admin dashboard entered {string}")
     public void adminInAdminDashboardEntered(String arg0) {
@@ -19,22 +19,22 @@ public class AdminDashboard {
 
     @Then("go to product management")
     public void go_to_product_management() {
-        assertTrue(Admin.manageProductFlag);
+        assertTrue(Admin.isAdminDashboardFlag ());
     }
 
     @Then("go to user management")
     public void go_to_user_management() {
-        assertTrue(Admin.manageUsersFlag);
+        assertTrue(Admin.isManageUsersFlag());
     }
 
     @Then("sign out")
     public void sign_out() {
-        assertFalse(Admin.loginFlag);
+        assertFalse(Admin.isLoginFlag ());
     }
 
     @Then("reload dashboard")
     public void reload_dashboard() {
-        assertTrue(Admin.loginFlag);
+        assertTrue(Admin.isLoginFlag ());
     }
 
 }

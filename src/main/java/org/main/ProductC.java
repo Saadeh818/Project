@@ -59,35 +59,35 @@ class ProductC {
                 readyToAdd = true;
                 readyToUpdate = false;
                 readyToDelete = false;
-                Admin.adminDashboardFlag = false;
+                Admin.setAdminDashboardFlag ( false );
                 wrongInputFlag = false;
                 break;
             case "2":
                 readyToAdd = false;
                 readyToUpdate = false;
                 readyToDelete = true;
-                Admin.adminDashboardFlag = false;
+                Admin.setAdminDashboardFlag ( false );
                 wrongInputFlag = false;
                 break;
             case "3":
                 readyToAdd = false;
                 readyToUpdate = true;
                 readyToDelete = false;
-                Admin.adminDashboardFlag = false;
+                Admin.setAdminDashboardFlag ( false );
                 wrongInputFlag = false;
                 break;
             case "4":
                 readyToAdd = false;
                 readyToUpdate = false;
                 readyToDelete = false;
-                Admin.adminDashboardFlag = true;
+                Admin.setAdminDashboardFlag ( true );
                 wrongInputFlag = false;
                 break;
             default:
                 readyToAdd = false;
                 readyToUpdate = false;
                 readyToDelete = false;
-                Admin.adminDashboardFlag = false;
+                Admin.setAdminDashboardFlag ( false );
                 wrongInputFlag = true;
         }
     }

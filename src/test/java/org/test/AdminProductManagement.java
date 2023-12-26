@@ -29,7 +29,7 @@ public class AdminProductManagement {
 
     @Then("go to dashboard")
     public void go_to_dashboard() {
-        Assert.assertTrue ( Admin.adminDashboardFlag );
+        Assert.assertTrue ( Admin.isAdminDashboardFlag() );
     }
     @Then("show wrong input message")
     public void showWrongInputMessage() {
