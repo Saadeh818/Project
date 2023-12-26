@@ -10,8 +10,6 @@ class Main {
     public static final String ENTER_PASSWORD_PLEASE = "\nEnter Password please: ";
     static Scanner scanner = new Scanner ( System.in );
     private static final Logger         LOGGER         = Logger.getLogger ( Customer.class.getName ( ) );
-
-
     public static
     void main ( String[] args ) {
         while ( true ) {
@@ -319,4 +317,8 @@ class Main {
                 customerDashboard (username );
         }
     }
+
+
+
+
 }
