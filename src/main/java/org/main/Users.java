@@ -148,8 +148,9 @@ class Users {
             }
             if(filePath.contains ( CUSTOMER ))
             Customer.getUsersFromFile ( );
-            else
-                Installer.getUsersFromFile ();
+            else {
+                Installer.getUsersFromFile ( );
+            }
         }
         catch ( IOException e ) {
             printException ( e.getMessage () );
@@ -176,8 +177,9 @@ class Users {
                 Users.userDeleted = true;
                 if(srcInstallersTxt.contains ( INSTALLER ))
                 Installer.writeUsersToFile ( users , file.getPath ( ) );
-                else
-                    Customer.writeUsersToFile ( users, file.getPath () );
+                else {
+                    Customer.writeUsersToFile ( users , file.getPath ( ) );
+                }
             }
         }
         catch ( IOException e ) {
@@ -205,8 +207,9 @@ class Users {
                 Users.passwordUpdated = true;
                 if(srcInstallersTxt.contains ( INSTALLER ))
                 Installer.writeUsersToFile ( users , file.getPath ( ) );
-                else
-                    Customer.writeUsersToFile ( users,file.getPath () );
+                else {
+                    Customer.writeUsersToFile ( users , file.getPath ( ) );
+                }
             }
         }
         catch ( IOException e ) {
