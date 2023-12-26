@@ -55,10 +55,8 @@ class Appointment {
         try {
             try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
                 String   appointment;
-                String[] data;
                 while ( (appointment = bufferedReader.readLine ( )) != null ) {
-                    data = appointment.split ( "," );
-                        LOGGER.info ( appointment );
+                    LOGGER.info ( appointment );
                         appointmentsDisplayed= true;
                 }
                 if(!appointmentsDisplayed){

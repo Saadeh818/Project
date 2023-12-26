@@ -10,6 +10,7 @@ import static org.main.Customer.fileRead2;
 
 public
 class Installer extends Users {
+    public static final String SRC_INSTALLATION_REQUESTS = "src/InstallationRequests";
     private static Map < String, String > users = new HashMap <> ( );
     public static final String INSTALLERS_FILE_PATH = "src/Installers.txt";
     public static String  username;
@@ -26,9 +27,11 @@ class Installer extends Users {
     private static final Logger LOGGER                 = Logger.getLogger ( Installer.class.getName ( ) );
 
     public static int getNumberOfInstallation(){
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/InstallationRequests"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader( SRC_INSTALLATION_REQUESTS ))) {
             int lineCount = 0;
-            while (reader.readLine() != null) {
+            while ( true ) {
+                String readLine = reader.readLine ( );
+                if ( readLine == null ) break;
                 lineCount++;
             }
             return lineCount;
@@ -102,7 +105,7 @@ class Installer extends Users {
     private static
     void listInstallationRequests ( ) {
         listRequestsFlag = false;
-        File file = new File ( "src/InstallationRequests" );
+        File file = new File ( SRC_INSTALLATION_REQUESTS );
         try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
             String  installationRequest;
             boolean empty = true;
@@ -196,7 +199,7 @@ class Installer extends Users {
 
     public static
     void setInstallationRequestId ( String string ) {
-        File file = new File ( "src/InstallationRequests" );
+        File file = new File ( SRC_INSTALLATION_REQUESTS );
         try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
             String installationRequest;
             requestFound = false;

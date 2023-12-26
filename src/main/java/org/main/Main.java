@@ -7,7 +7,8 @@ import java.util.logging.Logger;
 // then press Enter. You can now see whitespace characters in your code.
 public
 class Main {
-    static                   Scanner        scanner        = new Scanner ( System.in );
+    public static final String ENTER_PASSWORD_PLEASE = "\nEnter Password please: ";
+    static Scanner scanner = new Scanner ( System.in );
     static                   InvoiceManager invoiceManager = new InvoiceManager ( );  // Assuming you have an InvoiceManager instance
     static                   Invoice        currentInvoice;
     private static final Logger         LOGGER         = Logger.getLogger ( Customer.class.getName ( ) );
@@ -36,7 +37,7 @@ class Main {
                     String type = scanner.nextLine ( );
                     LOGGER.info ( "Enter Your Email: " );
                     String email = scanner.nextLine ( );
-                    LOGGER.info ( "Enter Your Password: " );
+                    LOGGER.info ( ENTER_PASSWORD_PLEASE );
                     Users.adduser ( type , email , scanner.nextLine ( ) );
                     break;
                 default:
@@ -51,7 +52,7 @@ class Main {
                                    + "Enter your Email please: " );
         Installer.clearCredentials ( );
         String username = scanner.nextLine ( );
-        LOGGER.info ( "\nEnter Password please: " );
+        LOGGER.info ( ENTER_PASSWORD_PLEASE );
         String password = scanner.nextLine ( );
 
         Installer.login ( username , password );
@@ -67,7 +68,6 @@ class Main {
             LOGGER.info ( "Choose ID To Schedule An Appointment Or Enter # To return To dashboard " );
             userInput = scanner.nextLine ( );
             if ( userInput.equals ( "#" ) ) {
-                Installer.dashboardManager ( "Load Dashboard" );
                 installerDashboard ( username , password );
             }
             else
@@ -78,7 +78,6 @@ class Main {
                 installerDashboard ( username , password );
             }
         }
-        installerDashboard ( username , password );
     }
 
 
@@ -88,7 +87,7 @@ class Main {
                                    + "Enter your name please: " );
         Admin.clearCredentials ( );
         String username = scanner.nextLine ( );
-        LOGGER.info ( "\nEnter Password please: " );
+        LOGGER.info ( ENTER_PASSWORD_PLEASE );
         String password = scanner.nextLine ( );
 
         Admin.setUsername ( username );
@@ -103,7 +102,7 @@ class Main {
                 + "Enter your name please: " );
         Customer.clearCredentials ( );
         String username = scanner.nextLine ( );
-        LOGGER.info ( "\nEnter Password please: " );
+        LOGGER.info ( ENTER_PASSWORD_PLEASE );
         String password = scanner.nextLine ( );
         Customer.login ( username, password);
         if(!Customer.loginFlag)
@@ -143,28 +142,33 @@ class Main {
                 LOGGER.info ( "Enter Installer ID To Modify: " );
                 modifyUser ( username , password );
                 userManager ( username,password );
+                break;
             case "2":
                 LOGGER.info ( "Enter Customer ID To Modify: " );
                 modifyUser ( username , password );
                 userManager ( username,password );
+                break;
             case "3":
                  LOGGER.info ( """
                                        Choose User Type To Add:
                                        1. Installer
                                        2. Customer\s""");
-                String NewUserType = scanner.nextLine ( );
+                String newUserType = scanner.nextLine ( );
                 LOGGER.info ( "Enter User Name: " );
-                String NewUserName = scanner.nextLine ( );
+                String newUserName = scanner.nextLine ( );
                LOGGER.info ( "Enter Password: " );
                 String newUserPassword = scanner.nextLine ( );
-                Users.adduser ( NewUserType , NewUserName , newUserPassword );
+                Users.adduser ( newUserType , newUserName , newUserPassword );
                 userManager ( username , password );
+                break;
             case "4":
                 adminDashboard ( username , password );
+                break;
             case "5":
                 return;
             default:
                 userManager ( username , password );
+                break;
         }
     }
 
@@ -193,7 +197,6 @@ class Main {
                 userManager ( username , password );
                 break;
         }
-        return;
     }
 
     private static
@@ -262,6 +265,9 @@ class Main {
                 break;
             case "5":
                 break;
+            default:
+                productManager ( username , password );
+                break;
         }
     }
 
@@ -303,7 +309,8 @@ class Main {
                 customerDashboard(username);
                 break;
             case "2":
-                LOGGER.info ( "Your UserName Is: "+username );
+                String userMsgUserName = "Your UserName Is: " + username;
+                LOGGER.info ( userMsgUserName );
                 Appointment.viewAppointments ( username );
                 break;
             case "3":
@@ -317,7 +324,6 @@ class Main {
 
     private static
     void viewProducts ( ) {
-        // TODO: Implement logic to display products to the customer
         LOGGER.info ( "Displaying products..." );
     }
 

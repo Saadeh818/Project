@@ -1,5 +1,6 @@
 package org.main;
 
+import javax.swing.*;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,8 +11,8 @@ class Customer extends Users {
 
     private static  Map < String, String > users            = new HashMap <> ( );
     private static final Logger LOGGER = Logger.getLogger ( Customer.class.getName ( ) );
-    static public        String                 username;
-    static public        String                 password;
+    public static         String                 username;
+    public static        String                 password;
     static public        boolean                loginFlag        = false;
     static public        boolean                errorMessageFlag = false;
     public static  boolean addUserSuccess;
@@ -53,7 +54,7 @@ class Customer extends Users {
         String adminPass = users.get ( username );
         loginFlag = adminPass.equals ( password );
         if ( ! loginFlag ) {
-//            JOptionPane.showMessageDialog(null,"wrong Input","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog ( null, "wrong Input", "Error", JOptionPane.ERROR_MESSAGE );
             errorMessageFlag = false;
         }
     }
@@ -275,8 +276,7 @@ class Customer extends Users {
         price = productC.price;
         installationRequestAdded = true;
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/InstallationRequests", true))) {
-            writer.write("\n"+installationID + ". ," + productID + ", " + category + ", " + productName+ ", "+ quantity + ", " + price+ ", "+user );
-            installationRequestAdded = true;
+            writer.write ( "\n%d. ,%d, %s, %s, %d, %d, %s".formatted ( installationID , productID , category , productName , quantity , price , user ) );
         } catch (IOException e) {
             installationRequestAdded =false;
             e.printStackTrace(); // Handle the exception based on your application's needs
