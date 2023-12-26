@@ -64,7 +64,8 @@ class Customer extends Users {
         int x = 0;
         for ( Map.Entry < String, String > entry : users.entrySet ( ) ) {
             x++;
-            LOGGER.info ( x + ". UserName: " + entry.getKey ( ) );
+            String msg = x + ". UserName: " + entry.getKey ( );
+            LOGGER.info ( msg );
         }
     }
 
@@ -141,7 +142,7 @@ class Customer extends Users {
         }
         catch ( IOException e ) {
             Users.userDeleted = false;
-            e.printStackTrace ( System.out );
+            printException ( e.getMessage () );
         }
     }
 
@@ -221,7 +222,7 @@ class Customer extends Users {
             logger.info ( "Users written to file successfully." );
         }
         catch ( IOException e ) {
-            e.printStackTrace ( System.out );
+            printException ( e.getMessage () );
         }
     }
 
@@ -268,7 +269,7 @@ class Customer extends Users {
         price = productC.price;
         installationRequestAdded = true;
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/InstallationRequests", true))) {
-            writer.write ( "\n%d. ,%d, %s, %s, %d, %d, %s".formatted ( installationID , productID , category , productName , quantity , price , user ) );
+            writer.write ( "%n%d. ,%d, %s, %s, %d, %d, %s".formatted ( installationID , productID , category , productName , quantity , price , user ) );
         } catch (IOException e) {
             installationRequestAdded =false;
             printException ( e.getMessage () );

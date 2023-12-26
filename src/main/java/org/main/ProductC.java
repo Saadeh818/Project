@@ -116,12 +116,12 @@ class ProductC {
 
     private static
     void productPrint ( ProductC product ) {
-        LOGGER.info ( "Product ID: " + product.productId );
-        LOGGER.info ( "Product Category: " + product.category );
-        LOGGER.info ( "Product Name: " + product.name );
-        LOGGER.info ( "Product Quantity: " + product.quantity );
-        LOGGER.info ( "Product Price: " + product.price );
-        LOGGER.info ( "\n");
+        String msg = ("Product ID: " + product.productId +
+                "\nProduct Category: " + product.category +
+                "\nProduct Name: " + product.name+
+                "\nProduct Quantity: " + product.quantity +
+                "\nProduct Price: " + product.price + "\n");
+        LOGGER.info ( msg );
     }
 
     public
