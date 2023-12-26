@@ -22,21 +22,21 @@ public class UserManagement {
 
     @Then("list installers")
     public void list_installers() {
-        assertTrue(Users.installerSelected);
+        assertTrue(Users.isInstallerSelected ());
     }
 
     @Then("list customers")
     public void list_customers() {
-        assertTrue(Users.customerSelected);
+        assertTrue(Users.isCustomerSelected ());
     }
 
     @Then("reload user management")
     public void reload_user_management() {
-        assertFalse(Users.installerSelected&&Users.customerSelected&&Users.addUserSelected);
+        assertFalse(Users.isInstallerSelected ()&&Users.isCustomerSelected ()&&Users.isAddUserSelected ());
     }
 
     @Then("add new user")
     public void addNewUser() {
-        assertTrue(Users.addUserSelected);
+        assertTrue(Users.isAddUserSelected ());
     }
 }

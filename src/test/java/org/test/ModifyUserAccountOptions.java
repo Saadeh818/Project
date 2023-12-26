@@ -8,7 +8,7 @@ import org.main.Users;
 public class ModifyUserAccountOptions {
     @When("modify account option input is {string}")
     public void modify_account_option_input_is(String string) {
-        Users.modifyAccountType = string;
+        Users.setModifyAccountType (string);
     }
 
     @Then("go to change password")

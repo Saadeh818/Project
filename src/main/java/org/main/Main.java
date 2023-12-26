@@ -175,17 +175,17 @@ class Main {
         switch (scanner.nextLine ( )) {
             case "1":
                 LOGGER.info ( "Enter new password: " );
-                if ( Users.installerSelected ) Installer.changePassword ( Users.userToModifyID , scanner.nextLine ( ) );
-                else if ( Users.customerSelected ) Customer.changePassword ( Users.userToModifyID , scanner.nextLine ( ) );
+                if ( Users.isInstallerSelected () ) Installer.changePassword ( Users.userToModifyID , scanner.nextLine ( ) );
+                else if ( Users.isCustomerSelected () ) Customer.changePassword ( Users.userToModifyID , scanner.nextLine ( ) );
                 break;
             case "2":
                 LOGGER.info ( "Enter new UserName: " );
-                if ( Users.installerSelected ) Installer.changeUserName ( Users.userToModifyID , scanner.nextLine ( ) );
-                else if ( Users.customerSelected ) Customer.changeUserName ( Users.userToModifyID , scanner.nextLine ( ) );
+                if ( Users.isInstallerSelected () ) Installer.changeUserName ( Users.userToModifyID , scanner.nextLine ( ) );
+                else if ( Users.isCustomerSelected () ) Customer.changeUserName ( Users.userToModifyID , scanner.nextLine ( ) );
                 break;
             case "3":
-                if ( Users.installerSelected ) Installer.deleteInstallerAccount ( Users.userToModifyID );
-                else if ( Users.customerSelected ) Customer.deleteCustomerAccount ( Users.userToModifyID );
+                if ( Users.isInstallerSelected () ) Installer.deleteInstallerAccount ( Users.userToModifyID );
+                else if ( Users.isCustomerSelected () ) Customer.deleteCustomerAccount ( Users.userToModifyID );
                 break;
             case "5":
                 return;

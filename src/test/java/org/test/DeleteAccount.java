@@ -21,13 +21,13 @@ class DeleteAccount {
     @Then ("delete account")
     public void delete_account() {
         // Write code here that turns the phrase above into concrete actions
-        assertTrue ( Users.userDeleted );
+        assertTrue ( Users.isUserDeleted () );
     }
 
     @Then("fail to delete")
     public void fail_to_delete() {
         // Write code here that turns the phrase above into concrete actions
-        assertFalse ( Users.userDeleted );
+        assertFalse ( Users.isUserDeleted () );
     }
 
 }

@@ -16,7 +16,7 @@ public class ChangePassword {
     @Then("the password is set successfully")
     public void thePasswordIsSetSuccessfully() {
         Customer.changePassword ( 1, "147852369" );
-        assertTrue ( Users.passwordUpdated );
+        assertTrue ( Users.isPasswordUpdated () );
     }
     @When("user enters the wrong password format")
     public void userEntersTheWrongPasswordFormat() {
@@ -24,6 +24,6 @@ public class ChangePassword {
     @Then("the password is not set")
     public void passwordFormatIsFalse() {
         Installer.changePassword ( 1, "963258741" );
-        assertFalse ( Users.passwordUpdated );
+        assertFalse ( Users.isPasswordUpdated () );
     }
 }

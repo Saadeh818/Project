@@ -12,16 +12,47 @@ class Users {
     public static final String CUSTOMER = "Customer";
     public static final String INSTALLER = "Installer";
     public static boolean selectUserToMenageFlag;
-    public static        String  modifyAccountType;
-    public static        boolean userDeleted;
-    public static        boolean passwordUpdated;
+
+    public static
+    void setModifyAccountType ( String modifyAccountType ) {
+        Users.modifyAccountType = modifyAccountType;
+    }
+
+    public static
+    boolean isUserDeleted ( ) {
+        return userDeleted;
+    }
+
+    public static
+    boolean isPasswordUpdated ( ) {
+        return passwordUpdated;
+    }
+
+    public static
+    boolean isInstallerSelected ( ) {
+        return installerSelected;
+    }
+
+    public static
+    boolean isCustomerSelected ( ) {
+        return customerSelected;
+    }
+
+    public static
+    boolean isAddUserSelected ( ) {
+        return addUserSelected;
+    }
+
+    private static       String  modifyAccountType;
+    private static       boolean userDeleted;
+    private static       boolean passwordUpdated;
     public static        boolean usernameChanged;
     public static        boolean failToAdd;
     public static        int     userToModifyID;
-    public static boolean userIsFound       = false;
-    public static boolean installerSelected = false;
-    public static        boolean customerSelected = false;
-    public static        boolean addUserSelected  = false;
+    public static        boolean userIsFound       = false;
+    private static       boolean installerSelected = false;
+    private static       boolean customerSelected = false;
+    private static       boolean addUserSelected  = false;
     private static final Logger  LOGGER           = Logger.getLogger ( Users.class.getName ( ) );
 
     public static
