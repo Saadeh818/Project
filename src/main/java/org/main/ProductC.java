@@ -157,17 +157,17 @@ class ProductC {
             category = categoryI;
     }
 
-    public
+    public static
     void setName ( String nameIn ) {
         name = nameIn;
     }
 
-    public
+    public static
     void setQuantity ( int quantityIn ) {
         quantity = quantityIn;
     }
 
-    public
+    public static
     void setPrice ( int priceIn ) {
         price = priceIn;
     }
@@ -213,9 +213,9 @@ class ProductC {
             if ( product.productId == id ) {
                 productPrint ( product );
                 if ( ! category.equals ( "#" ) ) setCategory ( category );
-                if ( ! name.equals ( "#" ) ) product.setName ( name );
-                if ( ! quantity.equals ( "#" ) ) product.setQuantity ( Integer.parseInt ( quantity ) );
-                if ( ! price.equals ( "#" ) ) product.setPrice ( Integer.parseInt ( price ) );
+                if ( ! name.equals ( "#" ) ) setName ( name );
+                if ( ! quantity.equals ( "#" ) ) setQuantity ( Integer.parseInt ( quantity ) );
+                if ( ! price.equals ( "#" ) ) setPrice ( Integer.parseInt ( price ) );
                 updateProductSuccess = true;
                 LOGGER.info ( "**********Product Updated Successfully**********" );
                 productPrint ( product );

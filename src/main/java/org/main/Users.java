@@ -9,7 +9,9 @@ import static org.main.Customer.fileRead;
 public
 class Users {
 
-    public static        boolean selectUserToMenageFlag;
+    public static final String CUSTOMER = "Customer";
+    public static final String INSTALLER = "Installer";
+    public static boolean selectUserToMenageFlag;
     public static        String  modifyAccountType;
     public static        boolean userDeleted;
     public static        boolean passwordUpdated;
@@ -144,11 +146,10 @@ class Users {
                 String nameAndPass = userName + "," + password;
                 bufferedWriter.write ( nameAndPass+ "\n" );
             }
-            if(filePath.contains ( "Customer" ))
+            if(filePath.contains ( CUSTOMER ))
             Customer.getUsersFromFile ( );
-            else if ( filePath.contains ( "Installer" ) ) {
+            else
                 Installer.getUsersFromFile ();
-            }
         }
         catch ( IOException e ) {
             printException ( e.getMessage () );
@@ -173,9 +174,9 @@ class Users {
                     }
                 }
                 Users.userDeleted = true;
-                if(srcInstallersTxt.contains ( "Installer" ))
+                if(srcInstallersTxt.contains ( INSTALLER ))
                 Installer.writeUsersToFile ( users , file.getPath ( ) );
-                else if ( srcInstallersTxt.contains ( "Customer" ) )
+                else
                     Customer.writeUsersToFile ( users, file.getPath () );
             }
         }
@@ -186,12 +187,12 @@ class Users {
     }
     protected static
     void checkThenSetNewPassword ( int userToModifyID , String newPassword , Map < String, String > users , String srcInstallersTxt ) {
-        if (srcInstallersTxt.contains ( "Installer" ) && ! Installer.checkPassword ( newPassword ) ) {
+        if (srcInstallersTxt.contains ( INSTALLER ) && ! Installer.checkPassword ( newPassword ) ) {
             LOGGER.info ( "Password Format Wrong" );
             Users.passwordUpdated = false;
             return;
         }
-        if (srcInstallersTxt.contains ( "Customer" ) && ! Customer.checkPassword ( newPassword ) ) {
+        if (srcInstallersTxt.contains ( CUSTOMER ) && ! Customer.checkPassword ( newPassword ) ) {
             LOGGER.info ( "Password Format Wrong" );
             Users.passwordUpdated = false;
             return;
@@ -202,11 +203,10 @@ class Users {
             try (BufferedReader bufferedReader = new BufferedReader ( new FileReader ( file ) )) {
                 fileRead ( userToModifyID , newPassword , bufferedReader , LOGGER , users );
                 Users.passwordUpdated = true;
-                if(srcInstallersTxt.contains ( "Installer" ))
+                if(srcInstallersTxt.contains ( INSTALLER ))
                 Installer.writeUsersToFile ( users , file.getPath ( ) );
-                else if ( srcInstallersTxt.contains ( "Customer" ) ) {
+                else
                     Customer.writeUsersToFile ( users,file.getPath () );
-                }
             }
         }
         catch ( IOException e ) {
