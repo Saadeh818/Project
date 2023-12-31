@@ -7,8 +7,8 @@ Feature: customer login
     Then  the customer is logged in the app successfully
     Examples:
       | customer username | customer password |
-      |ahmad@customer.com  |11111111           |
-      |deema@customer.com  |00000000           |
+      |ahmad@customer.com  |00000000           |
+      |deema@customer.com  |11111111           |
 
   Scenario Outline: customer entered a wrong username
     Given that the customer is not logged in the app

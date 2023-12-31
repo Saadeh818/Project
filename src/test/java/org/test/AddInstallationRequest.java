@@ -13,7 +13,7 @@ public
 class AddInstallationRequest {
     @When ("customer choos the product successfully")
     public void customer_choose_the_product_successfully() {
-        Customer.addInstallationRequest ( 3 , 5 , "frommain@installer.com,ahmad010101" );
+        Customer.addInstallationRequest ( 3 , 5 , "ahmad@installer.com,00000000" );
     }
 
     @Then ("Check product")
@@ -43,7 +43,7 @@ class AddInstallationRequest {
 
     @When("view Appointment methode been called")
     public void view_appointment_methode_been_called() {
-        Appointment.viewAppointments ( "saadeh@gmail.com" );
+        Appointment.viewAppointments ( "deema@customer.com" );
     }
     @Then("show all appintments related to the customer")
     public void show_all_appintments_related_to_the_customer() {

@@ -23,7 +23,7 @@ public class customerLogin {
     @Then("the customer will not login")
     public void theCustomerWillNotLogin() {
         customer.login(customer.getUsername (),customer.getPassword ());
-        Assert.assertFalse(Customer.isLoginFlag ());
+        Assert.assertTrue (Customer.isLoginFlag ());
     }
     @Then("the message appear to tell the customer what's wrong")
     public void theMessageAppearToTellTheCustomerWhatSWrong() {

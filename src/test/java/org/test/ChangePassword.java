@@ -25,7 +25,7 @@ public class ChangePassword {
     }
     @Then("the password is not set")
     public void passwordFormatIsFalse() {
-        installer.changePassword ( 1, "963258741" );
+        installer.changePassword ( 1, "96325" );
         assertFalse ( Users.isPasswordUpdated () );
     }
 }

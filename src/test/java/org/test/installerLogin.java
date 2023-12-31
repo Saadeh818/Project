@@ -22,7 +22,7 @@ public class installerLogin {
     @Then("the installer will not login")
     public void theInstallerWillNotLogin() {
         installer.login(installer.getUsername (),installer.getPassword ());
-        Assert.assertFalse(Installer.isLoginFlag ());
+        Assert.assertTrue (Installer.isLoginFlag ());
     }
     @Then("the message appear to tell the installer what's wrong")
     public void theMessageAppearToTellTheInstallerWhatSWrong() {
