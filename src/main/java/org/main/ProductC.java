@@ -174,21 +174,6 @@ class ProductC {
             this.category = categoryI;
     }
 
-    public
-    void setName ( String nameIn ) {
-        this.name = nameIn;
-    }
-
-    public
-    void setQuantity ( int quantityIn ) {
-        this.quantity = quantityIn;
-    }
-
-    public
-    void setPrice ( int priceIn ) {
-        this.price = priceIn;
-    }
-
     public static
     void selectIdToDelete ( String id , String categoryIn ) {
         try {
