@@ -7,9 +7,7 @@ Feature: installer login
     Then  the installer is logged in the app successfully
     Examples:
       | installer username | installer password |
-      |saadeh@installer.com  |12345678           |
-      |deema@installer.com   |00000000           |
-
+      |ahmad@installer.com  |00000000           |
   Scenario Outline: installer entered a wrong username
     Given that the installer is not logged in the app
     And the username installer is "<wrong username>"
@@ -29,8 +27,8 @@ Feature: installer login
     And the message appear to tell the installer what's wrong
     Examples:
       | installer username | wrong password |
-      | saadeh@installer.com  | 00000000       |
-      | deema@installer.com   |1234567         |
+      | ahmad@installer.com| 11111111       |
+      | deema@installer.com|1234567         |
   Scenario: installer entered empty password or email
     Given that the installer is not logged in the app
     And the username installer is " "

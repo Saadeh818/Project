@@ -9,14 +9,15 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class InstallerDashboard {
+    Installer installer = new Installer ();
     @Given("user is installer")
     public void user_is_installer() {
-        Installer.setAdminDashboardFlag ( true);
+        Installer.setAdminDashboardFlag ( true );
     }
 
     @When("installer entered <{int}>")
     public void installer_entered(Integer int1) {
-        Installer.dashboardManager(int1.toString ());
+        installer.dashboardManager(int1.toString ());
     }
 
     @Then("list installation requests")
@@ -26,7 +27,7 @@ public class InstallerDashboard {
 
     @When("installer entered {string}")
     public void installer_entered(String string) {
-        Installer.dashboardManager(string);
+        installer.dashboardManager(string);
     }
 
     @Then("reload installer dashboard")

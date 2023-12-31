@@ -6,22 +6,22 @@ import org.main.Installer;
 import org.junit.Assert;
 
 public class installerLogin {
+    Installer installer = new Installer ();
     @Given("that the installer is not logged in the app")
     public void thatTheInstallerIsNotLoggedInTheApp() {
-        Installer.clearCredentials();
-        new Installer ( );
+        installer.clearCredentials();
     }
     @Given("the username installer is {string}")
     public void theUsernameInstallerIs(String string) {
-        Installer.setUsername ( string );
+        installer.setUsername ( string );
     }
     @Given("the password installer is {string}")
     public void thePasswordInstallerIs(String string) {
-        Installer.setPassword ( string );
+        installer.setPassword ( string );
     }
     @Then("the installer will not login")
     public void theInstallerWillNotLogin() {
-        Installer.login(Installer.getUsername (),Installer.getPassword ());
+        installer.login(installer.getUsername (),installer.getPassword ());
         Assert.assertFalse(Installer.isLoginFlag ());
     }
     @Then("the message appear to tell the installer what's wrong")
@@ -30,7 +30,7 @@ public class installerLogin {
     }
     @Then("the installer is logged in the app successfully")
     public void theInstallerIsLoggedInTheAppSuccessfully() {
-        Installer.login(Installer.getUsername (),Installer.getPassword ());
+        installer.login(installer.getUsername (),installer.getPassword ());
         Assert.assertTrue(Installer.isLoginFlag ());
     }
 

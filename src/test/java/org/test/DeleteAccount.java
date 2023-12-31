@@ -13,9 +13,11 @@ public
 class DeleteAccount {
     @When ("user choose {string}")
     public void user_choose(String string) {
+        Customer customer = new Customer ();
+        Installer installer = new Installer ();
         // Write code here that turns the phrase above into concrete actions
-        Installer.deleteInstallerAccount ( Integer.parseInt ( string ) );
-        Customer.deleteCustomerAccount ( Integer.parseInt ( string ) );
+        installer.deleteInstallerAccount ( Integer.parseInt ( string ) );
+        customer.deleteCustomerAccount ( Integer.parseInt ( string ) );
     }
 
     @Then ("delete account")

@@ -9,6 +9,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class UserManagement {
+    Users users = new Users ();
     @Given("type selection dashboard opened")
     public void user_type_selection_dashboard_opened() {
         Users.userManagementScreen ( );
@@ -17,7 +18,7 @@ public class UserManagement {
 
     @When("admin in user management entered {string}")
     public void admin_in_user_management_entered(String string) {
-        Users.selectUserToMenage(string);
+        users.selectUserToMenage(string);
     }
 
     @Then("list installers")

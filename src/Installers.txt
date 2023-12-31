@@ -1,3 +1,3 @@
-from_test_dd_by_admin@installer.com,963258741
-Deema@installer.com,963258741
-from_test_add_by_admin@installer.com,963258741
+ahmad@installer.com,00000000
+deema@installer.com,11111111
+saadeh@customer.com,22222222

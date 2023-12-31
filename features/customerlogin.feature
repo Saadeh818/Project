@@ -7,8 +7,8 @@ Feature: customer login
     Then  the customer is logged in the app successfully
     Examples:
       | customer username | customer password |
-      |saadeh@gmail.com  |12345678           |
-      |deema@gmail.com   |00000000           |
+      |ahmad@customer.com  |11111111           |
+      |deema@customer.com  |00000000           |
 
   Scenario Outline: customer entered a wrong username
     Given that the customer is not logged in the app
@@ -18,8 +18,8 @@ Feature: customer login
     And the message appear to tell the customer what's wrong
     Examples:
       | wrong username | customer password |
-      | saadh@gmail.com|12345678           |
-      | saadeh         |12345678           |
+      | saadh@gmail.com|11111111           |
+      | ahmed@customer.com|00000000        |
 
   Scenario Outline: customer entered a wrong password
     Given that the customer is not logged in the app

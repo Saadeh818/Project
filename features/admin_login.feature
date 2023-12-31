@@ -4,7 +4,7 @@ Feature: Admin Login
     Given the admin is not logged in the app
     When the admin provides valid credentials
       | Username | Password |
-      | deema   | 002    |
+      | ahmad@admin.com   | 00000000    |
     And the admin attempts to log in
     Then the admin is successfully logged into the app
 

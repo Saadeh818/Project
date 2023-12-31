@@ -6,22 +6,23 @@ import org.main.Customer;
 import org.junit.Assert;
 
 public class customerLogin {
+    Customer customer = new Customer ();
     @Given("that the customer is not logged in the app")
     public void thatTheCustomerIsNotLoggedInTheApp() {
-        Customer.clearCredentials();
+        customer.clearCredentials();
         new Customer ( );
     }
     @Given("the username customer is {string}")
     public void theUsernameCustomerIs(String string) {
-        Customer.setUsername ( string );
+        customer.setUsername ( string );
     }
     @Given("the password customer is {string}")
     public void thePasswordCustomerIs(String string) {
-        Customer.setPassword ( string );
+        customer.setPassword ( string );
     }
     @Then("the customer will not login")
     public void theCustomerWillNotLogin() {
-        Customer.login(Customer.getUsername (),Customer.getPassword ());
+        customer.login(customer.getUsername (),customer.getPassword ());
         Assert.assertFalse(Customer.isLoginFlag ());
     }
     @Then("the message appear to tell the customer what's wrong")
@@ -30,7 +31,7 @@ public class customerLogin {
     }
     @Then("the customer is logged in the app successfully")
     public void theCustomerIsLoggedInTheAppSuccessfully() {
-        Customer.login(Customer.getUsername (),Customer.getPassword ());
+        customer.login(customer.getUsername (),customer.getPassword ());
         Assert.assertTrue(Customer.isLoginFlag ());
     }
 

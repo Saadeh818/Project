@@ -1,6 +1,5 @@
 package org.main;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -8,7 +7,7 @@ import java.util.logging.Logger;
 public
 class ProductC {
 
-    protected static final  List < ProductC > productList= new ArrayList <> ( );
+    protected static  List < ProductC > productList= new ArrayList <> ( );
     public static        boolean           readyToDelete;
     public static        boolean           readyToUpdate;
     public static        boolean           wrongInputFlag;
@@ -37,14 +36,14 @@ class ProductC {
         return category;
     }
 
-    public static
+    public
     String getName ( ) {
         return name;
     }
 
-    public static
+    public
     int getPrice ( ) {
-        return price;
+        return this.price;
     }
 
     public static
@@ -53,9 +52,9 @@ class ProductC {
     }
 
     private String  category;
-    private static String  name;
-    private static int     quantity;
-    private static int     price;
+    private String  name;
+    private int     quantity;
+    private int     price;
     private static boolean productAddSuccessfully;
     public         boolean updateProductSuccess;
 
@@ -67,10 +66,10 @@ class ProductC {
     public
     ProductC ( int id , String categoryIn , String nameIn , int quantityIn , int priceIn ) {
         this.productId = id;
-        category  = categoryIn;
-        name      = nameIn;
-        quantity  = quantityIn;
-        price     = priceIn;
+        this.category  = categoryIn;
+        this.name      = nameIn;
+        this.quantity  = quantityIn;
+        this.price     = priceIn;
     }
 
     public static
@@ -140,9 +139,9 @@ class ProductC {
     void productPrint ( ProductC product ) {
         String msg = ("Product ID: " + product.productId +
                 "\nProduct Category: " + product.category +
-                "\nProduct Name: " + name+
-                "\nProduct Quantity: " + quantity +
-                "\nProduct Price: " + price + "\n");
+                "\nProduct Name: " + product.name+
+                "\nProduct Quantity: " + product.quantity +
+                "\nProduct Price: " + product.price + "\n");
         LOGGER.info ( msg );
     }
 
@@ -175,19 +174,19 @@ class ProductC {
             this.category = categoryI;
     }
 
-    public static
+    public
     void setName ( String nameIn ) {
-        name = nameIn;
+        this.name = nameIn;
     }
 
-    public static
+    public
     void setQuantity ( int quantityIn ) {
-        quantity = quantityIn;
+        this.quantity = quantityIn;
     }
 
-    public static
+    public
     void setPrice ( int priceIn ) {
-        price = priceIn;
+        this.price = priceIn;
     }
 
     public static
@@ -195,9 +194,7 @@ class ProductC {
         try {
             int idInt = Integer.parseInt ( id );
             if ( checkIfProductExists ( idInt ) ) {
-                productList.removeIf ( product -> {
-                    return product.category.equals ( categoryIn ) && product.productId == idInt;
-                } );
+                productList.removeIf ( product -> product.category.equals ( categoryIn ) && product.productId == idInt );
                 productDeletedSuccessfully = !checkIfProductExists ( idInt );
                 LOGGER.info ( "The Product has been deleted successfully" );
             }
@@ -216,12 +213,9 @@ class ProductC {
     boolean checkIfProductExists ( int id ) {
         for ( ProductC product : productList ) {
             if ( product.productId == id ) {
-                JOptionPane.showMessageDialog ( null , "checkIfProductExists" , "hello" , JOptionPane.ERROR_MESSAGE );
                 return true;
             }
         }
-        JOptionPane.showMessageDialog ( null , "checkIfProductExists2" , "hello" , JOptionPane.ERROR_MESSAGE );
-
         return false;
     }
 
@@ -232,18 +226,20 @@ class ProductC {
         for ( ProductC product : productList ) {
             if ( product.productId == id ) {
                 productPrint ( product );
-                if ( ! category.equals ( "#" ) ) setCategory ( category );
-                if ( ! name.equals ( "#" ) ) setName ( name );
-                if ( ! quantity.equals ( "#" ) ) setQuantity ( Integer.parseInt ( quantity ) );
-                if ( ! price.equals ( "#" ) ) setPrice ( Integer.parseInt ( price ) );
+                if ( category.equals ( "#" ) ) category = product.category;
+                if ( name.equals ( "#" ) ) name = product.name;
+                if ( quantity.equals ( "#" ) ) quantity =String.valueOf ( product.quantity);
+                if ( price.equals ( "#" ) ) price =String.valueOf ( product.price);
+                selectIdToDelete ( String.valueOf ( id ) , product.getCategory ( ) );
+                productList.add ( new ProductC ( id , category , name , Integer.parseInt ( quantity) , Integer.parseInt ( price) ) );
                 updateProductSuccess = true;
                 LOGGER.info ( "**********Product Updated Successfully**********" );
                 productPrint ( product );
                 return;
             }
-                updateProductSuccess = false;
+            updateProductSuccess = false;
         }
+    }
 
 
     }
-}

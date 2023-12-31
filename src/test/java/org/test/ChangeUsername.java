@@ -19,7 +19,8 @@ public class ChangeUsername {
     @Then ( "the username is set successfully")
     public
     void theUsernameIsSetSuccessfully ( ) {
-        Customer.changeUserName ( 1, "SaaSaa@gmail.com" );
+        Customer customer= new Customer ();
+        customer.changeUserName ( 1, "SaaSaa@gmail.com" );
         assertTrue ( Users.usernameChanged );
     }
 
@@ -31,7 +32,8 @@ public class ChangeUsername {
     @Then ( "the userName is not set")
     public
     void theUserNameIsNotSet ( ) {
-        Installer.changeUserName ( 1, "saada2gmail,com" );
+        Installer installer=new Installer ();
+        installer.changeUserName ( 1, "saada2gmail,com" );
         assertFalse ( Users.usernameChanged );
     }
 }

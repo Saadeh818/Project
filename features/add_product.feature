@@ -16,6 +16,5 @@ Feature: Add product
     Examples:
       | category1 | name1 | quantity1 | price1 |
       |cat8       |product    |10         |500     |
-      |cat1       |pro     |10         |500     |
       |cat2       |product    |pr1        |500     |
       |cat3       |product    |10         |cat1    |

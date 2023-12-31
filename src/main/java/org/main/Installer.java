@@ -11,16 +11,16 @@ public
 class Installer extends Users {
     public static final String SRC_INSTALLATION_REQUESTS = "src/InstallationRequests";
     public static final String SRC_INSTALLERS_TXT = "src/Installers.txt";
-    private static Map < String, String > users = new HashMap <> ( );
+    private Map < String, String > users = new HashMap <> ( );
 
-    public static
+    public
     String getUsername ( ) {
-        return username;
+        return this.username;
     }
 
-    public static
+    public
     String getPassword ( ) {
-        return password;
+        return this.password;
     }
 
     public static
@@ -53,8 +53,8 @@ class Installer extends Users {
         return userRequested;
     }
 
-    private static String  username;
-    private static String  password;
+    private String  username;
+    private String  password;
     private static boolean loginFlag        = false;
     private static boolean errorMessageFlag = false;
     private static boolean addUserSuccess;
@@ -76,14 +76,14 @@ class Installer extends Users {
     private static boolean requestFound;
     private static String  requestID;
 
-    public static
+    public
     void setUsername ( String username ) {
-        Installer.username = username;
+        this.username = username;
     }
 
-    public static
+    public
     void setPassword ( String password ) {
-        Installer.password = password;
+        this.password = password;
     }
 
     private static       String userRequested;
@@ -103,8 +103,7 @@ class Installer extends Users {
             return -1; // Return a special value indicating an error
         }
     }
-    static
-    void getUsersFromFile ( ) {
+    public void getUsersFromFile ( ) {
         try {
             putUsers ( users , SRC_INSTALLERS_TXT );
         }
@@ -113,7 +112,6 @@ class Installer extends Users {
         }
     }
 
-    static
     void putUsers ( Map < String, String > users , String srcInstallersTxt ) throws IOException {
         users.clear ( );
         File file = new File ( srcInstallersTxt );
@@ -126,17 +124,17 @@ class Installer extends Users {
         }
     }
 
-    public static
+    public
     void clearCredentials ( ) {
         username  = null;
         password  = null;
         loginFlag = false;
     }
 
-    public static
+    public
     void login ( String username , String password ) {
         getUsersFromFile ( );
-        if ( ! Installer.users.containsKey ( username ) ) {
+        if ( ! users.containsKey ( username ) ) {
             loginFlag = false;
             return;
         }
@@ -151,7 +149,7 @@ class Installer extends Users {
         }
     }
 
-    public static
+    public
     void dashboardManager ( String userInput ) {
         switch (userInput) {
             case "1":
@@ -206,13 +204,13 @@ class Installer extends Users {
         installerDashboardFlag = true;
     }
 
-    public static
+    public
     Map < String, String > getUsers ( ) {
         getUsersFromFile ( );
         return users;
     }
 
-    public static
+    public
     void printUsers ( ) {
         getUsersFromFile ( );
         int x = 0;
@@ -224,7 +222,7 @@ class Installer extends Users {
 
     }
 
-    public static
+    public
     void addInstaller ( String userName , String password ) {
         getUsersFromFile ( );
         if ( checkUserName ( userName ) && checkPassword ( password ) && ! users.containsKey ( userName ) ) {
@@ -236,18 +234,17 @@ class Installer extends Users {
         LOGGER.info ( "Fail To Add " );
     }
 
-    private static
+    private
     void addToFile ( String userName , String password ) {
         writeUsers ( userName , password , SRC_INSTALLERS_TXT, users);
     }
 
-    static
     boolean checkPassword ( String password ) {
         getUsersFromFile ( );
         return password.length ( ) >= 8;
     }
 
-    private static
+    private
     boolean checkUserName ( String userName ) {
         getUsersFromFile ( );
         return userName.contains ( "@" );
@@ -279,22 +276,22 @@ class Installer extends Users {
         }
     }
 
-    public static
+    public
     void deleteInstallerAccount ( int userToModifyID ) {
         deleteUser ( userToModifyID, users, SRC_INSTALLERS_TXT );
     }
 
-    public static
+    public
     void writeUsersToFile ( Map < String, String > users , String filePath ) {
-        Customer.bufferWriter ( users , filePath , LOGGER );
+        bufferWriter ( users , filePath , LOGGER );
     }
 
-    public static
+    public
     void changePassword ( int userToModifyID , String newPassword ) {
         checkThenSetNewPassword ( userToModifyID , newPassword, users, SRC_INSTALLERS_TXT);
     }
 
-    public static
+    public
     void changeUserName ( int userToModifyID , String newUserName ) {
         if ( ! checkUserName ( newUserName ) ) {
             LOGGER.info ( "Username Format Wrong Or Used" );

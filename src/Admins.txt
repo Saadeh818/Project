@@ -1,2 +1,2 @@
-Ahmad,724
-deema,002
+ahmad@admin.com,00000000
+deema@admon.com,11111111
